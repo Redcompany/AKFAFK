@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset=UTF-8">
+<meta charset="UTF-8">
 <title>대륙게시판입니다.</title>
 </head>
 <body>
@@ -30,12 +30,13 @@
 				for (int i = 0; i < theArticles.size(); ++i) {
 					ArticleVO findArticle = theArticles.get(i);
 		%>
+
 		<tr>
 			<input type="hidden" name="todo" value="remove">
 			<input type="hidden" name="cartIndex"
 				value="<%=findArticle.getMemberNumber()%>">
-			<td>"<%=findArticle.getArticleNumber()%></td>
-			<td><%=findArticle.getArticleTitle()%></td>
+			<td name="getNumber"><%=findArticle.getArticleNumber()%></td>
+			<td><a href="readArticle?idx=<%=findArticle.getArticleNumber()%>"><%=findArticle.getArticleTitle()%></td>
 			<td><%=findArticle.getMemberNickName()%></td>
 			<td align="right"><%=findArticle.getArticleRecommendCount()%></td>
 			<td align="right"><%=findArticle.getArticleViewCount()%></td>
@@ -48,5 +49,6 @@
 	<%
 		}
 	%>
+	<a class="homeList" href="home">목록</a>
 </body>
 </html>
