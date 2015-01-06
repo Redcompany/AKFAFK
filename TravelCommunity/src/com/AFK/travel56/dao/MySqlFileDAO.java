@@ -5,9 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -105,20 +103,12 @@ public class MySqlFileDAO implements FileDAO {
 		Connection conn = null;
 		Statement stmt = null;
 		int stateCheck = 0;
-		Date nowDate = new Date();
-		SimpleDateFormat sdfNowDate = new SimpleDateFormat("yyyyMMdd");
-		List<FileVO> countFileList = this.findAllFile();
 
-		if (fileName != null) {
-			String changeFileName = sdfNowDate.format(nowDate) + articleNumber
-					+ countFileList.size();
-			fileName = changeFileName;
-		}
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
-			String sqlStr = "insert into `file`(file_name,article_number) valus ('"
+			String sqlStr = "insert into `file`(file_name,article_number) values ('"
 					+ fileName + "', " + articleNumber + ")";
 			stateCheck = stmt.executeUpdate(sqlStr);
 

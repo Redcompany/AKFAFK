@@ -6,7 +6,8 @@ public interface FileDAO {
 	public List<FileVO> findAllFileByArticle(int articleNumber);
 
 	public int addFile(String fileName, int articleNumber);
-	
+
+	public List<FileVO> findAllFile();
 
 	public int deleteFile(String fileName);
 }

@@ -19,7 +19,7 @@ public class ArticleService {
 	public boolean registerArticle(String title, String continent,
 			String country, String content, String memberNickName) {
 		MemberVO findMember = memberDAO.findMemberByNickName(memberNickName);
-		if (findMember != null) {
+		if (findMember != null) {	
 			int checkState = articleDAO.addArticle(title, continent, country,
 					content, findMember.getMemberNumber(),
 					findMember.getMemberNickName());

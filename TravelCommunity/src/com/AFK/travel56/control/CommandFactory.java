@@ -33,6 +33,8 @@ public class CommandFactory {
 		case "/front":
 			target = new FrontCommand();
 			break;
+		case "/createArticle":
+			target = new CreateArticleCommand();
 		}
 
 		return target;

@@ -13,10 +13,14 @@ public class FileService {
 	public List<FileVO> showFilesByArticle(int articleNumber) {
 		return fileVO.findAllFileByArticle(articleNumber);
 	}
+	public List<FileVO> allShowFiles(){
+		return fileVO.findAllFile();
+	}
 
 	//파일등록
-	public void registerFile(String fileName, int articleNumber) {
+	public boolean registerFile(String fileName, int articleNumber) {
 		fileVO.addFile(fileName, articleNumber);
+		return true;
 	}
 	//파일 삭제  
 	public void deleteFile(String fileName) {
