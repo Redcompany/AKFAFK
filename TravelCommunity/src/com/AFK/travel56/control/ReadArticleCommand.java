@@ -19,9 +19,7 @@ public class ReadArticleCommand implements Command {
 		ArticleService articleService = new ArticleService();
 		
 		session.setAttribute("Articles", articleService
-				.selectShowArticle(Integer.parseInt(request.getParameter("test"))));
-		
-		System.out.println(Integer.parseInt(request.getParameter("articleNumber")));
+				.selectShowArticle(Integer.parseInt(request.getParameter("getNumber"))));
 		
 		return commandResult;
 	}

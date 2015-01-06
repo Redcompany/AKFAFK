@@ -16,7 +16,7 @@ public class FrontCommand implements Command {
 		HttpSession session = request.getSession(true);
 		ArticleService articleService = new ArticleService();
 		session.setAttribute("Articles", articleService
-				.showAllArticleByContinent(request.getParameter("유럽")));
+				.showAllArticleByContinent(request.getParameter("continent")));
 
 		return commandResult;
 	}

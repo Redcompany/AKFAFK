@@ -7,17 +7,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>클릭한 제목을 보여줘~</title>
+<title><%=request.getParameter("title") %></title>
 </head>
 <body>
-	<style>
-td {
-	background-color: white;
-	font-family: sans-serif;
-	text-align: center;
-}
-</style>
-	<table id="Articleboard" width="1000" height="500" align="center">
+
+	<table id="Articleboard" width="1000" height="65" align="center" border="1">
 		<tr class="bestbackground">
 
 			<th width="70">Number</th>
@@ -25,22 +19,18 @@ td {
 			<th width="100">I D</th>
 			<th width="80">날 짜</th>
 			<th width="80">추천수</th>
+			<th width="80">조회수</th>
 
 		</tr>
-		<%
-			ArticleVO theArticles = (ArticleVO) session
-					.getAttribute("articleNumber");
-		%>
+		
 		<tr>
-			<input type="hidden" name="cartIndex"
-				value="<%=theArticles.getMemberNumber()%>">
-			<td>"<%=theArticles.getArticleNumber()%></td>
-			<td><%=theArticles.getArticleTitle()%></td>
-			<td><%=theArticles.getMemberNickName()%></td>
-			<td align="right"><%=theArticles.getArticleRecommendCount()%></td>
-			<td align="right"><%=theArticles.getArticleViewCount()%></td>
-
-
+			<input type="hidden" name="cartIndex" value="listValue">
+			<td><%=findArticle.getArticleNumber()%></td>
+			<td>확인하자</td>
+			<td>돈좀나와라</td>
+			<td align="right">2015.01.01</td>
+			<td align="right">7</td>
+			<td align="right">10</td>
 		</tr>
 
 	</table>
