@@ -17,7 +17,6 @@ public class MySqlArticleDAO implements ArticleDAO {
 	String username = "root";
 	String password = "1234";
 
-	
 	public List<ArticleVO> findAllArticleByContinent(String continent) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -147,7 +146,7 @@ public class MySqlArticleDAO implements ArticleDAO {
 				String memberNickName = rset.getString("member_nickname");
 
 				articleViewCount++;
-
+				this.ViewCountIncrement(articleNumber, articleViewCount);
 				findSelectArticle = new ArticleVO(articleNumber, articleTitle,
 						articleContinent, articleCountry, articleDate,
 						articleRecommendCount, articleViewCount,
@@ -195,6 +194,39 @@ public class MySqlArticleDAO implements ArticleDAO {
 
 			stateCheck = stmt.executeUpdate(sqlStr);
 
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
+
+	public int ViewCountIncrement(int articleNumber, int articleViewCount) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+
+			String sqlStr = "UPDATE article set article_view_count='"
+					+ articleViewCount + "' where article_number="
+					+ articleNumber;
+			stateCheck = stmt.executeUpdate(sqlStr);
 		} catch (SQLException ex) {
 			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
 					null, ex);
