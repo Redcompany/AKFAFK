@@ -2,7 +2,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page session="true" import="java.util.*, travel.*"%>
+<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,8 +34,11 @@
 			<td colspan=2></td>
 		</tr>
 		<tr>
-			<td colspan=2><input type="button"
-				onclick="location.href = '/MySing/action/loginform'" value="로그아웃"></td>
+		<form name="logout" action="<core:url value='/action/home'/>"
+						method="POST">
+						<input class="logout" type="submit" name="todo" value="로그아웃">
+					</form>
+			</td>
 		</tr>
 		<tr>
 			<td colspan=2><input type="button"
@@ -46,3 +49,4 @@
 	</table>
 </body>
 </html>
+

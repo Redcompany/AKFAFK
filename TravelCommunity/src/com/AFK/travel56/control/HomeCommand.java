@@ -4,6 +4,7 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import travel.MyFileRenamePolicy;
 
@@ -23,6 +24,7 @@ public class HomeCommand implements Command {
 		ArticleService articleService = new ArticleService();
 		FileService fileService = new FileService();
 		String todoCheck = request.getParameter("todo");
+		HttpSession session=request.getSession(true);
 		if (todoCheck != null) {
 
 			switch (todoCheck) {
@@ -76,7 +78,9 @@ public class HomeCommand implements Command {
 				// request.getParameter("name"),
 				// request.getParameter("phone")));
 				// break;
-
+			case "로그아웃":
+				session.removeAttribute("loginsession");
+				break;
 			case "탈퇴":
 				request.setAttribute("deleteMember", memberService
 						.deleteMember(request.getParameter("id"),

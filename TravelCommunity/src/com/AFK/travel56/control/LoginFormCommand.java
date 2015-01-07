@@ -13,18 +13,17 @@ public class LoginFormCommand implements Command {
 	public CommandResult execute(HttpServletRequest request,
 			HttpServletResponse response)
 			throws javax.servlet.ServletException, java.io.IOException {
-		
+
 		CommandResult commandResult = null;
 		HttpSession session = request.getSession(true);
 		MemberService memberService = new MemberService();
-
+		
 		String memberID = request.getParameter("id");
 		String memberPW = request.getParameter("password");
-
+		
 		MemberVO memberVO = memberService.loginMember(memberID, memberPW);
 		session.setAttribute("loginsession", memberVO);
-
-		commandResult=new CommandResult("/WEB-INF/view/loginsuccess.jsp");
+		commandResult = new CommandResult("/WEB-INF/view/loginsuccess.jsp");
 		return commandResult;
 	}
 }

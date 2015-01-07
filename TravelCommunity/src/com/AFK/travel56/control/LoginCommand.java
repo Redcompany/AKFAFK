@@ -35,9 +35,8 @@ public class LoginCommand implements Command {
 			throws javax.servlet.ServletException, java.io.IOException {
 
 		CommandResult commandResult = null;
-
-		commandResult = new CommandResult("/WEB-INF/view/loginform.jsp");
-
+		commandResult=new CommandResult("/WEB-INF/view/loginform.jsp");
 		return commandResult;
+		
 	}
 }
