@@ -16,6 +16,7 @@ public class MySqlArticleDAO implements ArticleDAO {
 	String databaseURL = "jdbc:mysql://localhost/TravelCommunity";
 	String username = "root";
 	String password = "1234";
+
 	
 	public List<ArticleVO> findAllArticleByContinent(String continent) {
 		Connection conn = null;
@@ -144,7 +145,7 @@ public class MySqlArticleDAO implements ArticleDAO {
 						.getInt("article_recommend_count");
 				int articleViewCount = rset.getInt("article_view_count");
 				String memberNickName = rset.getString("member_nickname");
-
+				
 				findSelectArticle = new ArticleVO(articleNumber, articleTitle,
 						articleContinent, articleCountry, articleDate,
 						articleRecommendCount, articleViewCount,
