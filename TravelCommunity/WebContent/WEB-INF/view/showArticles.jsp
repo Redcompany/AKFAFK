@@ -35,8 +35,8 @@
 			<input type="hidden" name="todo" value="remove">
 			<input type="hidden" name="cartIndex"
 				value="<%=findArticle.getMemberNumber()%>">
-			<td name="getNumber"><%=findArticle.getArticleNumber()%></td>
-			<td><a href="readArticle?idx=<%=findArticle.getArticleNumber()%>"><%=findArticle.getArticleTitle()%></td>
+			<td><%=findArticle.getArticleNumber()%></td>
+			<td><a href="readArticle?idx=<%=findArticle.getArticleNumber()%>"><%=findArticle.getArticleTitle()%></a></td>
 			<td><%=findArticle.getMemberNickName()%></td>
 			<td align="right"><%=findArticle.getArticleRecommendCount()%></td>
 			<td align="right"><%=findArticle.getArticleViewCount()%></td>
