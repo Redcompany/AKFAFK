@@ -19,7 +19,7 @@ public class CommandFactory {
 			target = new ShowArticlesCommand();
 			break;
 		case "/loginMember":
-			target = new LoginMemberCommand();
+			target = new LoginCommand();
 			break;
 		case "/updateMember":
 			target = new UpdateMemberCommand();

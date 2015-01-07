@@ -21,6 +21,8 @@ public interface MemberDAO {
 			String memberBirth, String memberNickName);
 
 	public MemberVO memberLogin(String memberID, String memberPW);
+	
+	public MemberVO loginCheck(String memberID);
 
 	public MemberVO findMemberByIDNameBirth(String memberID, String memberName,
 			String memberBirth);

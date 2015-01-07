@@ -50,14 +50,20 @@ public class HomeCommand implements Command {
 				System.out.println(request.getParameter("name"));
 
 				break;
-//			case "회워정보변경":
-//				request.setAttribute("updateMember", memberService
-//						.updateMember(request.getParameter("id"),
-//								request.getParameter("pass"),
-//								request.getParameter("email"),
-//								request.getParameter("name"),
-//								request.getParameter("phone")));
-//				break;
+
+			case "로그인":
+				request.setAttribute("memberLogin", memberService.loginMember(
+						request.getParameter("id"),
+						request.getParameter("pass")));
+				break;
+				// case "회워정보변경":
+				// request.setAttribute("updateMember", memberService
+				// .updateMember(request.getParameter("id"),
+				// request.getParameter("pass"),
+				// request.getParameter("email"),
+				// request.getParameter("name"),
+				// request.getParameter("phone")));
+				// break;
 			case "탈퇴":
 				request.setAttribute("deleteMember", memberService
 						.deleteMember(request.getParameter("id"),

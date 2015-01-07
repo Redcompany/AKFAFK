@@ -448,4 +448,54 @@ public class MySqlMemberDAO implements MemberDAO {
 		}
 		return memberVO;
 	}
+
+	// 로그인 체크
+
+	public MemberVO loginCheck(String memberID) {
+		Connection conn = null;
+		Statement stmt = null;
+		MemberVO memberVO = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM CompanyUser WHERE userID= ?"
+					+ "AND password =?";
+			ResultSet rset = stmt.executeQuery(sqlStr);
+			if (rset.next() != false) {
+				int membersNumber = rset.getInt("member_number");
+				String membersID = rset.getString("member_id");
+				String membersPW = rset.getString("member_password");
+				boolean membersGender = rset.getBoolean("member_gender");
+				String membersEmail = rset.getString("member_email");
+				String membersName = rset.getString("member_name");
+				String membersPhone = rset.getString("member_phone");
+				String membersBirth = rset.getString("member_birth");
+				String membersNickName = rset.getString("member_nickname");
+
+				memberVO = new MemberVO(membersNumber, membersID, membersPW,
+						membersGender, membersEmail, membersName, membersPhone,
+						membersBirth, membersNickName);
+
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlMemberDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlMemberDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlMemberDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return memberVO;
+	}
 }
