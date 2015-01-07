@@ -35,30 +35,8 @@ public class LoginCommand implements Command {
 			throws javax.servlet.ServletException, java.io.IOException {
 
 		CommandResult commandResult = null;
-		HttpSession session = request.getSession();
-		MemberService memberService = new MemberService();
-
-		String memberID = request.getParameter("id");
-		String memberPW = request.getParameter("password");
-
-		MemberVO memberVO = memberService.loginCheck(memberID); 
-		if (memberVO != null) {
-			if (memberVO.getMemberPW().equals(memberPW)) {
-				commandResult = new CommandResult(
-						"/WEB-INF/view/loginsuccess.jsp");
-				session.setAttribute("loginsession", memberVO);
-			} else {
-				request.setAttribute("loginfailuremessage",
-						"password가 일치하지 않습니다.");
-				commandResult = new CommandResult(
-						"/WEB-INF/view/loginform.jsp");
-			}
-		} else {
-			commandResult = new CommandResult(
-					"/WEB-INF/view/loginform.jsp");
-			request.setAttribute("loginfailuremessage", "ID를 확인해주세요.");
-		}
-
+		commandResult=new CommandResult("/WEB-INF/view/loginform.jsp");
 		return commandResult;
+		
 	}
 }

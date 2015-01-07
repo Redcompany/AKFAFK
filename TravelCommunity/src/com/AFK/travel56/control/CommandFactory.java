@@ -35,6 +35,10 @@ public class CommandFactory {
 			break;
 		case "/createArticle":
 			target = new CreateArticleCommand();
+			break;
+		case "/loginsuccess":
+			target = new LoginFormCommand();
+			break;
 		}
 
 		return target;

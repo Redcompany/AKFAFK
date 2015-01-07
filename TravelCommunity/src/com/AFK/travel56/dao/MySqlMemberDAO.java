@@ -461,7 +461,7 @@ public class MySqlMemberDAO implements MemberDAO {
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
 			String sqlStr = "SELECT * FROM CompanyUser WHERE userID= ?"
-					+ "AND password =?";
+					+ "AND password = ";
 			ResultSet rset = stmt.executeQuery(sqlStr);
 			if (rset.next() != false) {
 				int membersNumber = rset.getInt("member_number");

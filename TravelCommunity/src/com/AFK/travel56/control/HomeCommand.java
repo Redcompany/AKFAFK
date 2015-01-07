@@ -4,6 +4,7 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import travel.MyFileRenamePolicy;
 
@@ -23,6 +24,7 @@ public class HomeCommand implements Command {
 		ArticleService articleService = new ArticleService();
 		FileService fileService = new FileService();
 		String todoCheck = request.getParameter("todo");
+		HttpSession session=request.getSession(true);
 		if (todoCheck != null) {
 
 			switch (todoCheck) {
@@ -76,7 +78,9 @@ public class HomeCommand implements Command {
 				// request.getParameter("name"),
 				// request.getParameter("phone")));
 				// break;
-
+			case "로그아웃":
+				session.removeAttribute("loginsession");
+				break;
 			case "탈퇴":
 				request.setAttribute("deleteMember", memberService
 						.deleteMember(request.getParameter("id"),
@@ -97,10 +101,13 @@ public class HomeCommand implements Command {
 					;
 				System.out.println("try안에 실행이 되나?");
 				System.out.println(multi.getParameter("title"));
-				request.setAttribute("createArticle", articleService.registerArticle(multi.getParameter("title"),
-						multi.getParameter("continent"),
-						multi.getParameter("country"),
-						multi.getParameter("content"), "26일 쉬자"));
+				request.setAttribute(
+						"createArticle",
+						articleService.registerArticle(
+								multi.getParameter("title"),
+								multi.getParameter("continent"),
+								multi.getParameter("country"),
+								multi.getParameter("content"), "26일 쉬자"));
 				// 파일 업로드. 폼에서 가져온 인자값을 얻기 위해request 객체 전달,
 				// 업로드 경로, 파일 최대 크기, 한글처리, 파일 중복처리
 
@@ -108,10 +115,12 @@ public class HomeCommand implements Command {
 				// 업로드한 파일들의 이름을 얻어옴
 				String file = (String) files.nextElement();
 				filename = multi.getFilesystemName(file);
-				fileService.registerFile(filename, fileService.allShowFiles().size());
+				fileService.registerFile(filename, fileService.allShowFiles()
+						.size());
 				String file1 = (String) files.nextElement();
 				filename1 = multi.getFilesystemName(file1);
-				fileService.registerFile(filename1, fileService.allShowFiles().size());
+				fileService.registerFile(filename1, fileService.allShowFiles()
+						.size());
 			} catch (Exception e) {
 				// 예외처리
 				e.printStackTrace();

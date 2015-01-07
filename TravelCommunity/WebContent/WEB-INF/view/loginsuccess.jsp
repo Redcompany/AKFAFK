@@ -1,44 +1,52 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html> -->
-
+<%@page import="com.AFK.travel56.dao.MemberVO"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page session="true" import="java.util.*, travel.*" %>
-<%@taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>로그인 성공</title>
 </head>
 <body>
-	<form name="login" action="<core:url value='/action/loginsuccess'/>" method="POST">
-        <table>
-            <tr>
-                <td>아이디</td>
-                <td><input type="text" name=id></td>
-                <td rowspan=2><input type=submit name="todo" value="login"></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input type="password" name=password></td>
-            </tr>
-        	 <tr>
-                <td><b> <core:if
-                            test="${!empty requestScope.loginfailuremessage }"><font color="RED">${requestScope.loginfailuremessage }</font></core:if>
-                </b></td>
-            </tr>
-        </table>
-    </form>
+	<table align="center">
+		<tr>
+			<td>이름 :</td>
+			<td>${sessionScope.loginsession.memberName}</td>
+
+		</tr>
+		<tr>
+			<td colspan=2 align="center">님 <b>환영합니다.</b>
+
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2></td>
+		</tr>
+		<tr>
+			<td colspan=2></td>
+		</tr>
+		<tr>
+			<td colspan=2></td>
+		</tr>
+		<tr>
+			<td colspan=2></td>
+		</tr>
+		<tr>
+		<form name="logout" action="<core:url value='/action/home'/>"
+						method="POST">
+						<input class="logout" type="submit" name="todo" value="로그아웃">
+					</form>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2><input type="button"
+				onclick="location.href = '/${initParam.context_root }/GetMemberInfo'"
+				value="My Page"></td>
+		</tr>
+
+	</table>
 </body>
 </html>
+
