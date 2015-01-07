@@ -2,18 +2,16 @@ package com.AFK.travel56.control;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.AFK.travel56.control.CommandResult;
 
-import com.AFK.travel56.service.MemberService;
-
-public class LoginMemberCommand implements Command {
+public class LoginFormCommand implements Command {
 
 	public CommandResult execute(HttpServletRequest request,
 			HttpServletResponse response)
 			throws javax.servlet.ServletException, java.io.IOException {
-		CommandResult commandResult = new CommandResult(
-				"/WEB-INF/view/loginMember.jsp");
 		
-
+		CommandResult commandResult = null;
+		commandResult=new CommandResult("/WEB-INF/view/loginform.jsp");
 		return commandResult;
 	}
 }
