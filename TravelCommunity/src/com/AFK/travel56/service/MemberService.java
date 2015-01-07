@@ -128,8 +128,8 @@ public class MemberService {
 		return false;
 	}
 	//로그인체크
-		public MemberVO loginCheck(String memberID) {
-			MemberVO loginCheak = memberDAO.loginCheck(memberID);
-			return MySqlMemberDAO.loginCheck(memberID);
-		}
+	  public MemberVO loginCheck(String memberID) {
+	         MemberVO loginCheak = memberDAO.loginCheck(memberID);
+	         return loginCheak;
+	  }
 }
