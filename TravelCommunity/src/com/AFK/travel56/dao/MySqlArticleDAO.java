@@ -145,7 +145,9 @@ public class MySqlArticleDAO implements ArticleDAO {
 						.getInt("article_recommend_count");
 				int articleViewCount = rset.getInt("article_view_count");
 				String memberNickName = rset.getString("member_nickname");
-				
+
+				articleViewCount++;
+
 				findSelectArticle = new ArticleVO(articleNumber, articleTitle,
 						articleContinent, articleCountry, articleDate,
 						articleRecommendCount, articleViewCount,
