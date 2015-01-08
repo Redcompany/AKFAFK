@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form name="createArticleForm" enctype="multipart/form-data"
-		action="<c:url value='/action/home' />" method="POST">
+		action="<c:url value='/action/readArticle' />" method="POST">
 		<input type="checkbox" name="continent" value="유럽">유럽 <input
 			type="checkbox" name="country" value="유럽">영국
 		<p>제목</p>

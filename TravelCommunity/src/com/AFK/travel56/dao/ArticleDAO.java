@@ -4,16 +4,17 @@ import java.util.List;
 
 public interface ArticleDAO {
 
+	public List<ArticleVO> findAllArticle();
+
 	public List<ArticleVO> findBestArticle();
 
 	public List<ArticleVO> findAllArticleByContinent(String continent);
 
 	public List<ArticleVO> findAllArticleByCountry(String country);
-	
+
 	public List<ArticleVO> findBestArticleByContinent(String continent);
 
 	public ArticleVO showSelectArticle(int articleNumber);
-	
 
 	public int addArticle(String title, String continent, String country,
 			String content, int memberNumber, String memberNickName);

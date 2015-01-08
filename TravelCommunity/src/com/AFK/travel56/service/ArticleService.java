@@ -15,6 +15,11 @@ public class ArticleService {
 	ArticleDAO articleDAO = new MySqlArticleDAO();
 	MemberDAO memberDAO = new MySqlMemberDAO();
 
+	public List<ArticleVO> findAllArticles(){
+		List<ArticleVO> articleList=articleDAO.findAllArticle();
+		return articleList;
+	}
+	
 	//글 등록
 	public boolean registerArticle(String title, String continent,
 			String country, String content, String memberNickName) {

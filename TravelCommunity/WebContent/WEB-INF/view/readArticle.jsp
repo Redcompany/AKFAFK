@@ -67,11 +67,11 @@
 			<td></td>
 		</tr>
 		
-		<%
+		<%-- <%
 		CommentVO commentVO = (CommentVO) session
 				.getAttribute("Articles");
 		if (commentVO != null) {
-		%>
+		%> --%>
 		
 		<tr>
 			<td></td>
@@ -84,9 +84,9 @@
 
 	</table>
 	<br />
-	<%
-		}
+	< <%
+		/* } */
 	}
-	%>
+	%> 
 </body>
 </html>
