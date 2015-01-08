@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AFK_trable56 회원가입 test</title>
+<title>AFK_trable56 회원가입</title>
 </head>
 <body>
 	<form name="registerOKForm" action="<c:url value='/action/home'/>"

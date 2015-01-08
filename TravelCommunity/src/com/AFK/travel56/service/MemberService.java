@@ -85,15 +85,15 @@ public class MemberService {
 	}
 
 	// 회원 로그인
-	public boolean loginMember(String memberID, String memberPW) {
+	public MemberVO loginMember(String memberID, String memberPW) {
 
 		MemberVO memberVO = memberDAO.memberLogin(memberID, memberPW);
 
 		if (memberVO != null) {
-			return true;
+			return memberVO;
 		}
 
-		return false;
+		return null;
 	}
 
 	// 회원 삭제
