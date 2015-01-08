@@ -17,10 +17,10 @@ public class LoginFormCommand implements Command {
 		CommandResult commandResult = null;
 		HttpSession session = request.getSession(true);
 		MemberService memberService = new MemberService();
-		
+
 		String memberID = request.getParameter("id");
 		String memberPW = request.getParameter("password");
-		
+
 		MemberVO memberVO = memberService.loginMember(memberID, memberPW);
 		session.setAttribute("loginsession", memberVO);
 	

@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
-<html lange="ko">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>AFK_trable56에 온 것을 환영해요~</title>
+<title>AFK_travel56에 온 것을 환영해요~</title>
 </head>
 <body>
 	<style>
