@@ -17,7 +17,7 @@ public class MySqlArticleDAO implements ArticleDAO {
 	String username = "root";
 	String password = "1234";
 
-	public List<ArticleVO> findAllArticle(){
+	public List<ArticleVO> findAllArticle() {
 		Connection conn = null;
 		Statement stmt = null;
 
@@ -44,8 +44,8 @@ public class MySqlArticleDAO implements ArticleDAO {
 				int articleViewCount = rset.getInt("article_view_count");
 				String memberNickName = rset.getString("member_nickname");
 				continentArticleList.add(new ArticleVO(articleNumber,
-						articleTitle, articleContinent, articleCountry, articleDate,
-						articleRecommendCount, articleViewCount,
+						articleTitle, articleContinent, articleCountry,
+						articleDate, articleRecommendCount, articleViewCount,
 						articleContent, memberNumber, memberNickName));
 			}
 
@@ -68,7 +68,7 @@ public class MySqlArticleDAO implements ArticleDAO {
 		}
 		return continentArticleList;
 	}
-	
+
 	public List<ArticleVO> findAllArticleByContinent(String continent) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -299,8 +299,8 @@ public class MySqlArticleDAO implements ArticleDAO {
 		return stateCheck;
 	}
 
-	public int updateArticle(int articleNumber, String articleContent,
-			int memberNumber, String memberNickName) {
+	public int updateArticle(int articleNumber, String articleTitle,
+			String articleContent, int memberNumber, String memberNickName) {
 		Connection conn = null;
 		Statement stmt = null;
 		int stateCheck = 0;
@@ -316,8 +316,8 @@ public class MySqlArticleDAO implements ArticleDAO {
 				stmt = conn.createStatement();
 
 				String sqlStr = "UPDATE article set article_content='"
-						+ articleContent + "' where article_number="
-						+ articleNumber;
+						+ articleContent + "', article_title='" + articleTitle
+						+ "' where article_number=" + articleNumber;
 				stateCheck = stmt.executeUpdate(sqlStr);
 			} catch (SQLException ex) {
 				Logger.getLogger(MySqlArticleDAO.class.getName()).log(

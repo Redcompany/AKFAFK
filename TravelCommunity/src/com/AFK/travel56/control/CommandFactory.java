@@ -39,6 +39,9 @@ public class CommandFactory {
 		case "/loginsuccess":
 			target = new LoginFormCommand();
 			break;
+		case "/updateArticle":
+			target = new UpdateArticleCommand();
+			break;
 		}
 
 		return target;

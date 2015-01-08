@@ -23,6 +23,8 @@ public class LoginFormCommand implements Command {
 		
 		MemberVO memberVO = memberService.loginMember(memberID, memberPW);
 		session.setAttribute("loginsession", memberVO);
+	
+		
 		commandResult = new CommandResult("/WEB-INF/view/loginsuccess.jsp");
 		return commandResult;
 	}

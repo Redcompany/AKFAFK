@@ -19,8 +19,8 @@ public interface ArticleDAO {
 	public int addArticle(String title, String continent, String country,
 			String content, int memberNumber, String memberNickName);
 
-	public int updateArticle(int articleNumber, String articleContent,
-			int memberNumber, String memberNickName);
+	public int updateArticle(int articleNumber, String articleTitle,
+			String articleContent, int memberNumber, String memberNickName);
 
 	public int deleteArticle(int articleNumber, String memberNickName);
 

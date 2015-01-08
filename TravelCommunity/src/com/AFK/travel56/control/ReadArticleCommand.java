@@ -25,14 +25,19 @@ public class ReadArticleCommand implements Command {
 
 		HttpSession session = request.getSession(true);
 
-		String uploadPath = "C:/test";
-		int size = 6 * 1024 * 1024; // 업로드 파일 최대 크기 지정
-		String filename = "";
-		String filename1 = "";
-		MultipartRequest multi = new MultipartRequest(request, uploadPath,
-				size, "UTF-8", new MyFileRenamePolicy());
-		if (multi.getParameter("todo").equals("글등록")) {
+		if (request.getParameter("idx") != null) {
+			session.setAttribute("Articles", articleService
+					.selectShowArticle(Integer.parseInt(request
+							.getParameter("idx"))));
+
+		} else {
+			String uploadPath = "C:/test";
+			int size = 6 * 1024 * 1024; // 업로드 파일 최대 크기 지정
+			String filename = "";
+			String filename1 = "";
 			try {
+				MultipartRequest multi = new MultipartRequest(request,
+						uploadPath, size, "UTF-8", new MyFileRenamePolicy());
 				request.setAttribute(
 						"createArticle",
 						articleService.registerArticle(
@@ -47,24 +52,24 @@ public class ReadArticleCommand implements Command {
 				// 업로드한 파일들의 이름을 얻어옴
 				String file = (String) files.nextElement();
 				filename = multi.getFilesystemName(file);
-				fileService.registerFile(filename, articleService
-						.findAllArticles().size());
 				String file1 = (String) files.nextElement();
 				filename1 = multi.getFilesystemName(file1);
-				fileService.registerFile(filename1, articleService
-						.findAllArticles().size());
+				if (file != null) {
+					fileService.registerFile(filename, articleService
+							.findAllArticles().size());
+				}
+				if (file1 != null) {
+					fileService.registerFile(filename1, articleService
+							.findAllArticles().size());
+				}
 				session.setAttribute("Articles", articleService
 						.selectShowArticle(articleService.findAllArticles()
 								.size()));
+				
 			} catch (Exception e) {
 				// 예외처리
 				e.printStackTrace();
 			}
-		} else {
-
-			session.setAttribute("Articles", articleService
-					.selectShowArticle(Integer.parseInt(request
-							.getParameter("idx"))));
 
 			// session.setAttribute("Comment", commentService.
 			// registerComment(commentContent, memberNumber,
