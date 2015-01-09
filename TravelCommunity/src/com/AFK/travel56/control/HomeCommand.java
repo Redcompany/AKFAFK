@@ -22,8 +22,7 @@ public class HomeCommand implements Command {
 			throws javax.servlet.ServletException, java.io.IOException {
 		CommandResult commandResult = null;
 		MemberService memberService = new MemberService();
-		ArticleService articleService = new ArticleService();
-		FileService fileService = new FileService();
+		
 		String todoCheck = request.getParameter("todo");
 		HttpSession session=request.getSession(true);
 		if (todoCheck != null) {
@@ -88,40 +87,6 @@ public class HomeCommand implements Command {
 				session.removeAttribute("loginsession");
 				break;
 			}
-		} else {
-
-			System.out.println("글등록 실행?");
-			String uploadPath = "C:/test";
-			int size = 6 * 1024 * 1024; // 업로드 파일 최대 크기 지정
-			String filename = "";
-			String filename1 = "";
-			try {
-				MultipartRequest multi = new MultipartRequest(request,
-						uploadPath, size, "UTF-8", new MyFileRenamePolicy());
-				if (multi.getParameter("todo").equals("글등록"))
-					;
-				System.out.println("try안에 실행이 되나?");
-				System.out.println(multi.getParameter("title"));
-				request.setAttribute("createArticle", articleService.registerArticle(multi.getParameter("title"),
-						multi.getParameter("continent"),
-						multi.getParameter("country"),
-						multi.getParameter("content"), "26일 쉬자"));
-				// 파일 업로드. 폼에서 가져온 인자값을 얻기 위해request 객체 전달,
-				// 업로드 경로, 파일 최대 크기, 한글처리, 파일 중복처리
-
-				Enumeration files = multi.getFileNames();
-				// 업로드한 파일들의 이름을 얻어옴
-				String file = (String) files.nextElement();
-				filename = multi.getFilesystemName(file);
-				fileService.registerFile(filename, fileService.allShowFiles().size());
-				String file1 = (String) files.nextElement();
-				filename1 = multi.getFilesystemName(file1);
-				fileService.registerFile(filename1, fileService.allShowFiles().size());
-			} catch (Exception e) {
-				// 예외처리
-				e.printStackTrace();
-			}
-
 		}
 
 		commandResult = new CommandResult("/WEB-INF/view/home.jsp");

@@ -7,30 +7,28 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title><%=request.getParameter("getArticleTitle")%></title>
+<%
+	ArticleVO readArticle = (ArticleVO) session
+			.getAttribute("Articles");
+	if (readArticle != null) {
+%>
+<title>글보기 | <%=readArticle.getArticleTitle()%></title>
 </head>
 <body>
 
-	<table id="Articleboard" width="1500" height="65" align="center"
-		border="1">
-		<tr class="bestbackground">
+	<table id="Articleboard" width="75%" height="65" align="center"
+		border="0">
 
+		<tr class="bestbackground">
 			<th width="50">Number</th>
-			<th width="150">대륙</th>
-			<th width="150">나라</th>
-			<th width="370">제 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</th>
+			<th width="150">대 륙</th>
+			<th width="150">나 라</th>
+			<th width="370">제 목</th>
 			<th width="200">I D</th>
 			<th width="100">날 짜</th>
 			<th width="80">추천수</th>
 			<th width="80">조회수</th>
-
 		</tr>
-
-		<%
-			ArticleVO readArticle = (ArticleVO) session
-					.getAttribute("Articles");
-			if (readArticle != null) {
-		%>
 
 		<tr align="center">
 			<input type="hidden" name="cartIndex" value="listValue">
@@ -39,13 +37,9 @@
 			<td><%=readArticle.getArticleCountry()%></td>
 			<td><%=readArticle.getArticleTitle()%></td>
 			<td><%=readArticle.getMemberNickName()%>
-			<td align="right"><%=readArticle.getArticleDate()%></td>
-			<td align="right"><%=readArticle.getArticleRecommendCount()%></td>
-			<td align="right"><%=readArticle.getArticleViewCount() %></td>
-		</tr>
-
-		<tr>
-			<td colspan="8"></td>
+			<td><%=readArticle.getArticleDate()%></td>
+			<td><%=readArticle.getArticleRecommendCount()%></td>
+			<td><%=readArticle.getArticleViewCount()%></td>
 		</tr>
 
 		<tr align="center">
@@ -54,21 +48,39 @@
 
 		<tr align="center">
 			<td colspan="5"></td>
-			<td colspan="3">
-				<input type=button value="수정">
-				<input type=button value="삭제">
-				<input type=button value="답글">
-				<input type=button value="추천">
-				<input type=button value="목록" OnClick="showArticles.jsp">
-				
-			</td>
+			<td colspan="3"><a class="skip" href="updateArticle">수정</a> <input
+				type=button value="삭제"> <input type=button value="추천">
+				<input type=button value="목록" OnClick="showArticles.jsp"></td>
 		</tr>
 
+		<tr>
+			<td></td>
+			<td colspan="6">
+				<form>
+					댓글입력 : <input type="text" size="75" name="comment"> <input
+						type="button" value="달기">
+				</form>
+			</td>
+			<td></td>
+		</tr>
+		<%-- <%
+		CommentVO commentVO = (CommentVO) session
+				.getAttribute("Articles");
+		if (commentVO != null) {
+		%> --%>
+
+		<tr>
+			<td></td>
+			<td colspan="6"></td>
+			<td></td>
+		</tr>
+
+
 	</table>
-	<br />
+	<br /> <
 	<%
+		/* } */
 		}
 	%>
-
 </body>
 </html>
