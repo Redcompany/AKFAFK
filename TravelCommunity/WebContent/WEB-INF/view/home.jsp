@@ -15,6 +15,16 @@
 	text-align: center;
 }
 </style>
+	<%
+		int a = 1;
+		int b = 1;
+		int c = 1;
+		int d = 1;
+		int e = 1;
+		int f = 1;
+		int g = 1;
+		int h = 1;
+	%>
 
 	<form name="checkoutForm"
 		action="<c:url value='/action/showArticles'/>" method="POST">
@@ -39,42 +49,15 @@
 						<th width="80">날 짜</th>
 						<th width="80">추천수</th>
 					</tr>
-					<tr>
-
-						<td>1</td>
-						<td>내용</td>
-						<td>두부외상</td>
-						<td>12-16</td>
-						<td>1004</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					<c:forEach var="AllBestArticle" items="${showBestArticle}">
+						<tr>
+							<td><%=a++%></td>
+							<td>${AllBestArticle.articleTitle}</td>
+							<td>${AllBestArticle.memberNickName}</td>
+							<td>${AllBestArticle.articleDate}</td>
+							<td>${AllBestArticle.articleRecommendCount}</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</td>
 			<td width="50%">
@@ -88,42 +71,16 @@
 						<th width="80">날 짜</th>
 						<th width="80">추천수</th>
 					</tr>
-					<tr>
-
-						<td>1</td>
-						<td>내용</td>
-						<td>두부외상</td>
-						<td>12-16</td>
-						<td>1004</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					<c:forEach var="BestArticleByNotice"
+						items="${findBestArticleByNotice}">
+						<tr>
+							<td><%=b++%></td>
+							<td>${BestArticleByNotice.articleTitle}</td>
+							<td>${BestArticleByNotice.memberNickName}</td>
+							<td>${BestArticleByNotice.articleDate}</td>
+							<td>${BestArticleByNotice.articleRecommendCount}</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</td>
 		</tr>
@@ -141,42 +98,16 @@
 						<th width="80">날 짜</th>
 						<th width="80">추천수</th>
 					</tr>
-					<tr>
-
-						<td>1</td>
-						<td>내용</td>
-						<td>두부외상</td>
-						<td>12-16</td>
-						<td>1004</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					<c:forEach var="BestArticleByEurope"
+						items="${findBestArticleByEurope}">
+						<tr>
+							<td><%=c++%></td>
+							<td>${BestArticleByEurope.articleTitle}</td>
+							<td>${BestArticleByEurope.memberNickName}</td>
+							<td>${BestArticleByEurope.articleDate}</td>
+							<td>${BestArticleByEurope.articleRecommendCount}</td>
+						</tr>
+					</c:forEach>
 				</table>
 			</td>
 			<td width="50%">
@@ -192,42 +123,15 @@
 						<th width="80">날 짜</th>
 						<th width="80">추천수</th>
 					</tr>
-					<tr>
-
-						<td>1</td>
-						<td>내용</td>
-						<td>두부외상</td>
-						<td>12-16</td>
-						<td>1004</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					<c:forEach var="BestArticleByAsia" items="${findBestArticleByAsia}">
+						<tr>
+							<td><%=d++%></td>
+							<td>${BestArticleByAsia.articleTitle}</td>
+							<td>${BestArticleByAsia.memberNickName}</td>
+							<td>${BestArticleByAsia.articleDate}</td>
+							<td>${BestArticleByAsia.articleRecommendCount}</td>
+						</tr>
+							</c:forEach>
 				</table>
 			</td>
 		</tr>
@@ -245,42 +149,15 @@
 						<th width="80">날 짜</th>
 						<th width="80">추천수</th>
 					</tr>
-					<tr>
-
-						<td>1</td>
-						<td>내용</td>
-						<td>두부외상</td>
-						<td>12-16</td>
-						<td>1004</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					<c:forEach var="BestArticleByAfrica" items="${findBestArticleByAfrica}">
+						<tr>
+							<td><%=e++%></td>
+							<td>${BestArticleByAfrica.articleTitle}</td>
+							<td>${BestArticleByAfrica.memberNickName}</td>
+							<td>${BestArticleByAfrica.articleDate}</td>
+							<td>${BestArticleByAfrica.articleRecommendCount}</td>
+						</tr>
+							</c:forEach>
 				</table>
 			</td>
 			<td width="50%">
@@ -296,42 +173,15 @@
 						<th width="80">날 짜</th>
 						<th width="80">추천수</th>
 					</tr>
-					<tr>
-
-						<td>1</td>
-						<td>내용</td>
-						<td>두부외상</td>
-						<td>12-16</td>
-						<td>1004</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					<c:forEach var="BestArticleByNorthAmerican" items="${findBestArticleByNorthAmerican}">
+						<tr>
+							<td><%=f++%></td>
+							<td>${BestArticleByNorthAmerican.articleTitle}</td>
+							<td>${BestArticleByNorthAmerican.memberNickName}</td>
+							<td>${BestArticleByNorthAmerican.articleDate}</td>
+							<td>${BestArticleByNorthAmerican.articleRecommendCount}</td>
+						</tr>
+							</c:forEach>
 				</table>
 			</td>
 		</tr>
@@ -349,42 +199,15 @@
 						<th width="80">날 짜</th>
 						<th width="80">추천수</th>
 					</tr>
-					<tr>
-
-						<td>1</td>
-						<td>내용</td>
-						<td>두부외상</td>
-						<td>12-16</td>
-						<td>1004</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					<c:forEach var="BestArticleBySouthAmerican" items="${findBestArticleBySouthAmerican}">
+						<tr>
+							<td><%=g++%></td>
+							<td>${BestArticleBySouthAmerican.articleTitle}</td>
+							<td>${BestArticleBySouthAmerican.memberNickName}</td>
+							<td>${BestArticleBySouthAmerican.articleDate}</td>
+							<td>${BestArticleBySouthAmerican.articleRecommendCount}</td>
+						</tr>
+							</c:forEach>
 				</table>
 			</td>
 			<td width="50%">
@@ -400,42 +223,15 @@
 						<th width="80">날 짜</th>
 						<th width="80">추천수</th>
 					</tr>
-					<tr>
-
-						<td>1</td>
-						<td>내용</td>
-						<td>두부외상</td>
-						<td>12-16</td>
-						<td>1004</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					<c:forEach var="BestArticleByOceania" items="${findBestArticleByOceania}">
+						<tr>
+							<td><%=h++%></td>
+							<td>${BestArticleByOceania.articleTitle}</td>
+							<td>${BestArticleByOceania.memberNickName}</td>
+							<td>${BestArticleByOceania.articleDate}</td>
+							<td>${BestArticleByOceania.articleRecommendCount}</td>
+						</tr>
+							</c:forEach>
 				</table>
 			</td>
 		</tr>

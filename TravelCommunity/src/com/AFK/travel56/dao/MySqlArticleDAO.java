@@ -502,7 +502,6 @@ public class MySqlArticleDAO implements ArticleDAO {
 			try {
 				if (stmt != null)
 					stmt.close();
-				if (conn != null)
 					conn.close();
 			} catch (SQLException ex) {
 				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
