@@ -45,7 +45,9 @@
 		<tr align="center">
 			<td colspan="8"><%=readArticle.getArticleContent()%></td>
 		</tr>
-
+		<%
+		}
+		%>
 		<tr align="center">
 			<td colspan="5"></td>
 			<td colspan="3"><a class="skip" href="updateArticle">수정</a> <input
@@ -56,31 +58,43 @@
 		<tr>
 			<td></td>
 			<td colspan="6">
-				<form>
-					댓글입력 : <input type="text" size="75" name="comment"> <input
-						type="button" value="달기">
+				<form action="readArticle.jsp">
+					댓글입력 : <input type="text" size="75" name="inComment"> <input
+						type="submit" value="달기">
 				</form>
 			</td>
 			<td></td>
 		</tr>
-		<%-- <%
-		CommentVO commentVO = (CommentVO) session
-				.getAttribute("Articles");
-		if (commentVO != null) {
-		%> --%>
-
+	
 		<tr>
 			<td></td>
-			<td colspan="6"></td>
+			<td colspan="6">
+				<table>
+					<tr>
+						<td>
+							<%
+							List<CommentVO> viewComments = (List<CommentVO>) request.getAttribute("showComments");
+							if (viewComments.isEmpty()){
+							%> 등록한 댓글이 없습니다 
+							<% } else {
+								for (CommentVO showCmt : viewComments) {
+									if (showCmt.getParentComment()==0){ %>
+								<%= showCmt.getMemberNickName() %> : <%= showCmt.getCommentContent() %> (<%= showCmt.getCommentdate() %>)<br/>
+									<% } %>
+							<%
+								if (showCmt.getParentComment()  > 0 ) {
+							%>
+								▶▶  <%= showCmt.getMemberNickName() %> : <%= showCmt.getCommentContent() %> (<%= showCmt.getCommentdate() %>)<br/>
+							<% }}} %>
+               			</td>
+               		</tr>
+           		</table>
+			</td>
+			<td>
+		
+			</td>
 			<td></td>
 		</tr>
-
-
 	</table>
-	<br /> <
-	<%
-		/* } */
-		}
-	%>
 </body>
 </html>
