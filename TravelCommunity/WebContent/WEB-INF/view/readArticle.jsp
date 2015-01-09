@@ -58,19 +58,14 @@
 		<tr>
 			<td></td>
 			<td colspan="6">
-				<form>
-					댓글입력 : <input type="text" size="75" name="comment"> <input
-						type="button" value="달기">
+				<form action="readArticle.jsp">
+					댓글입력 : <input type="text" size="75" name="inComment"> <input
+						type="submit" value="달기">
 				</form>
 			</td>
 			<td></td>
 		</tr>
-		<%-- <%
-		CommentVO commentVO = (CommentVO) session
-				.getAttribute("Articles");
-		if (commentVO != null) {
-		%> --%>
-
+	
 		<tr>
 			<td></td>
 			<td colspan="6">

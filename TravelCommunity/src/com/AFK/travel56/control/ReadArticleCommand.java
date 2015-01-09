@@ -23,8 +23,23 @@ public class ReadArticleCommand implements Command {
 				"/WEB-INF/view/readArticle.jsp");
 		ArticleService articleService = new ArticleService();
 		FileService fileService = new FileService();
+		CommentService commentService = new CommentService();
 
 		HttpSession session = request.getSession(true);
+
+        request.setAttribute("showComments", 
+                commentService.showAllCommentByArticle(Integer.parseInt(request
+                        .getParameter("idx"))));
+
+//        MemberVO findMember = (MemberVO) request.getAttribute("loginsession");
+
+//        request.setAttribute("inComment", commentService.registerComment(
+//                request.getParameter("inComment"), 
+//                1,
+//                findMember.getMemberNumber(),
+//                "우리조화이팅",
+//                findMember.getMemberNickName(),
+//                Integer.parseInt(request.getParameter("idx"))));
 
 		if (request.getParameter("idx") != null) {
 			session.setAttribute("Article", articleService
