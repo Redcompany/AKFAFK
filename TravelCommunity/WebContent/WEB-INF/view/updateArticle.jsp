@@ -12,7 +12,7 @@
 
 
 		<p>제목</p>
-		<input name="title" type="text" style="width: 500px; height: 30px;" />${sessionScope.Articles.articleTitle}<br>
+		<input name="title" type="text" style="width: 500px; height: 30px;" value=<% %> /><br>
 		<p>내용</p>
 		<textarea name="content" rows="10" cols="30"
 			value=${sessionScope.Articles.articleContent}></textarea>

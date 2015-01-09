@@ -59,10 +59,18 @@ public class ReadArticleCommand implements Command {
 				if (file != null) {
 					fileService.registerFile(filename, articleService
 							.findAllArticles().size());
+				}else{
+					fileService.registerFile("1", articleService
+							.findAllArticles().size());
+					fileService.deleteFile("1");
 				}
 				if (file1 != null) {
 					fileService.registerFile(filename1, articleService
 							.findAllArticles().size());
+				}else{
+					fileService.registerFile("1", articleService
+							.findAllArticles().size());
+					fileService.deleteFile("1");
 				}
 				session.setAttribute("Articles", articleService
 						.selectShowArticle(articleService.findAllArticles()

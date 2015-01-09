@@ -45,7 +45,6 @@ public class CommandFactory {
 			break;
 		case "/updateArticle":
 			target = new UpdateArticleCommand();
-
 			break;
 		}
 
