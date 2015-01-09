@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import travel.MyFileRenamePolicy;
 
+import com.AFK.travel56.dao.ArticleVO;
 import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.service.ArticleService;
 import com.AFK.travel56.service.CommentService;
@@ -27,25 +28,26 @@ public class ReadArticleCommand implements Command {
 
 		HttpSession session = request.getSession(true);
 
-        request.setAttribute("showComments", 
-                commentService.showAllCommentByArticle(Integer.parseInt(request
-                        .getParameter("idx"))));
-
-//        MemberVO findMember = (MemberVO) request.getAttribute("loginsession");
-
-//        request.setAttribute("inComment", commentService.registerComment(
-//                request.getParameter("inComment"), 
-//                1,
-//                findMember.getMemberNumber(),
-//                "우리조화이팅",
-//                findMember.getMemberNickName(),
-//                Integer.parseInt(request.getParameter("idx"))));
+		request.setAttribute("showComments", commentService
+				.showAllCommentByArticle(Integer.parseInt(request
+						.getParameter("idx"))));
+		System.out.println(request.getParameter("todo"));
 
 		if (request.getParameter("idx") != null) {
 			session.setAttribute("Article", articleService
 					.selectShowArticle(Integer.parseInt(request
 							.getParameter("idx"))));
 
+		} else if (request.getParameter("todo").equals("글수정")) {
+			System.out.println("나오냐?");
+			ArticleVO findArticle = (ArticleVO) session.getAttribute("Article");
+			MemberVO findMember = (MemberVO) session
+					.getAttribute("loginsession");
+			session.setAttribute("Article", articleService.updateArticle(
+					findArticle.getArticleNumber(),
+					request.getParameter("title"),
+					request.getParameter("content"),
+					findMember.getMemberNickName()));
 		} else {
 			String uploadPath = "C:/test";
 			int size = 6 * 1024 * 1024; // 업로드 파일 최대 크기 지정
@@ -54,14 +56,16 @@ public class ReadArticleCommand implements Command {
 			try {
 				MultipartRequest multi = new MultipartRequest(request,
 						uploadPath, size, "UTF-8", new MyFileRenamePolicy());
-				MemberVO findMember=(MemberVO)session.getAttribute("loginsession");
+				MemberVO findMember = (MemberVO) session
+						.getAttribute("loginsession");
 				request.setAttribute(
 						"createArticle",
 						articleService.registerArticle(
 								multi.getParameter("title"),
 								multi.getParameter("continent"),
 								multi.getParameter("country"),
-								multi.getParameter("content"), findMember.getMemberNickName()));
+								multi.getParameter("content"),
+								findMember.getMemberNickName()));
 				// 파일 업로드. 폼에서 가져온 인자값을 얻기 위해request 객체 전달,
 				// 업로드 경로, 파일 최대 크기, 한글처리, 파일 중복처리
 
@@ -74,7 +78,7 @@ public class ReadArticleCommand implements Command {
 				if (file != null) {
 					fileService.registerFile(filename, articleService
 							.findAllArticles().size());
-				}else{
+				} else {
 					fileService.registerFile("1", articleService
 							.findAllArticles().size());
 					fileService.deleteFile("1");
@@ -82,7 +86,7 @@ public class ReadArticleCommand implements Command {
 				if (file1 != null) {
 					fileService.registerFile(filename1, articleService
 							.findAllArticles().size());
-				}else{
+				} else {
 					fileService.registerFile("1", articleService
 							.findAllArticles().size());
 					fileService.deleteFile("1");
@@ -90,16 +94,12 @@ public class ReadArticleCommand implements Command {
 				session.setAttribute("Article", articleService
 						.selectShowArticle(articleService.findAllArticles()
 								.size()));
-				
+
 			} catch (Exception e) {
 				// 예외처리
 				e.printStackTrace();
 			}
 
-			// session.setAttribute("Comment", commentService.
-			// registerComment(commentContent, memberNumber,
-			// request.getParameter(arg0) ,
-			// Integer.parseInt(request.getParameter("idx")));
 		}
 		return commandResult;
 	}
