@@ -52,7 +52,7 @@
 					<c:forEach var="AllBestArticle" items="${showBestArticle}">
 						<tr>
 							<td><%=a++%></td>
-							<td>${AllBestArticle.articleTitle}</td>
+							<td><a href="readArticle?idx=${AllBestArticle.getArticleNumber()}">${AllBestArticle.articleTitle}</a></td>
 							<td>${AllBestArticle.memberNickName}</td>
 							<td>${AllBestArticle.articleDate}</td>
 							<td>${AllBestArticle.articleRecommendCount}</td>
@@ -75,7 +75,7 @@
 						items="${findBestArticleByNotice}">
 						<tr>
 							<td><%=b++%></td>
-							<td>${BestArticleByNotice.articleTitle}</td>
+							<td><a href="readArticle?idx=${BestArticleByNotice.getArticleNumber()}">${BestArticleByNotice.articleTitle}</a></td>
 							<td>${BestArticleByNotice.memberNickName}</td>
 							<td>${BestArticleByNotice.articleDate}</td>
 							<td>${BestArticleByNotice.articleRecommendCount}</td>
@@ -102,7 +102,7 @@
 						items="${findBestArticleByEurope}">
 						<tr>
 							<td><%=c++%></td>
-							<td>${BestArticleByEurope.articleTitle}</td>
+							<td><a href="readArticle?idx=${BestArticleByEurope.getArticleNumber()}">${BestArticleByEurope.articleTitle}</a></td>
 							<td>${BestArticleByEurope.memberNickName}</td>
 							<td>${BestArticleByEurope.articleDate}</td>
 							<td>${BestArticleByEurope.articleRecommendCount}</td>
@@ -126,7 +126,7 @@
 					<c:forEach var="BestArticleByAsia" items="${findBestArticleByAsia}">
 						<tr>
 							<td><%=d++%></td>
-							<td>${BestArticleByAsia.articleTitle}</td>
+							<td><a href="readArticle?idx=${BestArticleByAsia.getArticleNumber()}">${BestArticleByAsia.articleTitle}</a></td>
 							<td>${BestArticleByAsia.memberNickName}</td>
 							<td>${BestArticleByAsia.articleDate}</td>
 							<td>${BestArticleByAsia.articleRecommendCount}</td>
@@ -152,7 +152,7 @@
 					<c:forEach var="BestArticleByAfrica" items="${findBestArticleByAfrica}">
 						<tr>
 							<td><%=e++%></td>
-							<td>${BestArticleByAfrica.articleTitle}</td>
+							<td><a href="readArticle?idx=${BestArticleByAfrica.getArticleNumber()}">${BestArticleByAfrica.articleTitle}</a></td>
 							<td>${BestArticleByAfrica.memberNickName}</td>
 							<td>${BestArticleByAfrica.articleDate}</td>
 							<td>${BestArticleByAfrica.articleRecommendCount}</td>
@@ -176,7 +176,7 @@
 					<c:forEach var="BestArticleByNorthAmerican" items="${findBestArticleByNorthAmerican}">
 						<tr>
 							<td><%=f++%></td>
-							<td>${BestArticleByNorthAmerican.articleTitle}</td>
+							<td><a href="readArticle?idx=${BestArticleByNorthAmerican.getArticleNumber()}">${BestArticleByNorthAmerican.articleTitle}</a></td>
 							<td>${BestArticleByNorthAmerican.memberNickName}</td>
 							<td>${BestArticleByNorthAmerican.articleDate}</td>
 							<td>${BestArticleByNorthAmerican.articleRecommendCount}</td>
@@ -202,7 +202,7 @@
 					<c:forEach var="BestArticleBySouthAmerican" items="${findBestArticleBySouthAmerican}">
 						<tr>
 							<td><%=g++%></td>
-							<td>${BestArticleBySouthAmerican.articleTitle}</td>
+							<td><a href="readArticle?idx=${BestArticleBySouthAmerican.getArticleNumber()}">${BestArticleBySouthAmerican.articleTitle}</a></td>
 							<td>${BestArticleBySouthAmerican.memberNickName}</td>
 							<td>${BestArticleBySouthAmerican.articleDate}</td>
 							<td>${BestArticleBySouthAmerican.articleRecommendCount}</td>
@@ -226,7 +226,7 @@
 					<c:forEach var="BestArticleByOceania" items="${findBestArticleByOceania}">
 						<tr>
 							<td><%=h++%></td>
-							<td>${BestArticleByOceania.articleTitle}</td>
+							<td><a href="readArticle?idx=${BestArticleByOceania.getArticleNumber()}">${BestArticleByOceania.articleTitle}</a></td>
 							<td>${BestArticleByOceania.memberNickName}</td>
 							<td>${BestArticleByOceania.articleDate}</td>
 							<td>${BestArticleByOceania.articleRecommendCount}</td>
