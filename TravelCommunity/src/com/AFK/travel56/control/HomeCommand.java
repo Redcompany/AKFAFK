@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import travel.MyFileRenamePolicy;
 
 import com.AFK.travel56.dao.ArticleVO;
+import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.service.ArticleService;
 import com.AFK.travel56.service.FileService;
 import com.AFK.travel56.service.MemberService;
@@ -81,9 +82,9 @@ public class HomeCommand implements Command {
 				session.removeAttribute("loginsession");
 				break;
 			case "탈퇴":
-				request.setAttribute("deleteMember", memberService
-						.deleteMember(request.getParameter("id"),
-								request.getParameter("pass")));
+				MemberVO memberVO=(MemberVO)session.getAttribute("loginsession"); 
+				request.setAttribute("deleteMember", memberService.deleteMember(memberVO.getMemberID(), memberVO.getMemberPW()));
+				session.removeAttribute("loginsession");
 				break;
 			}
 		}

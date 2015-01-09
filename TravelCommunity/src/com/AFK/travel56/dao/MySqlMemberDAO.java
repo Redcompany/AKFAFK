@@ -197,31 +197,24 @@ public class MySqlMemberDAO implements MemberDAO {
 		return memberVO;
 	} // end findMemberByID()
 
-	public int updateMember(String memberID, String memberPW,
-			boolean memberGender, String memberEmail, String memberName,
-			String memberBirth, String memberPhone, String memberNickName) {
+	public int updateMember(String memberNickName, String memberPW,
+			String newMemberPW, String memberName, String memberPhone,
+			String memberEmail) {
 		Connection conn = null;
 		Statement stmt = null;
 		int stateCheck = 0;
-		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
 		try {
-			Date birthDate = sdFormat.parse(memberBirth);
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
 
-			String sqlStr = "UPDATE member set member_id='" + memberID
-					+ "' , member_password='" + memberPW + "' , member_gender="
-					+ memberGender + ", member_email= '" + memberEmail
-					+ "' , member_name='" + memberName + "', member_birth= '"
-					+ sdFormat.format(birthDate) + "', member_phone= '"
-					+ memberPhone + "' where + member_nickname= '"
-					+ memberNickName + "';";
+			String sqlStr = "UPDATE member set member_password='" + newMemberPW
+					+ "' , member_name='" + memberName + "', member_phone= '"
+					+ memberPhone + "', member_email = '" + memberEmail
+					+ "' where member_nickname= '" + memberNickName + "' and member_password = '" + memberPW +"';";
 
 			stateCheck = stmt.executeUpdate(sqlStr);
-		} catch (ParseException ex3) {
-			Logger.getLogger(MySqlMemberDAO.class.getName()).log(Level.SEVERE,
-					null, ex3);
+	
 		} catch (SQLException ex) {
 			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
 					null, ex);

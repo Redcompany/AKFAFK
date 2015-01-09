@@ -10,9 +10,9 @@ public interface MemberDAO {
 
 	public MemberVO findMemberByID(String memberID);
 
-	public int updateMember(String memberID, String memberPW,
-			boolean memberGender, String memberEmail, String memberName,
-			String memberBirth, String memberPhone, String memberNickName);
+	public int updateMember(String memberNickName, String memberPW,
+			String newMemberPW, String memberName, String memberPhone,
+			String memberEmail);
 
 	public int deleteMember(String memberID, String memberPW);
 

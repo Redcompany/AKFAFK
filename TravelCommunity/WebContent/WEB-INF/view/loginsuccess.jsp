@@ -2,7 +2,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,16 +34,16 @@
 			<td colspan=2></td>
 		</tr>
 		<tr>
-		<form name="logout" action="<core:url value='/action/home'/>"
+		<form name="logout" action="<c:url value='/action/home'/>"
 						method="POST">
 						<input class="logout" type="submit" name="todo" value="로그아웃">
 					</form>
-			</td>
 		</tr>
 		<tr>
-			<td colspan=2><input type="button"
-				onclick="location.href = '/${initParam.context_root }/GetMemberInfo'"
-				value="My Page"></td>
+		<form name="MyPage" action="<c:url value='/action/mypage'/>"
+						method="POST">
+						<input class="logout" type="submit" value="My Page">
+					</form>
 		</tr>
 
 	</table>
