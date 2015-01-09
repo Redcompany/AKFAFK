@@ -3,7 +3,6 @@ package com.AFK.travel56.dao;
 import java.util.Date;
 
 public class ArticleVO {
-
 	private int articleNumber;
 	private String articleTitle;
 	private String articleContinent;

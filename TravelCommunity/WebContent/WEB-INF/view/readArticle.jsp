@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <%
 	ArticleVO readArticle = (ArticleVO) session
-			.getAttribute("Articles");
+			.getAttribute("Article");
 	if (readArticle != null) {
 %>
 <title>글보기 | <%=readArticle.getArticleTitle()%></title>

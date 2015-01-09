@@ -10,12 +10,11 @@
 	<form name="createArticleForm" enctype="multipart/form-data"
 		action="<c:url value='/action/readArticle' />" method="POST">
 
-
 		<p>제목</p>
-		<input name="title" type="text" style="width: 500px; height: 30px;" value=<% %> /><br>
+		<input name="title" type="text" style="width: 500px; height: 30px;"
+			value="${sessionScope.Article.articleTitle}" /><br>
 		<p>내용</p>
-		<textarea name="content" rows="10" cols="30"
-			value=${sessionScope.Articles.articleContent}></textarea>
+		<textarea name="content" rows="10" cols="30">${sessionScope.Article.articleContent}</textarea>
 		<br> 파일명 : <input id="files-upload1" type="file" name="filename"><br>
 		<br> 파일명1 : <input id="files-upload2" type="file"
 			name="filename1"><br> <input type="submit" name="todo"

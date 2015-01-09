@@ -27,7 +27,7 @@ public class ReadArticleCommand implements Command {
 		HttpSession session = request.getSession(true);
 
 		if (request.getParameter("idx") != null) {
-			session.setAttribute("Articles", articleService
+			session.setAttribute("Article", articleService
 					.selectShowArticle(Integer.parseInt(request
 							.getParameter("idx"))));
 
@@ -72,7 +72,7 @@ public class ReadArticleCommand implements Command {
 							.findAllArticles().size());
 					fileService.deleteFile("1");
 				}
-				session.setAttribute("Articles", articleService
+				session.setAttribute("Article", articleService
 						.selectShowArticle(articleService.findAllArticles()
 								.size()));
 				
