@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import travel.MyFileRenamePolicy;
 
+import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.service.ArticleService;
 import com.AFK.travel56.service.CommentService;
 import com.AFK.travel56.service.FileService;
@@ -38,13 +39,14 @@ public class ReadArticleCommand implements Command {
 			try {
 				MultipartRequest multi = new MultipartRequest(request,
 						uploadPath, size, "UTF-8", new MyFileRenamePolicy());
+				MemberVO findMember=(MemberVO)session.getAttribute("loginsession");
 				request.setAttribute(
 						"createArticle",
 						articleService.registerArticle(
 								multi.getParameter("title"),
 								multi.getParameter("continent"),
 								multi.getParameter("country"),
-								multi.getParameter("content"), "26일 쉬자"));
+								multi.getParameter("content"), findMember.getMemberNickName()));
 				// 파일 업로드. 폼에서 가져온 인자값을 얻기 위해request 객체 전달,
 				// 업로드 경로, 파일 최대 크기, 한글처리, 파일 중복처리
 
