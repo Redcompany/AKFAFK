@@ -15,10 +15,7 @@
 			value="${sessionScope.Article.articleTitle}" /><br>
 		<p>내용</p>
 		<textarea name="content" rows="10" cols="30">${sessionScope.Article.articleContent}</textarea>
-		<br> 파일명 : <input id="files-upload1" type="file" name="filename"><br>
-		<br> 파일명1 : <input id="files-upload2" type="file"
-			name="filename1"><br> <input type="submit" name="todo"
-			value="글등록">
+		<br> <input type="submit" name="todo" value="글등록">
 	</form>
 </body>
 </html>
