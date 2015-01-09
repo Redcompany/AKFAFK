@@ -11,7 +11,7 @@
 	<form name="createArticleForm" enctype="multipart/form-data"
 		action="<c:url value='/action/readArticle' />" method="POST">
 		<input type="checkbox" name="continent" value="유럽">유럽 <input
-			type="checkbox" name="country" value="유럽">영국
+			type="checkbox" name="country" value="영국">영국
 		<p>제목</p>
 		<input name="title" type="text" style="width: 500px; height: 30px;"
 			placeholder="제목을 입력해주세요" /> <br>

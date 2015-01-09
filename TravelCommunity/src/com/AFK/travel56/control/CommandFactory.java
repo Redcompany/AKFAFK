@@ -42,10 +42,9 @@ public class CommandFactory {
 
 		case "/mypage":
 			target = new MyPageCommand();
-
+			break;
 		case "/updateArticle":
 			target = new UpdateArticleCommand();
-
 			break;
 		}
 
