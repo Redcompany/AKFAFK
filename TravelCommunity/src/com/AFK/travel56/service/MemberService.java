@@ -51,9 +51,9 @@ public class MemberService {
 	}
 
 	// 회원 수정
-	public boolean updateMember(String memberID, String memberPW,
-			boolean memberGender, String memberEmail, String memberName,
-			String memberBirth, String memberPhone, String memberNickName) {
+	public MemberVO updateMember(String memberNickName, String memberPW,
+			String newMemberPW, String memberName, String memberPhone,
+			String memberEmail) {
 
 		MemberVO memberVO = memberDAO.findMemberByNickName(memberNickName);
 
@@ -73,15 +73,14 @@ public class MemberService {
 			memberPhone = memberVO.getMemberPhone();
 		}
 
-		int stateCheck = memberDAO.updateMember(memberID, memberPW,
-				memberGender, memberEmail, memberName, memberBirth,
-				memberPhone, memberNickName);
+		int stateCheck = memberDAO.updateMember(memberNickName, memberPW,
+				newMemberPW, memberName, memberPhone, memberEmail);
 
 		if (stateCheck != 0) {
-			return true;
+			return memberVO;
 		}
 
-		return false;
+		return null;
 	}
 
 	// 회원 로그인
@@ -127,9 +126,10 @@ public class MemberService {
 		}
 		return false;
 	}
-	//로그인체크
-		public MemberVO loginCheck(String memberID) {
-			MemberVO loginCheak = memberDAO.loginCheck(memberID);
-			return loginCheak;
-		}
+
+	// 로그인체크
+	public MemberVO loginCheck(String memberID) {
+		MemberVO loginCheak = memberDAO.loginCheck(memberID);
+		return loginCheak;
+	}
 }
