@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form name="createArticleForm" enctype="multipart/form-data"
-		action="<c:url value='/action/readArticle' />" method="POST">
+		action="<c:url value='/action/showArticles' />" method="POST">
 		<input type="checkbox" name="continent" value="유럽">유럽 <input
 			type="checkbox" name="country" value="영국">영국
 		<p>제목</p>
@@ -19,8 +19,7 @@
 		<textarea name="content" rows="10" cols="30" placeholder="내용을 입력해주세요"></textarea>
 		<br> 파일명 : <input id="files-upload1" type="file" name="filename"><br>
 		<br> 파일명1 : <input id="files-upload2" type="file"
-			name="filename1"><br> <input type="submit" name="todo"
-			value="글등록">
+			name="filename1"><br> <input type="submit" value="글등록">
 	</form>
 </body>
 </html>
