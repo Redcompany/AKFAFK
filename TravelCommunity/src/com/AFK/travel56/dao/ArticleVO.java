@@ -1,8 +1,13 @@
 package com.AFK.travel56.dao;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ArticleVO {
+public class ArticleVO implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int articleNumber;
 	private String articleTitle;
 	private String articleContinent;

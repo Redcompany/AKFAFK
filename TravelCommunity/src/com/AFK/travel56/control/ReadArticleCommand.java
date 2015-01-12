@@ -1,6 +1,7 @@
 package com.AFK.travel56.control;
 
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,12 +26,29 @@ public class ReadArticleCommand implements Command {
 		ArticleService articleService = new ArticleService();
 		FileService fileService = new FileService();
 		CommentService commentService = new CommentService();
-
+		
 		HttpSession session = request.getSession(true);
 
 		request.setAttribute("showComments", commentService
 				.showAllCommentByArticle(Integer.parseInt(request
 						.getParameter("idx"))));
+		
+		MemberVO commentMember = (MemberVO) session.getAttribute("loginsession");
+				System.out.println("comment??  "+request.getParameter("inComment"));
+		if(request.getParameter("inComment")!=null){
+		session.setAttribute("registerComment", commentService
+				.registerComment(request.getParameter("inComment"),
+						commentMember.getMemberNumber(),
+						commentMember.getMemberNickName(),
+						Integer.parseInt(request.getParameter("idx"))));
+		}
+		
+//		List<ArticleVO> returnArticle = (List<ArticleVO>) request.getAttribute("Articles");
+//		for(int i=0; i<returnArticle.size(); ++i){
+//			ArticleVO returntest = returnArticle.get(i);
+//			
+//		}
+		// 두혁이
 		System.out.println(request.getParameter("todo"));
 
 		if (request.getParameter("idx") != null) {

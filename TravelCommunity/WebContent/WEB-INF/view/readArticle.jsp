@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <%
-	ArticleVO readArticle = (ArticleVO) session
-			.getAttribute("Article");
+	ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
 	if (readArticle != null) {
 %>
 <title>글보기 | <%=readArticle.getArticleTitle()%></title>
@@ -46,53 +45,54 @@
 			<td colspan="8"><%=readArticle.getArticleContent()%></td>
 		</tr>
 		<%
-		}
+			}
 		%>
 		<tr align="center">
 			<td colspan="5"></td>
 			<td colspan="3"><a class="skip" href="updateArticle">수정</a> <input
 				type=button value="삭제"> <input type=button value="추천">
-				<input type=button value="목록" OnClick="showArticles.jsp"></td>
+				<input type=button value="목록" OnClick="showArticles"></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td colspan="6">
-				<form action="readArticle.jsp">
-					댓글입력 : <input type="text" size="75" name="inComment"> <input
-						type="submit" value="달기">
+			<c:forEach var="writeComment" items="${commentMember}">
+				<form name="reple" action="<c:url value='/action/readArticle'/>"
+					method="POST">
+					댓글입력 : <input name="${writeComment.commentContent }" type="text"
+						style="width: 500px; height: 30px;" placeholder="댓글을 입력해주세요" /> <br>
+					<input type="submit" value="달기">
 				</form>
+				</c:forEach>
 			</td>
 			<td></td>
 		</tr>
-	
+
 		<tr>
 			<td></td>
 			<td colspan="6">
 				<table>
 					<tr>
-						<td>
-							<%
-							List<CommentVO> viewComments = (List<CommentVO>) request.getAttribute("showComments");
-							if (viewComments.isEmpty()){
-							%> 등록한 댓글이 없습니다 
-							<% } else {
-								for (CommentVO showCmt : viewComments) {
-									if (showCmt.getParentComment()==0){ %>
-								<%= showCmt.getMemberNickName() %> : <%= showCmt.getCommentContent() %> (<%= showCmt.getCommentdate() %>)<br/>
-									<% } %>
-							<%
-								if (showCmt.getParentComment()  > 0 ) {
-							%>
-								▶▶  <%= showCmt.getMemberNickName() %> : <%= showCmt.getCommentContent() %> (<%= showCmt.getCommentdate() %>)<br/>
-							<% }}} %>
-               			</td>
-               		</tr>
-           		</table>
+						<td><c:forEach var="viewComments" items="${showComments}">
+								<c:choose>
+									<c:when test="${viewComments==''}">
+									등록된 댓글이 없습니다. <%-- error --%>
+									</c:when>
+									<c:otherwise>
+										<c:if test="${viewComments.getParentComment()==0}">
+										${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate }) <br />
+										</c:if>
+										<c:if test="${viewComments.getParentComment() > 0}">
+										▶▶ ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate }) <br />
+										</c:if>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach></td>
+					</tr>
+				</table>
 			</td>
-			<td>
-		
-			</td>
+			<td></td>
 			<td></td>
 		</tr>
 	</table>
