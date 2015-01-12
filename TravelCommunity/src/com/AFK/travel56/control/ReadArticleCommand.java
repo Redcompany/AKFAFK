@@ -1,6 +1,7 @@
-package com.AFK.travel56.control;
+﻿package com.AFK.travel56.control;
 
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,13 +25,10 @@ public class ReadArticleCommand implements Command {
 				"/WEB-INF/view/readArticle.jsp");
 		ArticleService articleService = new ArticleService();
 		FileService fileService = new FileService();
+
 		HttpSession session = request.getSession(true);
 		MemberVO findMember = null;
-		// request.setAttribute("showComments", commentService
-		// .showAllCommentByArticle(Integer.parseInt(request
-		// .getParameter("idx"))));
-		// System.out.println(request.getParameter("todo"));
-
+		
 		if (request.getParameter("idx") != null) {
 			session.setAttribute("Article", articleService
 					.selectShowArticle(Integer.parseInt(request
