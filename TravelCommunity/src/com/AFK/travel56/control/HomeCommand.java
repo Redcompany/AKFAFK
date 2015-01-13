@@ -23,17 +23,25 @@ public class HomeCommand implements Command {
 		CommandResult commandResult = null;
 		MemberService memberService = new MemberService();
 		ArticleService articleService = new ArticleService();
-		request.setAttribute("showBestArticle", articleService.showAllBestArticle());
-		request.setAttribute("findBestArticleByEurope", articleService.showBestArticleByContinent("유럽"));
-		request.setAttribute("findBestArticleByNotice", articleService.showBestArticleByContinent("공지"));
-		request.setAttribute("findBestArticleByAsia", articleService.showBestArticleByContinent("아시아"));
-		request.setAttribute("findBestArticleByAfrica", articleService.showBestArticleByContinent("아프리카"));
-		request.setAttribute("findBestArticleByNorthAmerican", articleService.showBestArticleByContinent("북아메리카"));
-		request.setAttribute("findBestArticleBySouthAmerican", articleService.showBestArticleByContinent("남아메리카"));
-		request.setAttribute("findBestArticleByOceania", articleService.showBestArticleByContinent("오세아니아"));
-		
+		request.setAttribute("showBestArticle",
+				articleService.showAllBestArticle());
+		request.setAttribute("findBestArticleByEurope",
+				articleService.showBestArticleByContinent("유럽"));
+		request.setAttribute("findBestArticleByNotice",
+				articleService.showBestArticleByContinent("공지"));
+		request.setAttribute("findBestArticleByAsia",
+				articleService.showBestArticleByContinent("아시아"));
+		request.setAttribute("findBestArticleByAfrica",
+				articleService.showBestArticleByContinent("아프리카"));
+		request.setAttribute("findBestArticleByNorthAmerican",
+				articleService.showBestArticleByContinent("북아메리카"));
+		request.setAttribute("findBestArticleBySouthAmerican",
+				articleService.showBestArticleByContinent("남아메리카"));
+		request.setAttribute("findBestArticleByOceania",
+				articleService.showBestArticleByContinent("오세아니아"));
+
 		String todoCheck = request.getParameter("todo");
-		HttpSession session=request.getSession(true);
+		HttpSession session = request.getSession(true);
 		if (todoCheck != null) {
 
 			switch (todoCheck) {
@@ -72,27 +80,20 @@ public class HomeCommand implements Command {
 				System.out.println(request.getParameter("name"));
 
 				break;
-
-
 			case "로그인":
 				request.setAttribute("memberLogin", memberService.loginMember(
 						request.getParameter("id"),
 						request.getParameter("pass")));
 				break;
-				// case "회워정보변경":
-				// request.setAttribute("updateMember", memberService
-				// .updateMember(request.getParameter("id"),
-				// request.getParameter("pass"),
-				// request.getParameter("email"),
-				// request.getParameter("name"),
-				// request.getParameter("phone")));
-				// break;
 			case "로그아웃":
 				session.removeAttribute("loginsession");
 				break;
 			case "탈퇴":
-				MemberVO memberVO=(MemberVO)session.getAttribute("loginsession"); 
-				request.setAttribute("deleteMember", memberService.deleteMember(memberVO.getMemberID(), memberVO.getMemberPW()));
+				MemberVO memberVO = (MemberVO) session
+						.getAttribute("loginsession");
+				request.setAttribute("deleteMember", memberService
+						.deleteMember(memberVO.getMemberID(),
+								memberVO.getMemberPW()));
 				session.removeAttribute("loginsession");
 				break;
 			}

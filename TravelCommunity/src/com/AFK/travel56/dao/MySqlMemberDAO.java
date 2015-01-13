@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.mysql.jdbc.PreparedStatement;
+
 public class MySqlMemberDAO implements MemberDAO {
 
 	String databaseURL = "jdbc:mysql://localhost/TravelCommunity";
@@ -211,10 +213,11 @@ public class MySqlMemberDAO implements MemberDAO {
 			String sqlStr = "UPDATE member set member_password='" + newMemberPW
 					+ "' , member_name='" + memberName + "', member_phone= '"
 					+ memberPhone + "', member_email = '" + memberEmail
-					+ "' where member_nickname= '" + memberNickName + "' and member_password = '" + memberPW +"';";
+					+ "' where member_nickname= '" + memberNickName
+					+ "' and member_password = '" + memberPW + "';";
 
 			stateCheck = stmt.executeUpdate(sqlStr);
-	
+
 		} catch (SQLException ex) {
 			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
 					null, ex);
@@ -453,7 +456,7 @@ public class MySqlMemberDAO implements MemberDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
-			String sqlStr = "SELECT * FROM CompanyUser WHERE userID= ?"
+			String sqlStr = "SELECT * FROM member WHERE id= ?"
 					+ "AND password = ";
 			ResultSet rset = stmt.executeQuery(sqlStr);
 			if (rset.next() != false) {
@@ -491,4 +494,29 @@ public class MySqlMemberDAO implements MemberDAO {
 		}
 		return memberVO;
 	}
+
+//	public MemberVO findMemberByID(String memberID) {
+//		int rst = 0;
+//		Connection conn = null;
+//		PreparedStatement stmt = null;
+//		ResultSet rset = null;
+//
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//			conn = DriverManager.getConnection(databaseURL, username, password);
+//
+//			String sqlStr = "SELECT * FROM member WHERE userID= ?";
+//			stmt = (PreparedStatement) conn.prepareStatement(sqlStr);
+//			stmt.setString(1, id);
+//			rset = stmt.executeQuery();
+//			if (rset.next()) {
+//				rst = 1;
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}finally{
+//			DriverManager.close(rset, stmt, conn);
+//		}
+//		return rset;
+//	}
 }

@@ -39,12 +39,17 @@ public class CommandFactory {
 		case "/loginsuccess":
 			target = new LoginFormCommand();
 			break;
-
 		case "/mypage":
 			target = new MyPageCommand();
 			break;
 		case "/updateArticle":
 			target = new UpdateArticleCommand();
+			break;
+		case "/checkID":
+			target = new IDCheckCommand();
+			break;
+		case "/checkNickName":
+			target = new NickNameCheckCommand();
 			break;
 		}
 
