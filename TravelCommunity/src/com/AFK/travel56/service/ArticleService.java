@@ -48,18 +48,17 @@ public class ArticleService {
 	}
 
 	// 글 변경
-	public boolean updateArticle(int articleNumber, String articleTilte,
+	public ArticleVO updateArticle(int articleNumber, String articleTilte,
 			String articleContent, String memberNickName) {
 		MemberVO findMember = memberDAO.findMemberByNickName(memberNickName);
 		if (findMember != null) {
-			int checkState = articleDAO.updateArticle(articleNumber,
-					articleTilte, articleContent, findMember.getMemberNumber(),
+			articleDAO.updateArticle(articleNumber, articleTilte,
+					articleContent, findMember.getMemberNumber(),
 					findMember.getMemberNickName());
-			if (checkState != 0) {
-				return true;
-			}
+			return articleDAO.showSelectArticle(articleNumber);
+
 		}
-		return false;
+		return null;
 	}
 
 	// 글 선택시 보여여주기

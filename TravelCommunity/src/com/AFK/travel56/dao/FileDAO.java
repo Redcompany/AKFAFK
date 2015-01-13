@@ -10,4 +10,5 @@ public interface FileDAO {
 	public List<FileVO> findAllFile();
 
 	public int deleteFile(String fileName);
+	public FileVO findAllFileByFileName(String fileName);
 }

@@ -7,24 +7,29 @@ import com.AFK.travel56.dao.FileVO;
 import com.AFK.travel56.dao.MySqlFileDAO;
 
 public class FileService {
-	FileDAO fileVO = new MySqlFileDAO();
+	FileDAO fileDAO = new MySqlFileDAO();
 
 	//글에대한 파일 보여주기
 	public List<FileVO> showFilesByArticle(int articleNumber) {
-		return fileVO.findAllFileByArticle(articleNumber);
+		return fileDAO.findAllFileByArticle(articleNumber);
 	}
 	public List<FileVO> allShowFiles(){
-		return fileVO.findAllFile();
+		return fileDAO.findAllFile();
 	}
 
 	//파일등록
 	public boolean registerFile(String fileName, int articleNumber) {
-		fileVO.addFile(fileName, articleNumber);
+		fileDAO.addFile(fileName, articleNumber);
 		return true;
 	}
 	//파일 삭제  
-	public void deleteFile(String fileName) {
-		fileVO.deleteFile(fileName);
+	public boolean deleteFile(String fileName) {
+		fileDAO.deleteFile(fileName);
+		return true;
+	}
+	
+	public FileVO findFileByFileName(String fileName){
+		return fileDAO.findAllFileByFileName(fileName);
 	}
 
 }

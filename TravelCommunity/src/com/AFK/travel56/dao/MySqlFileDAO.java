@@ -99,6 +99,48 @@ public class MySqlFileDAO implements FileDAO {
 		return fileList;
 	}
 
+	public FileVO findAllFileByFileName(String fileName) {
+		Connection conn = null;
+		Statement stmt = null;
+		FileVO findFile = null;
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM `file` where file_name=" + fileName;
+
+			ResultSet rset = stmt.executeQuery(sqlStr);
+
+			while (rset.next()) { // list all the authors
+				int fileNumber = rset.getInt("file_number");
+				String getfileName = rset.getString("file_name");
+				int fileArticleNumber = rset.getInt("article_number");
+
+				findFile = new FileVO(fileNumber, getfileName,
+						fileArticleNumber);
+			}
+
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlFileDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlFileDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlFileDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return findFile;
+	}
+
 	public int addFile(String fileName, int articleNumber) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -142,7 +184,8 @@ public class MySqlFileDAO implements FileDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
-			String sqlStr = "update `file` set file_name=null where file_name=null";
+			String sqlStr = "delete from `file` where file_name='" + fileName
+					+ "'";
 
 			stateCheck = stmt.executeUpdate(sqlStr);
 
