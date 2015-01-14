@@ -6,10 +6,12 @@ import com.AFK.travel56.dao.ArticleDAO;
 import com.AFK.travel56.dao.ArticleRecommandVO;
 import com.AFK.travel56.dao.ArticleVO;
 import com.AFK.travel56.dao.CommentDAO;
+import com.AFK.travel56.dao.FileDAO;
 import com.AFK.travel56.dao.MemberDAO;
 import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.dao.MySqlArticleDAO;
 import com.AFK.travel56.dao.MySqlCommentDAO;
+import com.AFK.travel56.dao.MySqlFileDAO;
 import com.AFK.travel56.dao.MySqlMemberDAO;
 
 public class ArticleService {
@@ -39,6 +41,8 @@ public class ArticleService {
 	// 글 삭제
 	public boolean deleteArticle(int articleNumber, String memberNickName) {
 		CommentDAO commentDAO = new MySqlCommentDAO();
+		FileDAO fileDAO= new MySqlFileDAO();
+		fileDAO.deleteFileByArticleNumber(articleNumber);
 		commentDAO.deleteCommentByArticle(articleNumber);
 		int checkState = articleDAO
 				.deleteArticle(articleNumber, memberNickName);

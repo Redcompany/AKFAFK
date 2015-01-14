@@ -10,6 +10,19 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<script>
+	function clickMessage() {
+		if (document.deleteArticleForm.todo.value=="삭제"){
+			alert("글이 삭제되었습니다.")
+			document.deleteArticleForm.submit();
+	}
+		else if (document.writeForm.pass.value == "")
+			alert("패스워드를 입력하세요")
+		else
+			document.writeForm.submit();
+	}
+
+</script>
 <%
 	ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
 	if (readArticle != null) {
@@ -69,11 +82,11 @@
 		<tr align="center">
 			<td colspan="5"></td>
 			<td colspan="3"><a class="skip" href="updateArticle">수정</a>
-				<form name="reple" action="<c:url value='/action/home'/>"
-					method="POST">
-					<input type=submit name="todo" value="삭제">
+				<form name="deleteArticleForm" action="<c:url value='/action/home'/>"
+					method="POST"><input type="hidden" name="todo" value="삭제">
+					<input type=submit onclick="javascript:clickMessage()" value="삭제">
 				</form>
-				<form name="reple" action="<c:url value='/action/readArticle'/>"
+				<form name="articleRcommandForm" action="<c:url value='/action/readArticle'/>"
 					method="POST">
 					<input type="submit" name="todo" value="추천">
 				</form> <input type=button value="목록" OnClick="showArticles"></td>

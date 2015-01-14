@@ -42,6 +42,7 @@ public class HomeCommand implements Command {
 
 		String todoCheck = request.getParameter("todo");
 		HttpSession session = request.getSession(true);
+		System.out.println(todoCheck);
 		if (todoCheck != null) {
 
 			switch (todoCheck) {

@@ -208,4 +208,39 @@ public class MySqlFileDAO implements FileDAO {
 		}
 		return stateCheck;
 	}
+
+	public int deleteFileByArticleNumber(int articleNumber) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "delete from `file` where article_number='"
+					+ articleNumber + "'";
+
+			stateCheck = stmt.executeUpdate(sqlStr);
+
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlFileDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlFileDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlFileDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
 }

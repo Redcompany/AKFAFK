@@ -67,7 +67,6 @@ public class ReadArticleCommand implements Command {
 						System.out.println("이미 눌렀습니다.");
 
 					} else {
-						System.out.println("비교되는곳");
 						request.setAttribute("recommand", articleService
 								.doRecommandIncrement(
 										findArticle.getArticleNumber(),
@@ -78,6 +77,7 @@ public class ReadArticleCommand implements Command {
 										findMember.getMemberNumber()));
 					}
 				} else {
+					
 					System.out.println("로그인 해주세요");
 				}
 
