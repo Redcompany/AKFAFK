@@ -24,67 +24,130 @@ public class ReadArticleCommand implements Command {
 			HttpServletResponse response)
 			throws javax.servlet.ServletException, java.io.IOException {
 
-		CommandResult commandResult = new CommandResult(
-				"/WEB-INF/view/readArticle.jsp");
-		ArticleService articleService = new ArticleService();
-		FileService fileService = new FileService();
+		CommandResult commandResult = null;
+		String todo = request.getParameter("todo");
+		System.out.println(todo);
 
+		try {
+			switch (todo) {
+			case "read":
+				doRead(request, response);
+				commandResult = new CommandResult(
+						"/WEB-INF/view/readArticle.jsp");
+				break;
+			case "doRegisterComment":
+				doRegisterComment(request, response);
+				commandResult = new CommandResult(
+						"/WEB-INF/view/readArticle.jsp");
+				break;
+			case "글수정":
+				doUpdateArticle(request, response);
+				commandResult = new CommandResult(
+						"/WEB-INF/view/readArticle.jsp");
+				break;
+			case "추천":
+				doBestArticle(request, response);
+				commandResult = new CommandResult(
+						"/WEB-INF/view/readArticle.jsp");
+				break;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println(ex);
+		}
+		return commandResult;
+	}
+
+	private void doRead(HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession(true);
+		ArticleService articleService = new ArticleService();
+		CommentService commentService = new CommentService();
+
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println(idx);
+		session.setAttribute("Article",
+				articleService.selectShowArticle(idx));
+		request.setAttribute("showComments",
+				commentService.showAllCommentByArticle(idx));
+	}
+
+	public void doRegisterComment(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		HttpSession session = request.getSession(true);
+		ArticleService articleService = new ArticleService();
+		CommentService commentService = new CommentService();
+		MemberVO commentMember = (MemberVO) session
+				.getAttribute("loginsession");
+		
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println(idx);
+
+		session.setAttribute(
+				"registerComment",
+				commentService.registerComment(
+						request.getParameter("inComment"),
+						commentMember.getMemberNumber(),
+						commentMember.getMemberNickName(), idx));
+		session.setAttribute("Article",
+				articleService.selectShowArticle(idx));
+		request.setAttribute("showComments",
+				commentService.showAllCommentByArticle(idx));
+	}
+
+	private void doUpdateArticle(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		ArticleService articleService = new ArticleService();
 		HttpSession session = request.getSession(true);
 		MemberVO findMember = null;
-		if (request.getParameter("idx") != null) {
-			session.setAttribute("Article", articleService
-					.selectShowArticle(Integer.parseInt(request
-							.getParameter("idx"))));
-			return commandResult;
-		} else {
-			if (request.getParameter("todo").equals("글수정")) {
+		ArticleVO findArticle = (ArticleVO) session.getAttribute("Article");
+		findMember = (MemberVO) session.getAttribute("loginsession");
+		
+		session.setAttribute("Article",
+				articleService.updateArticle(findArticle.getArticleNumber(),
+						request.getParameter("title"),
+						request.getParameter("content"),
+						findMember.getMemberNickName()));
+	}
 
-				ArticleVO findArticle = (ArticleVO) session
-						.getAttribute("Article");
-				findMember = (MemberVO) session.getAttribute("loginsession");
-				session.setAttribute(
-						"Article",
-						articleService.updateArticle(
+	private void doBestArticle(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		Date today = new Date();
+		ArticleService articleService = new ArticleService();
+		HttpSession session = request.getSession(true);
+		MemberVO findMember = null;
+
+		findMember = (MemberVO) session.getAttribute("loginsession");
+		ArticleVO findArticle = (ArticleVO) session.getAttribute("Article");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		if (findMember != null) {
+			ArticleRecommandVO checkRecommand = articleService.checkRecommand(
+					findArticle.getArticleNumber(),
+					findMember.getMemberNickName());
+			if (checkRecommand != null
+					&& format.format(today).equals(
+							format.format(checkRecommand.getRecommandDate()))) {
+				System.out.println("이미 눌렀습니다.");
+
+			} else {
+				System.out.println("비교되는곳");
+				request.setAttribute(
+						"recommand",
+						articleService.doRecommandIncrement(
 								findArticle.getArticleNumber(),
-								request.getParameter("title"),
-								request.getParameter("content"),
-								findMember.getMemberNickName()));
-				return commandResult;
-			} else if (request.getParameter("todo").equals("추천")) {
-				Date today = new Date();
-				findMember = (MemberVO) session.getAttribute("loginsession");
-				ArticleVO findArticle = (ArticleVO) session
-						.getAttribute("Article");
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-				if (findMember != null) {
-					ArticleRecommandVO checkRecommand = articleService
-							.checkRecommand(findArticle.getArticleNumber(),
-									findMember.getMemberNickName());
-					if (checkRecommand != null
-							&& format.format(today).equals(
-									format.format(checkRecommand
-											.getRecommandDate()))) {
-						System.out.println("이미 눌렀습니다.");
-
-					} else {
-						System.out.println("비교되는곳");
-						request.setAttribute("recommand", articleService
-								.doRecommandIncrement(
-										findArticle.getArticleNumber(),
-										findArticle.getArticleRecommendCount()));
-						request.setAttribute("secceseRecommand", articleService
-								.recommandAdd(findMember.getMemberNickName(),
-										findArticle.getArticleNumber(),
-										findMember.getMemberNumber()));
-					}
-				} else {
-					System.out.println("로그인 해주세요");
-				}
-
-				return commandResult;
+								findArticle.getArticleRecommendCount()));
+				request.setAttribute(
+						"secceseRecommand",
+						articleService.recommandAdd(
+								findMember.getMemberNickName(),
+								findArticle.getArticleNumber(),
+								findMember.getMemberNumber()));
 			}
+		} else {
+			System.out.println("로그인 해주세요");
 		}
-
-		return commandResult;
 	}
 }
