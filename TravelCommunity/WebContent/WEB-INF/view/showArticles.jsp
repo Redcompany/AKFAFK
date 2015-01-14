@@ -37,7 +37,7 @@
 				value="<%=findArticle.getMemberNumber()%>">
 			<td><%=findArticle.getArticleNumber()%></td>
 			<td><a
-				href="readArticle?idx=<%=findArticle.getArticleNumber()%>"><%=findArticle.getArticleTitle()%></a></td>
+				href="readArticle?todo=read&idx=<%=findArticle.getArticleNumber()%>"><%=findArticle.getArticleTitle()%></a></td>
 			<td><%=findArticle.getMemberNickName()%></td>
 			<td align="right"><%=findArticle.getArticleRecommendCount()%></td>
 			<td align="right"><%=findArticle.getArticleViewCount()%></td>

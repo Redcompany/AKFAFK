@@ -7,11 +7,8 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<%
-	ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
-	if (readArticle != null) {
-%>
-<title>글보기 | <%=readArticle.getArticleTitle()%></title>
+
+<title>${showArticle.articleTitle}</title>
 </head>
 <body>
 
@@ -30,23 +27,20 @@
 		</tr>
 
 		<tr align="center">
-			<input type="hidden" name="cartIndex" value="listValue">
-			<td><%=readArticle.getArticleNumber()%></td>
-			<td><%=readArticle.getArticleContinent()%></td>
-			<td><%=readArticle.getArticleCountry()%></td>
-			<td><%=readArticle.getArticleTitle()%></td>
-			<td><%=readArticle.getMemberNickName()%>
-			<td><%=readArticle.getArticleDate()%></td>
-			<td><%=readArticle.getArticleRecommendCount()%></td>
-			<td><%=readArticle.getArticleViewCount()%></td>
+			<td>${showArticle.articleNumber}</td>
+			<td>${showArticle.articleContinent}</td>
+			<td>${showArticle.articleCountry}</td>
+			<td>${showArticle.articleTitle}</td>
+			<td>${showArticle.memberNickName}</td>
+			<td>${showArticle.articleDate}</td>
+			<td>${showArticle.articleRecommendCount}</td>
+			<td>${showArticle.articleViewCount}</td>
 		</tr>
 
 		<tr align="center">
-			<td colspan="8"><%=readArticle.getArticleContent()%></td>
+			<td colspan="8">${showArticle.articleContent}</td>
 		</tr>
-		<%
-			}
-		%>
+		
 		<tr align="center">
 			<td colspan="5"></td>
 			<td colspan="3"><a class="skip" href="updateArticle">수정</a> <input
@@ -56,15 +50,17 @@
 
 		<tr>
 			<td></td>
-			<td colspan="6"><c:forEach var="writeComment"
-					items="${commentMember}">
-					<form name="reple" action="<c:url value='/action/readArticle'/>"
-						method="POST">
-						댓글입력 : <input name="${writeComment.commentContent }" type="text"
-							style="width: 500px; height: 30px;" placeholder="댓글을 입력해주세요" />
-						<br> <input type="submit" value="달기">
-					</form>
-				</c:forEach></td>
+			
+			<td colspan="6">
+				<form name="commentAdd" action="<c:url value='/action/readArticle?idx=${showArticle.articleNumber}'/>"
+					method="POST">
+					<input type="hidden" name="todo" value="doRegisterComment">
+					댓글입력 : <input type="text" name="inComment" size="60"
+						placeholder="댓글을 입력해주세요"/>
+					<input type="submit" value="달기">
+				</form>
+			</td>
+			
 			<td></td>
 		</tr>
 
