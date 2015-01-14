@@ -3,6 +3,7 @@ package com.AFK.travel56.service;
 import java.util.List;
 
 import com.AFK.travel56.dao.ArticleDAO;
+import com.AFK.travel56.dao.ArticleRecommandVO;
 import com.AFK.travel56.dao.ArticleVO;
 import com.AFK.travel56.dao.CommentDAO;
 import com.AFK.travel56.dao.MemberDAO;
@@ -84,6 +85,20 @@ public class ArticleService {
 	// 대륙의 추천수가 많은 글 5개 찾기
 	public List<ArticleVO> showBestArticleByContinent(String continent) {
 		return articleDAO.findBestArticleByContinent(continent);
+	}
+
+	public boolean doRecommandIncrement(int articleNumber,
+			int articleRecommendCount) {
+		articleDAO
+				.recommendCountIncrement(articleNumber, articleRecommendCount);
+		return true;
+	}
+	public boolean recommandAdd(String memberNickName, int articleNumber, int memberNumber){
+		articleDAO.limitsRecommandadd(memberNickName, articleNumber, memberNumber);
+		return true;
+	}
+	public ArticleRecommandVO checkRecommand(int articleNumber, String memberNickName){
+		return articleDAO.checkArticleRecommand(articleNumber, memberNickName);
 	}
 
 }

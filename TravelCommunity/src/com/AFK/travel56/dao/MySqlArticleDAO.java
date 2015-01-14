@@ -502,12 +502,121 @@ public class MySqlArticleDAO implements ArticleDAO {
 			try {
 				if (stmt != null)
 					stmt.close();
-					conn.close();
+				conn.close();
 			} catch (SQLException ex) {
 				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
 						Level.SEVERE, null, ex);
 			}
 		}
 		return rankArticles;
+	}
+
+	public int recommendCountIncrement(int articleNumber, int articleRecommendCount) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			articleRecommendCount++;
+			String sqlStr = "UPDATE article set article_recommend_count='"
+					+ articleRecommendCount + "' where article_number="
+					+ articleNumber;
+			stateCheck = stmt.executeUpdate(sqlStr);
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
+	
+	public int limitsRecommandadd(String memberNickName, int articleNumber, int memberNumber){
+		Statement stmt = null;
+		Connection conn = null;
+		int stateCheck = 0;
+		Date nowDate = new Date();
+		SimpleDateFormat sdfNowDate = new SimpleDateFormat("yyyyMMdd");
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+
+			String sqlStr = "INSERT INTO articleRecommand"
+					+ "(recommand_date, member_nickname, article_number, member_number)"
+					+ " VALUES ( " + sdfNowDate.format(nowDate) + " , '" + memberNickName + "' , "
+					+ articleNumber + " , "+ memberNumber + ");";
+
+			stateCheck = stmt.executeUpdate(sqlStr);
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
+	
+	public ArticleRecommandVO checkArticleRecommand(int articleNumber,String memberNickName){
+		Connection conn = null;
+		Statement stmt = null;
+		ArticleRecommandVO checkArticleRecommand = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM articleRecommand where article_number="
+					+ articleNumber+" And member_nickname='"+memberNickName+"'";
+			ResultSet rset = stmt.executeQuery(sqlStr);
+
+			while (rset.next()) {
+				Date recommandDate = rset.getDate("recommand_date");
+				int memberNumber = rset.getInt("member_number");
+		
+				checkArticleRecommand = new ArticleRecommandVO(recommandDate, memberNickName, articleNumber, memberNumber) ;
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return checkArticleRecommand;
 	}
 }

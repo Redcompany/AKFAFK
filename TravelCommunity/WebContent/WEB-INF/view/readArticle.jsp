@@ -1,3 +1,6 @@
+<%@page import="com.AFK.travel56.service.FileService"%>
+<%@page import="com.AFK.travel56.service.MemberService"%>
+<%@page import="com.AFK.travel56.service.ArticleService"%>
 <%@page import="com.AFK.travel56.dao.ArticleVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -42,6 +45,22 @@
 		</tr>
 
 		<tr align="center">
+			<%
+				FileService fileService = new FileService();
+					List<FileVO> theFiles = fileService
+							.showFilesByArticle(readArticle.getArticleNumber());
+					if (theFiles != null && theFiles.size() > 0) {
+
+						for (int i = 0; i < theFiles.size(); ++i) {
+							FileVO findFile = theFiles.get(i);
+							String filename = "C:\\test\\" + findFile.getFileName();
+			%>
+			<img src=<%=filename%> style="width: 304px; height: 228px">
+			<br>
+			<%
+				}
+					}
+			%>
 			<td colspan="8"><%=readArticle.getArticleContent()%></td>
 		</tr>
 		<%
@@ -49,14 +68,20 @@
 		%>
 		<tr align="center">
 			<td colspan="5"></td>
-			<td colspan="3"><a class="skip" href="updateArticle">수정</a> <input
-				type=button value="삭제"> <input type=button value="추천">
-				<input type=button value="목록" OnClick="showArticles"></td>
+			<td colspan="3"><a class="skip" href="updateArticle">수정</a>
+				<form name="reple" action="<c:url value='/action/home'/>"
+					method="POST">
+					<input type=submit name="todo" value="삭제">
+				</form>
+				<form name="reple" action="<c:url value='/action/readArticle'/>"
+					method="POST">
+					<input type="submit" name="todo" value="추천">
+				</form> <input type=button value="목록" OnClick="showArticles"></td>
 		</tr>
 
 		<tr>
 			<td></td>
-			<td colspan="6"><c:forEach var="writeComment"
+			<%-- 			<td colspan="6"><c:forEach var="writeComment"
 					items="${commentMember}">
 					<form name="reple" action="<c:url value='/action/readArticle'/>"
 						method="POST">
@@ -67,8 +92,8 @@
 				</c:forEach></td>
 			<td></td>
 		</tr>
-
-		<tr>
+ --%>
+			<%-- 	<tr>
 			<td></td>
 			<td colspan="6">
 				<table>
@@ -76,7 +101,7 @@
 						<td><c:forEach var="viewComments" items="${showComments}">
 								<c:choose>
 									<c:when test="${viewComments==''}">
-                           등록된 댓글이 없습니다. <%-- error --%>
+                           등록된 댓글이 없습니다. error
 									</c:when>
 									<c:otherwise>
 										<c:if test="${viewComments.getParentComment()==0}">
@@ -93,7 +118,7 @@
 			</td>
 			<td></td>
 			<td></td>
-		</tr>
+		</tr> --%>
 	</table>
 </body>
 </html>

@@ -66,7 +66,7 @@ public class MySqlFileDAO implements FileDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
-			String sqlStr = "SELECT * FROM `file` where article_continent="
+			String sqlStr = "SELECT * FROM `file` where article_number="
 					+ articleNumber;
 
 			ResultSet rset = stmt.executeQuery(sqlStr);
