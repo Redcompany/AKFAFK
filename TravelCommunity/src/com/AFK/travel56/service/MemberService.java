@@ -106,25 +106,25 @@ public class MemberService {
 
 		return false;
 	}
-
-	public boolean findMemberID(String memberName, String memberBirth,
+	// ID 찾기
+	public String findMemberID(String memberName, String memberBirth,
 			String memberNickname) {
 		MemberVO findMember = memberDAO.findMemberByNameBirthNickname(
 				memberName, memberBirth, memberNickname);
 		if (findMember != null) {
-			return true;
+			return findMember.getMemberID();
 		}
-		return false;
+		return null;
 	}
-
-	public boolean findMemberPassword(String memberID, String memberName,
+	// PW 찾기
+	public String findMemberPassword(String memberID, String memberName,
 			String memberBirth) {
 		MemberVO findMember = memberDAO.findMemberByIDNameBirth(memberID,
 				memberName, memberBirth);
 		if (findMember != null) {
-			return true;
+			return findMember.getMemberPW();
 		}
-		return false;
+		return null;
 	}
 
 	// 로그인체크

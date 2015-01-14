@@ -1,5 +1,6 @@
 package com.AFK.travel56.control;
 
+import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,24 +62,32 @@ public class HomeCommand implements Command {
 						request.getParameter("name"),
 						request.getParameter("birth"),
 						request.getParameter("nickname")));
-				System.out.println(memberService.findMemberID(
+				PrintWriter outid = response.getWriter();
+				String p = memberService.findMemberID(
 						request.getParameter("name"),
 						request.getParameter("birth"),
-						request.getParameter("nickname")));
+						request.getParameter("nickname"));
+				response.setContentType("text/html; charset=UTF-8");
+				outid.println("<script>alert('" + p
+						+ "'); history.go(-1);</script>");
+				outid.flush();
 				break;
-			case "Password찿기":
+			case "Password찾기":
 				request.setAttribute(
 						"findPassword",
 						memberService.findMemberPassword(
 								request.getParameter("id"),
 								request.getParameter("name"),
 								request.getParameter("birth")));
-				System.out.println(memberService.findMemberPassword(
+				PrintWriter outpw = response.getWriter();
+				String i = memberService.findMemberPassword(
 						request.getParameter("id"),
 						request.getParameter("name"),
-						request.getParameter("birth")));
-				System.out.println(request.getParameter("name"));
-
+						request.getParameter("birth"));
+				response.setContentType("text/html; charset=UTF-8");
+				outpw.println("<script>alert('" + i
+						+ "'); history.go(-1);</script>");
+				outpw.flush();
 				break;
 			case "로그인":
 				request.setAttribute("memberLogin", memberService.loginMember(

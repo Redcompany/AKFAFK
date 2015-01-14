@@ -51,6 +51,9 @@ public class CommandFactory {
 		case "/checkNickName":
 			target = new NickNameCheckCommand();
 			break;
+		case "/findIDPassword":
+			target = new IDPasswordFindMemberCommand();
+			break;
 		}
 
 		return target;

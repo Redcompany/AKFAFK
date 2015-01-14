@@ -34,6 +34,7 @@
 	<a class="123" href="createArticle" id="오세아니아">글등록</a>
 	<a class="asd" href="register" id="회원가입">회원가입</a>
 	<a class="asd" href="loginMember" id="회원가입">로그인</a>
+	<a class="find" href="findIDPassword" id="찾기">ID/PW 찾기</a>
 	<table boder="1" width="1050" height="800" align="center">
 		<tr>
 			<td>
