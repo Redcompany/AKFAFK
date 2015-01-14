@@ -25,5 +25,11 @@ public interface ArticleDAO {
 	public int deleteArticle(int articleNumber, String memberNickName);
 
 	public int deleteArticle(String memberNickName);
+	
+	public int recommendCountIncrement(int articleNumber, int articleRecommendCount);
+	
+	public ArticleRecommandVO checkArticleRecommand(int articleNumber,String memberNickName);
+	
+	public int limitsRecommandadd(String memberNickName, int articleNumber, int memberNumber);
 
 }

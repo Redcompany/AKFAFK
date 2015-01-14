@@ -1,4 +1,4 @@
-package com.AFK.travel56.control;
+﻿package com.AFK.travel56.control;
 
 import java.io.PrintWriter;
 import java.util.Enumeration;
@@ -43,6 +43,7 @@ public class HomeCommand implements Command {
 
 		String todoCheck = request.getParameter("todo");
 		HttpSession session = request.getSession(true);
+		System.out.println(todoCheck);
 		if (todoCheck != null) {
 
 			switch (todoCheck) {
@@ -89,11 +90,13 @@ public class HomeCommand implements Command {
 						+ "'); history.go(-1);</script>");
 				outpw.flush();
 				break;
+
 			case "로그인":
 				request.setAttribute("memberLogin", memberService.loginMember(
 						request.getParameter("id"),
 						request.getParameter("pass")));
 				break;
+
 			case "로그아웃":
 				session.removeAttribute("loginsession");
 				break;
@@ -104,6 +107,16 @@ public class HomeCommand implements Command {
 						.deleteMember(memberVO.getMemberID(),
 								memberVO.getMemberPW()));
 				session.removeAttribute("loginsession");
+				break;
+			case "삭제":
+				memberVO = (MemberVO) session.getAttribute("loginsession");
+				ArticleVO findArticle = (ArticleVO) session
+						.getAttribute("Article");
+				request.setAttribute(
+						"deleteArticle",
+						articleService.deleteArticle(
+								findArticle.getArticleNumber(),
+								memberVO.getMemberNickName()));
 				break;
 			}
 		}

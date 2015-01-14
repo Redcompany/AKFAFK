@@ -66,7 +66,7 @@ public class MySqlFileDAO implements FileDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
-			String sqlStr = "SELECT * FROM `file` where article_continent="
+			String sqlStr = "SELECT * FROM `file` where article_number="
 					+ articleNumber;
 
 			ResultSet rset = stmt.executeQuery(sqlStr);
@@ -186,6 +186,41 @@ public class MySqlFileDAO implements FileDAO {
 			stmt = conn.createStatement();
 			String sqlStr = "delete from `file` where file_name='" + fileName
 					+ "'";
+
+			stateCheck = stmt.executeUpdate(sqlStr);
+
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlFileDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlFileDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlFileDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
+
+	public int deleteFileByArticleNumber(int articleNumber) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "delete from `file` where article_number='"
+					+ articleNumber + "'";
 
 			stateCheck = stmt.executeUpdate(sqlStr);
 

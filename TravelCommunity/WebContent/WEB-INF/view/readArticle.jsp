@@ -1,3 +1,6 @@
+<%@page import="com.AFK.travel56.service.FileService"%>
+<%@page import="com.AFK.travel56.service.MemberService"%>
+<%@page import="com.AFK.travel56.service.ArticleService"%>
 <%@page import="com.AFK.travel56.dao.ArticleVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -7,11 +10,19 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<%
-	ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
-	if (readArticle != null) {
-%>
-<title>글보기 | <%=readArticle.getArticleTitle()%></title>
+<script>
+	function clickMessage() {
+		if (document.deleteArticleForm.todo.value == "삭제") {
+			alert("글이 삭제되었습니다.")
+			document.deleteArticleForm.submit();
+		} else if (document.writeForm.pass.value == "")
+			alert("패스워드를 입력하세요")
+		else
+			document.writeForm.submit();
+	}
+</script>
+<title>${Article.articleTitle}</title>
+
 </head>
 <body>
 
@@ -30,41 +41,68 @@
 		</tr>
 
 		<tr align="center">
-			<input type="hidden" name="cartIndex" value="listValue">
-			<td><%=readArticle.getArticleNumber()%></td>
-			<td><%=readArticle.getArticleContinent()%></td>
-			<td><%=readArticle.getArticleCountry()%></td>
-			<td><%=readArticle.getArticleTitle()%></td>
-			<td><%=readArticle.getMemberNickName()%>
-			<td><%=readArticle.getArticleDate()%></td>
-			<td><%=readArticle.getArticleRecommendCount()%></td>
-			<td><%=readArticle.getArticleViewCount()%></td>
+			<td>${Article.articleNumber}</td>
+			<td>${Article.articleContinent}</td>
+			<td>${Article.articleCountry}</td>
+			<td>${Article.articleTitle}</td>
+			<td>${Article.memberNickName}</td>
+			<td>${Article.articleDate}</td>
+			<td>${Article.articleRecommendCount}</td>
+			<td>${Article.articleViewCount}</td>
+
 		</tr>
 
 		<tr align="center">
-			<td colspan="8"><%=readArticle.getArticleContent()%></td>
+
+			<%
+				ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
+				if (readArticle != null) {
+					FileService fileService = new FileService();
+					List<FileVO> theFiles = fileService
+							.showFilesByArticle(readArticle.getArticleNumber());
+					if (theFiles != null && theFiles.size() > 0) {
+
+						for (int i = 0; i < theFiles.size(); ++i) {
+							FileVO findFile = theFiles.get(i);
+							String filename = "C:\\test\\" + findFile.getFileName();
+			%>
+			<img src=<%=filename%> style="width: 304px; height: 228px">
+			<br>
+			<%
+				}
+					}
+				}
+			%>
+			<td colspan="8">${Article.articleContent}</td>
+
 		</tr>
-		<%
-			}
-		%>
+
 		<tr align="center">
 			<td colspan="5"></td>
-			<td colspan="3"><a class="skip" href="updateArticle">수정</a> <input
-				type=button value="삭제"> <input type=button value="추천">
-				<input type=button value="목록" OnClick="showArticles"></td>
+			<td colspan="3"><a class="skip" href="updateArticle">수정</a>
+				<form name="deleteArticleForm"
+					action="<c:url value='/action/home'/>" method="POST">
+					<input type="hidden" name="todo" value="삭제"> <input
+						type=submit onclick="javascript:clickMessage()" value="삭제">
+				</form>
+				<form name="articleRcommandForm"
+					action="<c:url value='/action/readArticle'/>" method="POST">
+					<input type="submit" name="todo" value="추천">
+				</form> <input type=button value="목록" OnClick="showArticles"></td>
 		</tr>
 
 		<tr>
 			<td></td>
-			<td colspan="6"><c:forEach var="writeComment"
-					items="${commentMember}">
-					<form name="reple" action="<c:url value='/action/readArticle'/>"
-						method="POST">
-						댓글입력 : <input name="${writeComment.commentContent }" type="text"
-							style="width: 500px; height: 30px;" placeholder="댓글을 입력해주세요" />
-						<br> <input type="submit" value="달기">
-					</form>
-				</c:forEach></td>
+			<td colspan="6">
+				<form name="commentAdd"
+					action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>"
+					method="POST">
+					<input type="hidden" name="todo" value="doRegisterComment">
+					댓글입력 : <input type="text" name="inComment" size="60"
+						placeholder="댓글을 입력해주세요" /> <input type="submit" value="달기">
+				</form>
+			</td>
+
 			<td></td>
 		</tr>
 
@@ -76,7 +114,7 @@
 						<td><c:forEach var="viewComments" items="${showComments}">
 								<c:choose>
 									<c:when test="${viewComments==''}">
-                           등록된 댓글이 없습니다. <%-- error --%>
+                           등록된 댓글이 없습니다. error
 									</c:when>
 									<c:otherwise>
 										<c:if test="${viewComments.getParentComment()==0}">

@@ -3,12 +3,15 @@ package com.AFK.travel56.service;
 import java.util.List;
 
 import com.AFK.travel56.dao.ArticleDAO;
+import com.AFK.travel56.dao.ArticleRecommandVO;
 import com.AFK.travel56.dao.ArticleVO;
 import com.AFK.travel56.dao.CommentDAO;
+import com.AFK.travel56.dao.FileDAO;
 import com.AFK.travel56.dao.MemberDAO;
 import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.dao.MySqlArticleDAO;
 import com.AFK.travel56.dao.MySqlCommentDAO;
+import com.AFK.travel56.dao.MySqlFileDAO;
 import com.AFK.travel56.dao.MySqlMemberDAO;
 
 public class ArticleService {
@@ -38,6 +41,8 @@ public class ArticleService {
 	// 글 삭제
 	public boolean deleteArticle(int articleNumber, String memberNickName) {
 		CommentDAO commentDAO = new MySqlCommentDAO();
+		FileDAO fileDAO= new MySqlFileDAO();
+		fileDAO.deleteFileByArticleNumber(articleNumber);
 		commentDAO.deleteCommentByArticle(articleNumber);
 		int checkState = articleDAO
 				.deleteArticle(articleNumber, memberNickName);
@@ -84,6 +89,20 @@ public class ArticleService {
 	// 대륙의 추천수가 많은 글 5개 찾기
 	public List<ArticleVO> showBestArticleByContinent(String continent) {
 		return articleDAO.findBestArticleByContinent(continent);
+	}
+
+	public boolean doRecommandIncrement(int articleNumber,
+			int articleRecommendCount) {
+		articleDAO
+				.recommendCountIncrement(articleNumber, articleRecommendCount);
+		return true;
+	}
+	public boolean recommandAdd(String memberNickName, int articleNumber, int memberNumber){
+		articleDAO.limitsRecommandadd(memberNickName, articleNumber, memberNumber);
+		return true;
+	}
+	public ArticleRecommandVO checkRecommand(int articleNumber, String memberNickName){
+		return articleDAO.checkArticleRecommand(articleNumber, memberNickName);
 	}
 
 }
