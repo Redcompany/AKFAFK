@@ -31,24 +31,24 @@ public class MemberService {
 
 	// 회원 가입
 	public boolean registerMember(String memberID, String memberPW,
-			String memberGender, String memberEmail, String address,
-			String memberName, String memberBirth, String memberNickName) {
-		boolean genderCheck;
-		String totalEmail;
-		if (memberGender.equals("man")) {
-			genderCheck = true;
-		} else {
-			genderCheck = false;
-		}
-		totalEmail = memberEmail + "@" + address;
-		int stateCheck = memberDAO.addMember(memberID, memberPW, genderCheck,
-				totalEmail, memberName, memberBirth, memberNickName);
+	         String memberGender, String memberEmail, String address,
+	         String memberName, String memberBirth, String memberNickName) {
+	      boolean genderCheck;
+	      String totalEmail;
+	      if (memberGender.equals("man")) {
+	         genderCheck = true;
+	      } else {
+	         genderCheck = false;
+	      }
+	      totalEmail = memberEmail + "@" + address;
+	      int stateCheck = memberDAO.addMember(memberID, memberPW, genderCheck,
+	            totalEmail, memberName, memberBirth, memberNickName);
 
-		if (stateCheck != 0) {
-			return true;
-		}
-		return false;
-	}
+	      if (stateCheck != 0) {
+	         return true;
+	      }
+	      return false;
+	   }
 
 	// 회원 수정
 	public MemberVO updateMember(String memberNickName, String memberPW,
@@ -127,10 +127,10 @@ public class MemberService {
 		return false;
 	}
 
-	//로그인체크
-	  public MemberVO loginCheck(String memberID) {
-	         MemberVO loginCheak = memberDAO.loginCheck(memberID);
-	         return loginCheak;
-	  }
+	// 로그인체크
+	public MemberVO loginCheck(String memberID) {
+		MemberVO loginCheak = memberDAO.loginCheck(memberID);
+		return loginCheak;
+	}
 
 }

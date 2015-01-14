@@ -1,4 +1,4 @@
-package com.AFK.travel56.control;
+﻿package com.AFK.travel56.control;
 
 import java.util.Enumeration;
 
@@ -86,14 +86,7 @@ public class HomeCommand implements Command {
 						request.getParameter("id"),
 						request.getParameter("pass")));
 				break;
-			// case "회워정보변경":
-			// request.setAttribute("updateMember", memberService
-			// .updateMember(request.getParameter("id"),
-			// request.getParameter("pass"),
-			// request.getParameter("email"),
-			// request.getParameter("name"),
-			// request.getParameter("phone")));
-			// break;
+
 			case "로그아웃":
 				session.removeAttribute("loginsession");
 				break;
