@@ -22,34 +22,25 @@
 			<th>추천수</th>
 			<th>조회수</th>
 		</tr>
-		<%
-			List<ArticleVO> theArticles = (List<ArticleVO>) session
-					.getAttribute("Articles");
-			if (theArticles != null && theArticles.size() > 0) {
 
-				for (int i = 0; i < theArticles.size(); ++i) {
-					ArticleVO findArticle = theArticles.get(i);
-		%>
+		<c:forEach var="Articles" items="${Articles}">
 
-		<tr>
-			<input type="hidden" name="todo" value="remove">
-			<input type="hidden" name="cartIndex"
-				value="<%=findArticle.getMemberNumber()%>">
-			<td><%=findArticle.getArticleNumber()%></td>
-			<td><a
-				href="readArticle?todo=read&idx=<%=findArticle.getArticleNumber()%>"><%=findArticle.getArticleTitle()%></a></td>
-			<td><%=findArticle.getMemberNickName()%></td>
-			<td align="right"><%=findArticle.getArticleRecommendCount()%></td>
-			<td align="right"><%=findArticle.getArticleViewCount()%></td>
-		</tr>
-		<%
-			} // for loop
-		%>
+			<tr>
+				<input type="hidden" name="todo" value="remove">
+				<input type="hidden" name="cartIndex"
+					value="${Articles.memberNumber}">
+				<td>${Articles.articleNumber}</td>
+				<td><a
+					href="readArticle?todo=read&idx=${Articles.articleNumber}">${Articles.articleTitle}</a></td>
+				<td>${Articles.memberNickName}</td>
+				<td align="right">${Articles.articleRecommendCount}</td>
+				<td align="right">${Articles.articleViewCount}</td>
+			</tr>
+			
+		</c:forEach>
+
 	</table>
 	<br />
-	<%
-		}
-	%>
 	<a class="homeList" href="home">목록</a>
 </body>
 </html>
