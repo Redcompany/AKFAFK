@@ -26,6 +26,7 @@ input {
 </style>
 
 <body>
+<%@include file="always/top.jsp" %>
 	<form name="UpdateMemberOK" action="<c:url value='/action/mypage'/>"
 		method="POST">
 		<table id='membershipChange' width="700" height="700" align="center">
@@ -96,5 +97,6 @@ input {
 			</tr>
 
 		</table>
+		<%@include file="always/bottom.jsp" %>
 </body>
 </html>

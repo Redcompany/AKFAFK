@@ -15,6 +15,9 @@
 	text-align: center;
 }
 </style>
+
+	<%@include file="always/top.jsp" %>
+
 	<%
 		int a = 1;
 		int b = 1;
@@ -35,10 +38,10 @@
 	<a class="asd" href="register" id="회원가입">회원가입</a>
 	<a class="asd" href="loginMember" id="회원가입">로그인</a>
 	<a class="find" href="findIDPassword" id="찾기">ID/PW 찾기</a>
-	<table boder="1" width="1050" height="800" align="center">
+	<table boder="1" width="85%"  align="center" border="1">
 		<tr>
 			<td>
-				<table class="totalbest" width="500" height="130" cellpadding="0"
+				<table class="totalbest" width="95%" height="150" cellpadding="0"
 					cellspacing="1" boder="0" id="Table">
 
 					<th class="totalbest" colspan=2>전체 BEST</th>
@@ -61,8 +64,8 @@
 					</c:forEach>
 				</table>
 			</td>
-			<td width="50%">
-				<table width="500" height="130" cellpadding="0" cellspacing="1"
+			<td>
+				<table width="95%" height="130" cellpadding="0" cellspacing="1"
 					boder="0" id="Table">
 					<th class="totalbest" colspan=2>공지사항</th>
 					<tr class="bestbackground">
@@ -87,7 +90,7 @@
 		</tr>
 		<tr>
 			<td width="50%">
-				<table width="500" height="130" cellpadding="0" cellspacing="1"
+				<table width="95%" height="130" cellpadding="0" cellspacing="1"
 					boder="0" id="Table" align="center">
 
 					<th class="totalbest" colspan=2>유럽 BEST</th>
@@ -112,7 +115,7 @@
 				</table>
 			</td>
 			<td width="50%">
-				<table width="500" height="130" cellpadding="0" cellspacing="1"
+				<table width="95%" height="130" cellpadding="0" cellspacing="1"
 					boder="0" id="Table" align="center">
 
 					<th class="totalbest" colspan=2>아시아 BEST</th>
@@ -138,7 +141,7 @@
 		</tr>
 		<tr>
 			<td width="50%">
-				<table width="500" height="130" cellpadding="0" cellspacing="1"
+				<table width="95%" height="130" cellpadding="0" cellspacing="1"
 					boder="0" id="Table" align="center">
 
 					<th class="totalbest" colspan=2>아프리카 BEST</th>
@@ -162,7 +165,7 @@
 				</table>
 			</td>
 			<td width="50%">
-				<table width="500" height="130" cellpadding="0" cellspacing="1"
+				<table width="95%" height="130" cellpadding="0" cellspacing="1"
 					boder="0" id="Table" align="center">
 
 					<th class="totalbest" colspan=2>북아메리카 BEST</th>
@@ -188,7 +191,7 @@
 		</tr>
 		<tr>
 			<td width="50%">
-				<table width="500" height="130" cellpadding="0" cellspacing="1"
+				<table width="95%" height="130" cellpadding="0" cellspacing="1"
 					boder="0" id="Table" align="center">
 
 					<th class="totalbest" colspan=2>남아메리카 BEST</th>
@@ -212,7 +215,7 @@
 				</table>
 			</td>
 			<td width="50%">
-				<table width="500" height="130" cellpadding="0" cellspacing="1"
+				<table width="95%" height="130" cellpadding="0" cellspacing="1"
 					boder="0" id="Table" align="center">
 
 					<th class="totalbest" colspan=2>오세아니아 BEST</th>
@@ -237,6 +240,8 @@
 			</td>
 		</tr>
 	</table>
+
+	<%@include file="always/bottom.jsp" %>
 
 </body>
 </html>

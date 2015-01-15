@@ -10,7 +10,7 @@
 <title>대륙게시판입니다.</title>
 </head>
 <body>
-
+<%@include file="always/top.jsp" %>
 	<p>
 		<strong>대륙게시판</strong>
 	</p>
@@ -42,5 +42,6 @@
 	</table>
 	<br />
 	<a class="homeList" href="home">목록</a>
+	<%@include file="always/bottom.jsp" %>
 </body>
 </html>

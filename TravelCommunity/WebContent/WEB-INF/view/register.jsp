@@ -59,6 +59,7 @@
 </script>
 </head>
 <body>
+<%@include file="always/top.jsp" %>
 	<form name="writeForm" action="<c:url value='/action/home'/>"
 		method="post" onsubmit="return checking();">
 		<table border="2">
@@ -117,5 +118,6 @@
 			</tr>
 		</table>
 	</form>
+	<%@include file="always/bottom.jsp" %>
 </body>
 </html>
