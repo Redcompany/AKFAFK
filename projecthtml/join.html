@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>totalbest</title>
+    <meta charset="UTF-8">
+</head>
+<style>
+    td {
+        background-color: white;
+        font-size: 30px;
+        font-weight:900;
+        font-family: fantasy;
+    }
+    input {
+    border-radius: 4px 4px 4px 4px;
+    width:250px;
+    height: 30px;
+    
+}
+</style>
+
+<body>
+    <table id='tableJoin' width="700" height="700" align="center">
+        <tr>
+            <td width="250" align="center">아이디
+            </td>
+            <td>
+                <input type="text" name="id">
+                <a class="overlap" href="totalbest.html">중복확인</a>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">비밀번호
+            </td>
+            <td>
+                <input type="password" name="pass">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">재확인
+            </td>
+            <td>
+                <input type="password" name="repass">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">이름
+            </td>
+            <td>
+                <input type="text" name="name">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">성별
+            </td>
+            <td>
+                <input class="gender_man" name="gender" type="radio" value="man">남자&nbsp;
+                <input class="gender_women" name="gender" type="radio" value="women">여자</td>
+        </tr>
+
+
+        <tr>
+            <td align="center">이메일
+            </td>
+            <td>
+                <input type="text" name="email"> &nbsp;&nbsp;@&nbsp;&nbsp;
+                <select name="#">
+                    <option value="naver.com">naver.com</option>
+                    <option value="nate.com">nate.com</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                    <option value="yahoo.co.kr">yahoo.co.kr</option>
+                    <option value="hotmail.com">hotmail.com</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">연락처
+            </td>
+            <td>
+                
+                <input type="text" name="tel3" size="5" maxlength="5">
+            </td>
+        </tr>
+        <tr height="80">
+            <td colspan="2" align="center">
+                <input type="submit" value="회원가입">
+
+            </td>
+        </tr>
+    </table>
+
+
+</body>
+
+</html>

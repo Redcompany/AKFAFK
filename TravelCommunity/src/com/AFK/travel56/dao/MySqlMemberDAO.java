@@ -405,9 +405,9 @@ public class MySqlMemberDAO implements MemberDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
-			String sqlStr = "select * from member where member_name= '"
-					+ memberName + "' and member_birth= '" + memberBirth
-					+ "' and member_id= '" + memberID + "'";
+			String sqlStr = "select * from member where member_id= '"
+					+ memberID + "' and member_name= '" + memberName
+					+ "' and member_birth= '" + memberBirth + "'";
 			ResultSet rset = stmt.executeQuery(sqlStr);
 			while (rset.next()) { // list all the authors
 				int membersNumber = rset.getInt("member_number");
@@ -495,28 +495,5 @@ public class MySqlMemberDAO implements MemberDAO {
 		return memberVO;
 	}
 
-//	public MemberVO findMemberByID(String memberID) {
-//		int rst = 0;
-//		Connection conn = null;
-//		PreparedStatement stmt = null;
-//		ResultSet rset = null;
-//
-//		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//			conn = DriverManager.getConnection(databaseURL, username, password);
-//
-//			String sqlStr = "SELECT * FROM member WHERE userID= ?";
-//			stmt = (PreparedStatement) conn.prepareStatement(sqlStr);
-//			stmt.setString(1, id);
-//			rset = stmt.executeQuery();
-//			if (rset.next()) {
-//				rst = 1;
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}finally{
-//			DriverManager.close(rset, stmt, conn);
-//		}
-//		return rset;
-//	}
+
 }

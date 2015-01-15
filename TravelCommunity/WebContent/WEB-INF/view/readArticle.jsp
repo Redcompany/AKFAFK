@@ -23,7 +23,7 @@
 
 </head>
 <body>
-
+<%@include file="always/top.jsp" %>
 	<table id="Articleboard" width="75%" height="65" align="center"
 		border="0">
 
@@ -116,7 +116,11 @@
 									</c:when>
 									<c:otherwise>
 										<c:if test="${viewComments.getParentComment()==0}">
-                              ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate }) <br />
+                              ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate })
+                          <c:if test="${deleteComment.memberNickName eq viewComments.memberNickName }">
+                              <a href="/action/readArticle?idx=${Article.articleNumber}">삭제</a>
+                              </c:if>
+                               <br />
 										</c:if>
 										<c:if test="${viewComments.getParentComment() > 0}">
                               ▶▶ ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate }) <br />
@@ -131,5 +135,6 @@
 			<td></td>
 		</tr>
 	</table>
+	<%@include file="always/bottom.jsp" %>
 </body>
 </html>

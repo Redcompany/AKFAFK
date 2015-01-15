@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>게시판 읽기</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <style>
+        td {
+            background-color: white;
+            font-family: sans-serif;
+            text-align: center;
+        }
+    </style>
+    <table id="Articleboard" width="1000" height="500" align="center">
+        <tr class="bestbackground">
+
+            <th width="70">Number</th>
+            <th width="300">제 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목</th>
+            <th width="100">I D</th>
+            <th width="80">날 짜</th>
+            <th width="80">추천수</th>
+
+        </tr>
+        <tr>
+
+            <td>1</td>
+            <td>내용</td>
+            <td>두부외상</td>
+            <td>12-16</td>
+            <td>1004</td>
+        </tr>
+        <tr>
+            <th id="textbox" colspan=5 height="400">이곳에 사진과 여행글?</th>
+        </tr>
+
+        <tr>
+            <th colspan=5>댓글&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="comment" type="text" style="width:500px; height:30px;" placeholder="로그인 후에 입력해주세요">
+
+                <input id="commentButton" type="submit" value="댓글달기" style="width:70px; height:30px;" onclick="if(frm.id.value == ''){frm.id.focus(); return false;}" />
+                <a class="recommandbutton1" href="totalbest.html">추천</a>
+                <a class="revisebutton1" href="totalbest.html">수정</a>
+                <a class="removebutton1" href="totalbest.html">삭제</a>
+                <a class="listbutton1" href="totalbest.html">목록</a>
+            </th>
+        </tr>
+         <tr>
+            <th id="commentbox" colspan=5 height="200">여기에 댓글다는 기능</th>
+        </tr>
+
+
+    </table>
+
+
+</body>
+
+</html>

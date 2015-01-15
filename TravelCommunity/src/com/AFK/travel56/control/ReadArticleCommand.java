@@ -61,6 +61,7 @@ public class ReadArticleCommand implements Command {
 
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		System.out.println(idx);
+
 		session.setAttribute("Article", articleService.selectShowArticle(idx));
 		request.setAttribute("showComments",
 				commentService.showAllCommentByArticle(idx));
@@ -84,6 +85,27 @@ public class ReadArticleCommand implements Command {
 						request.getParameter("inComment"),
 						commentMember.getMemberNumber(),
 						commentMember.getMemberNickName(), idx));
+		session.setAttribute("Article", articleService.selectShowArticle(idx));
+		request.setAttribute("showComments",
+				commentService.showAllCommentByArticle(idx));
+	}
+
+	public void doDeleteComment(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		HttpSession session = request.getSession(true);
+		ArticleService articleService = new ArticleService();
+		CommentService commentService = new CommentService();
+		MemberVO commentMember = (MemberVO) session
+				.getAttribute("loginsession");
+
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println(idx);
+
+		session.setAttribute("deleteComment", commentService.deleteComment(
+				Integer.parseInt(request.getParameter("commentNumber")),
+				commentMember.getMemberNumber(),
+				commentMember.getMemberNickName()));
 		session.setAttribute("Article", articleService.selectShowArticle(idx));
 		request.setAttribute("showComments",
 				commentService.showAllCommentByArticle(idx));

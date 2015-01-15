@@ -10,22 +10,31 @@
 <title>회원가입</title>
 <script>
 	function checking() {
-		if (document.writeForm.id.value == "")
-			alert("아이디를 입력하세요")
-		else if (document.writeForm.pass.value == "")
-			alert("패스워드를 입력하세요")
-		else if (document.writeForm.pass.value != document.writeForm.repass.value)
-			alert("패스워드가 틀립니다")
-		else if (document.writeForm.name.value == "")
+		if (document.writeForm.id.value == "") {
+			alert("아이디를 입력하세요");
+			return false;
+		} else if (document.writeForm.pass.value == "") {
+			alert("패스워드를 입력하세요");
+			return false;
+		}else if (document.writeForm.pass.value != document.writeForm.repass.value){
+			alert("패스워드가 일치하지않습니다.")
+			return false;
+		}else if (document.writeForm.name.value == ""){
 			alert("이름을 입력하세요")
-		else if (document.writeForm.birth.value == "")
+			return false;
+		}else if (document.writeForm.birth.value == ""){
 			alert("생년월일을 입력하세요")
-		else if (document.writeForm.nickname.value == "")
+			return false;
+		}else if (document.writeForm.nickname.value == ""){
 			alert("닉네임을 입력하세요")
-		else if (document.writeForm.email.value == "")
+			return false;
+		}else if (document.writeForm.email.value == ""){
 			alert("이메일을 입력하세요")
-		else
+			return false;
+		} else {
 			document.writeForm.submit();
+		return false;
+		}
 	}
 
 	function checkid() {
@@ -50,8 +59,9 @@
 </script>
 </head>
 <body>
+<%@include file="always/top.jsp" %>
 	<form name="writeForm" action="<c:url value='/action/home'/>"
-		method="post">
+		method="post" onsubmit="return checking();">
 		<table border="2">
 			<tr>
 				<td colspan="2" align="center">회원가입</td>
@@ -103,10 +113,11 @@
 				<input type="hidden" name="todo" value="회원가입"></input>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="회원가입" onclick="javascript:checking()"></input></td>
+				<td colspan="2" align="center" ><input type="submit"
+					value="회원가입" ></input></td>
 			</tr>
 		</table>
 	</form>
+	<%@include file="always/bottom.jsp" %>
 </body>
 </html>
