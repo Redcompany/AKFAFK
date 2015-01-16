@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html lang = "ko">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"/>
 <title>오륙닷컴에 오신걸 혼영합니다!</title>
+<link rel="stylesheet" type="text/css" href="styles.css"/>
 </head>
-<body class = "skippage">
+<body class="skippage">
 
 <h1 style ="font-family: verdana"> 56.com</h1>
 

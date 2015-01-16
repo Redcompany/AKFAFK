@@ -1,0 +1,390 @@
+h1 {
+    margin-top: 60px;
+    font-size: 80px;
+    font-family: fantasy;
+    font-weight: bold;
+    text-align: center;
+}
+img {
+    position: fixed;
+    top: 30px;
+    right: 1000px;
+}
+body.skippage {
+    background-image: url("/img/map.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+a.skip {
+    padding: 0;
+    font-weight: bold;
+    position: relative;
+    top: 550px;
+    left: 600px;
+    background-color: skyblue;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+a.afreeca {
+    position: fixed;
+    font-family: fantasy;
+    font-weight: bold;
+    top: 450px;
+    left: 600px;
+}
+a.s_america {
+    position: fixed;
+    font-family: fantasy;
+    font-weight: bold;
+    top: 530px;
+    left: 460px;
+}
+a.n_america {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 340px;
+    left: 370px;
+}
+a.europe {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 340px;
+    left: 630px;
+}
+a.asia {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 380px;
+    left: 800px;
+}
+a.oceania {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 570px;
+    left: 910px;
+}
+select.eu {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 50px;
+    right: 870px;
+    border-radius: 4px 4px 4px 4px;
+}
+select.asia {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 50px;
+    right: 760px;
+    border-radius: 4px 4px 4px 4px;
+}
+select.africa {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 50px;
+    right: 650px;
+    border-radius: 4px 4px 4px 4px;
+}
+select.namerica {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 50px;
+    right: 540px;
+    border-radius: 4px 4px 4px 4px;
+}
+select.samerica {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 50px;
+    right: 430px;
+    border-radius: 4px 4px 4px 4px;
+}
+select.oceania {
+    font-family: fantasy;
+    font-weight: bold;
+    position: fixed;
+    top: 50px;
+    right: 320px;
+    border-radius: 4px 4px 4px 4px;
+}
+input.pass {
+    position: fixed;
+    top: 70px;
+    right: 200px;
+    border-radius: 4px 4px 4px 4px;
+}
+input.id {
+    position: fixed;
+    top: 40px;
+    right: 200px;
+    border-radius: 4px 4px 4px 4px;
+}
+input.login {
+    position: fixed;
+    top: 50px;
+    right: 120px;
+    border-radius: 4px 4px 4px 4px;
+}
+a.join {
+    font-weight: bold;
+    position: fixed;
+    top: 100px;
+    right: 260px;
+}
+a.find {
+    font-weight: bold;
+    position: fixed;
+    top: 100px;
+    right: 170px;
+}
+
+
+ 
+span.adress {
+    position: fixed;
+    top: 60px;
+    right: 350px;
+}
+span.phone_num {
+    position: fixed;
+    top: 80px;
+    right: 330px
+}
+
+
+b.bestw {
+    position:relative;
+    top:30px;
+    left:100px;
+}
+#Table  th.totalbest {
+    background-color:white;
+    font-weight:bold;
+    font-family:fantasy;
+    text-align:left;
+    font-size:20px;
+}
+
+.euroword {
+    background-color:white;
+    font-weight:bold;
+    font-family:fantasy;
+    text-align:left;
+    font-size:20px;
+}
+tr.bestbackground {
+    background-color:#EBEBE0;
+}
+
+
+
+th.totalboard {
+    background-color:white;
+    font-weight:bold;
+    font-family:fantasy;
+    text-align:left;
+    font-size:50px;
+}
+a.button1 {
+    padding: 0;
+    font-weight: bold;
+    position: relative;
+    top: 30px;
+    left: 500px;
+    background-color: skyblue;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+a.button2 {
+    padding: 0;
+    font-weight: bold;
+    position: relative;
+    top: 30px;
+    left: 500px;
+    background-color: skyblue;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+a.button3 {
+    padding: 0;
+    font-weight: bold;
+    position: relative;
+    top: 30px;
+    left: 500px;
+    background-color: skyblue;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+a.button4 {
+    padding: 0;
+    font-weight: bold;
+    position: relative;
+    top: 30px;
+    left: 500px;
+    background-color: skyblue;
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+
+
+a.overlap {
+    padding: 0;
+    position: relative;
+    background-color: skyblue;
+    color: white;
+    padding: 5px 5px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+    font-size:12px;
+}
+
+
+
+#Table tr.totalboard {
+    background-color:white;
+    font-weight:bold;
+    font-family:fantasy;
+    text-align:left;
+    font-size:50px;
+    
+}
+
+span.noticeBottom {
+    position: fixed;
+    top: 30px;
+    right: 400px;
+}
+
+
+input.gender_man {
+    border-radius: 4px 4px 4px 4px;
+    width:50px;
+    height: 30px;
+}
+
+input.gender_women {
+    border-radius: 4px 4px 4px 4px;
+    width:50px;
+    height: 30px;
+}
+
+a.confirmation {
+    padding: 0;
+    font-weight: bold;
+    background-color: skyblue;
+    color: white;
+    padding: 13px 18px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+    font-size: 15px;
+}
+
+td.welcome {
+    font-size: 60px;
+        font-weight:900;
+        font-family: fantasy;
+    
+}
+
+a.recommandbutton1 {
+    padding: 0;
+    font-weight: bold;
+    background-color: skyblue;
+    color: white;
+    padding: 5px 5px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+a.revisebutton1 {
+    padding: 0;
+    font-weight: bold;
+    background-color: skyblue;
+    color: white;
+    padding: 5px 5px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+a.removebutton1 {
+    padding: 0;
+    font-weight: bold;
+    background-color: skyblue;
+    color: white;
+    padding: 5px 5px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+a.listbutton1 {
+    padding: 0;
+    font-weight: bold;
+    background-color: skyblue;
+    color: white;
+    padding: 5px 5px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+td.membership {
+        font-size: 60px;
+        font-weight:900;
+        font-family: fantasy;
+    
+}
+
+a.cancel {
+    padding: 0;
+    font-weight: bold;
+    background-color: skyblue;
+    color: white;
+    padding: 13px 18px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+    font-size: 15px;
+}
+
+a.rename {
+    padding: 0;
+    font-weight: bold;
+    background-color: skyblue;
+    color: white;
+    padding: 13px 18px;
+    text-decoration: none;
+    border-radius: 4px 4px 4px 4px;
+    font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
