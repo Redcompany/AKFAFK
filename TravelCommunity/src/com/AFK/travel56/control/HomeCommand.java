@@ -1,21 +1,15 @@
 ﻿package com.AFK.travel56.control;
 
 import java.io.PrintWriter;
-import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import travel.MyFileRenamePolicy;
-
 import com.AFK.travel56.dao.ArticleVO;
 import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.service.ArticleService;
-import com.AFK.travel56.service.FileService;
 import com.AFK.travel56.service.MemberService;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class HomeCommand implements Command {
 	public CommandResult execute(HttpServletRequest request,
