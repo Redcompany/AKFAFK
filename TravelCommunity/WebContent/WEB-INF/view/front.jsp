@@ -15,12 +15,12 @@
     <a class="skip" href="action/home">s k i p</a>
 
 	<form name ="checkoutForm" action="action/showArticles" method="POST">
-	<input type="submit" name="continent" value="아프리카">
-	<input type="submit" name="continent" value="남아메리카">
-	<input type="submit" name="continent" value="북아메리카">
-	<input type="submit" name="continent" value="유럽">
-	<input type="submit" name="continent" value="아시아">
-	<input type="submit" name="continent" value="오세아니아">
+	<a class="afreeca"><input type="submit" name="continent" value="아프리카"></a>
+	<a class="s_america"><input type="submit" name="continent" value="남아메리카"></a>
+	<a class="n_america"><input type="submit" name="continent" value="북아메리카"></a>
+	<a class="europe"><input type="submit" name="continent" value="유럽"></a>
+	<a class="asia"><input type="submit" name="continent" value="아시아"></a>
+	<a class="oceania"><input type="submit" name="continent" value="오세아니아"></a>
     </form>
 
 </body>
