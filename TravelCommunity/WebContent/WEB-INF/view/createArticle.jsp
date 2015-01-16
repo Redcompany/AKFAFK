@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page session="true" import="java.util.*, travel.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,6 +9,7 @@
 <title>글쓰기 입니다.</title>
 </head>
 <body>
+<%@include file="always/top.jsp" %>
 	<form name="createArticleForm" enctype="multipart/form-data"
 		action="<c:url value='/action/showArticles' />" method="POST">
 		<input type="checkbox" name="continent" value="유럽">유럽 <input
@@ -21,5 +23,6 @@
 		<br> 파일명1 : <input id="files-upload2" type="file"
 			name="filename1"><br> <input type="submit" value="글등록">
 	</form>
+	<%@include file="always/bottom.jsp" %>
 </body>
 </html>

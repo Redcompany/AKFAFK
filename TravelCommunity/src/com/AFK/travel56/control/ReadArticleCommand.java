@@ -1,5 +1,7 @@
 ﻿package com.AFK.travel56.control;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,7 +22,6 @@ public class ReadArticleCommand implements Command {
 
 		CommandResult commandResult = null;
 		String todo = request.getParameter("todo");
-		System.out.println(todo);
 
 		try {
 			switch (todo) {
@@ -60,6 +61,7 @@ public class ReadArticleCommand implements Command {
 
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		System.out.println(idx);
+
 		session.setAttribute("Article", articleService.selectShowArticle(idx));
 		request.setAttribute("showComments",
 				commentService.showAllCommentByArticle(idx));
@@ -88,6 +90,27 @@ public class ReadArticleCommand implements Command {
 				commentService.showAllCommentByArticle(idx));
 	}
 
+	public void doDeleteComment(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		HttpSession session = request.getSession(true);
+		ArticleService articleService = new ArticleService();
+		CommentService commentService = new CommentService();
+		MemberVO commentMember = (MemberVO) session
+				.getAttribute("loginsession");
+
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println(idx);
+
+		session.setAttribute("deleteComment", commentService.deleteComment(
+				Integer.parseInt(request.getParameter("commentNumber")),
+				commentMember.getMemberNumber(),
+				commentMember.getMemberNickName()));
+		session.setAttribute("Article", articleService.selectShowArticle(idx));
+		request.setAttribute("showComments",
+				commentService.showAllCommentByArticle(idx));
+	}
+
 	private void doUpdateArticle(HttpServletRequest request,
 			HttpServletResponse response) {
 
@@ -105,7 +128,7 @@ public class ReadArticleCommand implements Command {
 	}
 
 	private void doBestArticle(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 
 		Date today = new Date();
 		ArticleService articleService = new ArticleService();
@@ -115,6 +138,9 @@ public class ReadArticleCommand implements Command {
 		findMember = (MemberVO) session.getAttribute("loginsession");
 		ArticleVO findArticle = (ArticleVO) session.getAttribute("Article");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		if (findMember != null) {
 			ArticleRecommandVO checkRecommand = articleService.checkRecommand(
 					findArticle.getArticleNumber(),
@@ -122,10 +148,10 @@ public class ReadArticleCommand implements Command {
 			if (checkRecommand != null
 					&& format.format(today).equals(
 							format.format(checkRecommand.getRecommandDate()))) {
-				System.out.println("이미 눌렀습니다.");
 
+				out.println("<script>alert('이미 추천이 되었습니다.'); history.go(-1);</script>");
+				out.flush();
 			} else {
-				System.out.println("비교되는곳");
 				request.setAttribute(
 						"recommand",
 						articleService.doRecommandIncrement(
@@ -137,9 +163,17 @@ public class ReadArticleCommand implements Command {
 								findMember.getMemberNickName(),
 								findArticle.getArticleNumber(),
 								findMember.getMemberNumber()));
+				System.out.println("2");
+				out.println("<script>alert('추천되었습니다.');</script>");
+				out.flush();
 			}
 		} else {
-			System.out.println("로그인 해주세요");
+
+			System.out.println(response.getContentType());
+			response.getContentType();
+			out.println("<script>alert('로그인을 해주세요'); history.go(-1);</script>");
+			out.flush();
 		}
 	}
+
 }

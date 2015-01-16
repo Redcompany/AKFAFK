@@ -2,6 +2,7 @@ package com.AFK.travel56.control;
 
 import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,13 +24,17 @@ public class ShowArticlesCommand implements Command {
 		ArticleService articleService = new ArticleService();
 		FileService fileService = new FileService();
 		MemberVO findMember = null;
+		String uploadPath = request.getServletContext().getRealPath(
+				"/images");
 
 		if (request.getParameter("continent") != null) {
 			session.setAttribute("Articles", articleService
 					.showAllArticleByContinent(request
 							.getParameter("continent")));
 		} else {
-			String uploadPath = "C:/test";
+			/*
+			 * request.getSession().getServletContext() .getRealPath("/images");
+			 */	
 			int size = 6 * 1024 * 1024; // 업로드 파일 최대 크기 지정
 			String filename = "";
 			String filename1 = "";
@@ -61,7 +66,8 @@ public class ShowArticlesCommand implements Command {
 				} else {
 					request.setAttribute("fileName", fileService.registerFile(
 							"1", articleService.findAllArticles().size()));
-					request.setAttribute("nullFiles",fileService.deleteFile("1"));
+					request.setAttribute("nullFiles",
+							fileService.deleteFile("1"));
 				}
 				if (filename1 != null) {
 					request.setAttribute("fileName1", fileService.registerFile(
@@ -69,7 +75,8 @@ public class ShowArticlesCommand implements Command {
 				} else {
 					request.setAttribute("fileName1", fileService.registerFile(
 							"1", articleService.findAllArticles().size()));
-					request.setAttribute("nullFiles",fileService.deleteFile("1"));
+					request.setAttribute("nullFiles",
+							fileService.deleteFile("1"));
 				}
 				session.setAttribute("Articles", articleService
 						.showAllArticleByContinent(multi
@@ -79,8 +86,8 @@ public class ShowArticlesCommand implements Command {
 				e.printStackTrace();
 			}
 		}
-
 		return commandResult;
+
 	}
 
 }

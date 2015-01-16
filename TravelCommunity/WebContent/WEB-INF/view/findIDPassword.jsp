@@ -36,6 +36,7 @@
 </script>
 </head>
 <body>
+<%@include file="always/top.jsp" %>
 	<form name="FindIDOKForm" action="<c:url value='/action/home'/>"
 		method="POST" onsubmit="return findIDCheck();">
 		<table width="300" height="300" align="center">
@@ -91,5 +92,6 @@
 
 		</table>
 	</form>
+	<%@include file="always/bottom.jsp" %>
 </body>
 </html>
