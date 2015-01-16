@@ -11,7 +11,7 @@ img {
     right: 1000px;
 }
 body.skippage {
-    background-image: url("/img/map.jpg");
+    background-image: url("http://localhost:9999/TravelCommunity/img/map.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
