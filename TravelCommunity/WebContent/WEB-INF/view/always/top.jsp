@@ -6,8 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+String mapJPG= request.getContextPath()+"/images/지도.jpg";
+%>
 <body>
-	<a class="minimap"> <img src='지도.jpg' width='10%'
+	<a class="minimap"> <img src=<%=mapJPG%> width='10%'
 		height='auto'>
 	</a>
 	<select class="eu" name="유럽" style="width: 100px; height: 40px">
