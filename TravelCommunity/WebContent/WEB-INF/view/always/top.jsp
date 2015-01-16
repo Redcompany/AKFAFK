@@ -64,15 +64,17 @@
 							placeholder="아이디"><br> <input class="pass"
 							type="password" size="10" maxlength="12" placeholder="비밀번호"></th>
 
-						<th><input class="login" type="submit" name="reserve"
+						<th>
+						<a class="asd" href="loginMember" id="회원가입">로그인</a>
+						<%-- <input class="login" type="submit" name="reserve"
 							value="로그인" style="width: 70px; height: 30px;"
-							onclick="if(frm.id.value == ''){frm.id.focus(); return false;}" /><br></th>
+							onclick="if(frm.id.value == ''){frm.id.focus(); return false;}" /><br></th>  --%>
 					</tr>
 					<tr>
-					<td colspan="2">
-						<a class="join" href="main.html">회원가입</a> <a class="find"
-							href="main.html">ID/PW 찾기</a>
-							</td>
+						<td colspan="2">
+							<a class="asd" href="register" id="회원가입">회원가입</a>
+							<a class="find" href="findIDPassword" id="찾기">ID/PW 찾기</a>
+						</td>
 					</tr>
 				</table></td>
 	</table>
