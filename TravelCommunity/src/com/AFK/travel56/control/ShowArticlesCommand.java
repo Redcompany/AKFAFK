@@ -24,17 +24,22 @@ public class ShowArticlesCommand implements Command {
 		ArticleService articleService = new ArticleService();
 		FileService fileService = new FileService();
 		MemberVO findMember = null;
-		String uploadPath = request.getServletContext().getRealPath(
-				"/images");
+		String uploadPath = request.getServletContext().getRealPath("/images");
 
-		if (request.getParameter("continent") != null) {
-			session.setAttribute("Articles", articleService
-					.showAllArticleByContinent(request
-							.getParameter("continent")));
+		if (request.getParameter("todo") != null) {
+			if (request.getParameter("continent") != null) {
+				session.setAttribute("Articles", articleService
+						.showAllArticleByContinent(request
+								.getParameter("continent")));
+			} else {
+				session.setAttribute("Articles", articleService
+						.showAllArticleByCountry(request
+								.getParameter("country")));
+			}
 		} else {
 			/*
 			 * request.getSession().getServletContext() .getRealPath("/images");
-			 */	
+			 */
 			int size = 6 * 1024 * 1024; // 업로드 파일 최대 크기 지정
 			String filename = "";
 			String filename1 = "";

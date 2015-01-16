@@ -10,9 +10,19 @@
 <title>대륙게시판입니다.</title>
 </head>
 <body>
-<%@include file="always/top.jsp" %>
+	<%@include file="always/top.jsp"%>
 	<p>
-		<strong>대륙게시판</strong>
+		<%
+			if (request.getParameter("country") == null) {
+		%>
+		<strong><%=request.getParameter("continent")%> 게시판</strong>
+		<%
+			} else {
+		%>
+		<strong><%=request.getParameter("country")%> 게시판</strong>
+		<%
+			}
+		%>
 	</p>
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
@@ -36,12 +46,12 @@
 				<td align="right">${Articles.articleRecommendCount}</td>
 				<td align="right">${Articles.articleViewCount}</td>
 			</tr>
-			
+
 		</c:forEach>
 
 	</table>
 	<br />
 	<a class="homeList" href="home">목록</a>
-	<%@include file="always/bottom.jsp" %>
+	<%@include file="always/bottom.jsp"%>
 </body>
 </html>
