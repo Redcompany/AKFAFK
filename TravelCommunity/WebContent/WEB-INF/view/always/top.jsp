@@ -9,7 +9,7 @@
 	<table align="center" width="1000px">
 		<tr>
 			<%
-				String logo = request.getContextPath() + "/test/지도.jpg";
+				String logo = request.getContextPath() + "/devImg/map.jpg";
 			%>
 			<td align="center"><a class="minimap"> <img src=<%=logo%> width='40%'
 					height='auto'>
