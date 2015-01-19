@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+<meta charset="UTF-8">
 <title>TOP</title>
 
 <link
@@ -25,19 +24,18 @@
 </head>
 <body>
 	<br>
-	<table align="center" width="1500px" border="0">
+	<table align="center" width="auto" border="0">
 		<tr>
 			<%
 				String logo = request.getContextPath() + "/devImg/map.jpg";
 			%>
-			<td align="center" width="5%"><a href="home"> <img
-					src=<%=logo%> width='100%' height='auto'>
+			<td align="center" width="5%"><a href="home"> <img id='logo'
+					src=<%=logo%>>
 			</a></td>
 
 			<td>
 
 				<div class="navbar navbar-default">
-
 					<div class="navbar-collapse collapse navbar-responsive-collapse">
 						<ul class="nav navbar-nav">
 
@@ -90,10 +88,7 @@
 									<li><a href="javascript:void(0)">뉴질랜드</a></li>
 								</ul></li>
 						</ul>
-						<form class="navbar-form navbar-left">
-							<input type="text" class="form-control col-lg-8"
-								placeholder="Search">
-						</form>
+
 					</div>
 				</div>
 			</td>
@@ -103,8 +98,8 @@
 						<form>
 							<c:if test="${sessionScope.loginsession.memberName == null}">
 								<th><input class="id" name="id" type="text" size="10"
-									maxlength="12" placeholder="아이디"><br>
-								<input class="pass" name="pass" type="password" size="10"
+									maxlength="12" placeholder="아이디"><br> <input
+									class="pass" name="pass" type="password" size="10"
 									maxlength="12" placeholder="비밀번호"> <input class="login"
 									type="submit" name="todo" value="로그인"
 									onclick="jacascript:check"></th>
@@ -134,8 +129,6 @@
 								</form>
 							</c:if>
 						</form>
-
-					</tr>
 					<tr>
 						<td colspan="2"><a class="asd" href="register" id="회원가입">회원가입</a>
 							<a class="find" href="findIDPassword" id="찾기">ID/PW 찾기</a></td>
@@ -150,7 +143,7 @@
 		(function() {
 
 			var $button = $(
-					"_$tag__________________________________________________&lt; &gt;_$tag_")
+					"<div id='source-button' class='btn btn-primary btn-xs'>&lt; &gt;</div>")
 					.click(
 							function() {
 								var index = $('.bs-component').index(
