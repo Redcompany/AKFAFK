@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>대륙게시판입니다.</title>
 <link rel="stylesheet" type="text/css"
-	href="http://localhost:9999/TravelCommunity/dist/css/material.css">
+	href="http://localhost:9999/TravelCommunity/css/material.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet">
