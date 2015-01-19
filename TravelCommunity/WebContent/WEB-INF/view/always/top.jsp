@@ -99,9 +99,10 @@
 
          <td><table align="center">
                <tr>
-                  <th><input class="id" type="text" size="10" maxlength="12"
-                     placeholder="아이디"><br> <input class="pass"
-                     type="password" size="10" maxlength="12" placeholder="비밀번호">
+                  <th><div class="inputs">
+					<input class="form-control" type="text" size="10" maxlength="12"
+                     placeholder="아이디"><br> <input class="form-control"
+                     type="password" size="10" maxlength="12" placeholder="비밀번호"></div>
                   </th>
 
                   <th><a class="asd" href="loginMember" id="회원가입">로그인</a> <%-- <input class="login" type="submit" name="reserve"
