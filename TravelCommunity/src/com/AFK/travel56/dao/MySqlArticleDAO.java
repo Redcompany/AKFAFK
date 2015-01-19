@@ -80,7 +80,7 @@ public class MySqlArticleDAO implements ArticleDAO {
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
 			String sqlStr = "SELECT * FROM article where article_continent='"
-					+ continent + "'";
+					+ continent + "'order by article_number DESC";
 
 			ResultSet rset = stmt.executeQuery(sqlStr);
 
@@ -132,7 +132,7 @@ public class MySqlArticleDAO implements ArticleDAO {
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
 			String sqlStr = "SELECT * FROM article where article_country='"
-					+ country + "'";
+					+ country + "'order by article_number DESC";
 
 			ResultSet rset = stmt.executeQuery(sqlStr);
 
