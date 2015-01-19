@@ -36,7 +36,6 @@
 			type="submit" name="todo" value="Checkout">
 	</form>
 	<a class="123" href="createArticle" id="오세아니아">글등록</a>
-	<a class="asd" href="loginMember" id="회원가입">로그인</a>
 	<table boder="1" width="85%"  align="center" border="1">
 		<tr>
 			<td>

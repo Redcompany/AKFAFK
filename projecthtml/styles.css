@@ -11,7 +11,7 @@ img {
     right: 1000px;
 }
 body.skippage {
-    background-image: url("%EC%A7%80%EB%8F%84.jpg");
+    background-image: url("map.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;

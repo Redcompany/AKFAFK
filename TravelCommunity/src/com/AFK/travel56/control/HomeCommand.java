@@ -86,11 +86,10 @@ public class HomeCommand implements Command {
 				break;
 
 			case "로그인":
-				request.setAttribute("memberLogin", memberService.loginMember(
+				session.setAttribute("loginsession", memberService.loginMember(
 						request.getParameter("id"),
 						request.getParameter("pass")));
 				break;
-
 			case "로그아웃":
 				session.removeAttribute("loginsession");
 				break;
