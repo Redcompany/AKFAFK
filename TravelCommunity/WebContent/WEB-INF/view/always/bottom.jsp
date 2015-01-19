@@ -4,29 +4,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>BOTTOM</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:9999/TravelCommunity/css/styles.css">
 </head>
 <body>
-<br/>
-	<table align="center" >
+	<br />
+	<table align="center">
 		<tr>
 			<%
-				String logoB = request.getContextPath() + "/test/지도.jpg";
+				String logoB = request.getContextPath() + "/devImg/map.jpg";
 			%>
 
-			<td width="100"> <img class="bottom_img" src=<%=logoB%> width='80%' height='auto'>
-			</td>
-			
-			<td>
-			<span class="noticeBottom">| 공지사항 | 회원이용약관 | 개인정보보호방침 | 문의	사항 |</span>
-			<p> <span class="adress" style="font-size: x-small;">서울시 중구 초동 	106 - 9번지 솔로몬빌딩 501호 맨 뒷자리 | 사업자등록번호 000-00-00000 | (주) 백절불굴 대표 XXX
-				</span><br/>
-			</p>
+			<td align="center" width="100"><img src=<%=logoB%>
+				width='80%' height='auto'></td>
 
-			<p> <span class="phone_num" style="font-size: x-small;">BackJuyl
-					Project 106 - 9 Cho-dong, Jung-gu, Seoul, 100-300 Rep. of KOREA. 문의 전화 : 5656 - 1818, FAX : 1828 - 1828</span><br/>
-			</p>
-			</td>
+			<td><span class="noticeBottom">| 공지사항 | 회원이용약관 | 개인정보보호방침
+					| 문의 사항 |</span>
+				<p>
+					<span class="infoAdress">서울시 중구 초동 106 - 9번지 솔로몬빌딩 501호 제일
+						앞자리 | 사업자등록번호 000-00-00000 | (주) 백절불굴 대표 XXX </span><br />
+				</p>
+
+				<p>
+					<span class="infoAdress">AFK Project 106 - 9 Cho-dong,
+						Jung-gu, Seoul, 100-300 Rep. of KOREA. 문의 전화 : 5656 - 5656, FAX :
+						5656 - 5656</span><br />
+				</p></td>
 		</tr>
 	</table>
 </body>
