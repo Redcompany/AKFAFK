@@ -16,24 +16,24 @@
 		} else if (document.writeForm.pass.value == "") {
 			alert("패스워드를 입력하세요");
 			return false;
-		}else if (document.writeForm.pass.value != document.writeForm.repass.value){
+		} else if (document.writeForm.pass.value != document.writeForm.repass.value) {
 			alert("패스워드가 일치하지않습니다.")
 			return false;
-		}else if (document.writeForm.name.value == ""){
+		} else if (document.writeForm.name.value == "") {
 			alert("이름을 입력하세요")
 			return false;
-		}else if (document.writeForm.birth.value == ""){
+		} else if (document.writeForm.birth.value == "") {
 			alert("생년월일을 입력하세요")
 			return false;
-		}else if (document.writeForm.nickname.value == ""){
+		} else if (document.writeForm.nickname.value == "") {
 			alert("닉네임을 입력하세요")
 			return false;
-		}else if (document.writeForm.email.value == ""){
+		} else if (document.writeForm.email.value == "") {
 			alert("이메일을 입력하세요")
 			return false;
 		} else {
 			document.writeForm.submit();
-		return false;
+			return false;
 		}
 	}
 
@@ -59,10 +59,10 @@
 </script>
 </head>
 <body>
-<%@include file="always/top.jsp" %>
+	<%@include file="always/top.jsp"%>
 	<form name="writeForm" action="<c:url value='/action/home'/>"
 		method="post" onsubmit="return checking();">
-		<table border="2">
+		<table border="2" align="center">
 			<tr>
 				<td colspan="2" align="center">회원가입</td>
 			</tr>
@@ -91,7 +91,7 @@
 			<tr>
 				<td align="center">성별</td>
 				<td><input class="gender_man" name="gender" type="radio"
-					value="man">남자&nbsp; </input><input class="gender_women"
+					value="man">남자&nbsp;</input> <input class="gender_women"
 					name="gender" type="radio" value="women">여자</input></td>
 			</tr>
 			<tr>
@@ -113,11 +113,11 @@
 				<input type="hidden" name="todo" value="회원가입"></input>
 			</tr>
 			<tr>
-				<td colspan="2" align="center" ><input type="submit"
-					value="회원가입" ></input></td>
+				<td colspan="2" align="center"><input type="submit"
+					value="회원가입"></input></td>
 			</tr>
 		</table>
 	</form>
-	<%@include file="always/bottom.jsp" %>
+	<%@include file="always/bottom.jsp"%>
 </body>
 </html>
