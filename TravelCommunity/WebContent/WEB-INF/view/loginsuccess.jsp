@@ -10,7 +10,9 @@
 <title>로그인 성공</title>
 </head>
 <body>
-	<table align="center">
+	<form class="loginsuccess">
+	<table align="center" >
+	<form id = "success">
 		<tr>
 			<td>이름 :</td>
 			<td>${sessionScope.loginsession.memberName}</td>
@@ -21,6 +23,7 @@
 
 			</td>
 		</tr>
+		</form>
 		<tr>
 			<td colspan=2></td>
 		</tr>
@@ -47,6 +50,7 @@
 		</tr>
 
 	</table>
+	</form>
 </body>
 </html>
 

@@ -36,62 +36,71 @@
 </script>
 </head>
 <body>
-<%@include file="always/top.jsp" %>
-	<form name="FindIDOKForm" action="<c:url value='/action/home'/>"
-		method="POST" onsubmit="return findIDCheck();">
-		<table width="300" height="300" align="center">
-			<tr>
-				<td colspan="2" align="center">ID 찾기</td>
-			</tr>
-			<tr>
-				<td align="center">이름</td>
-				<td><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<td align="center">생년월일</td>
-				<td><input type="text" name="birth"></td>
-				<td>ex) 20150101</td>
-			</tr>
-			<tr>
-				<td align="center">닉네임</td>
-				<td><input type="text" name="nickname"></td>
-				<td><input type="hidden" name="todo" value="ID찾기"></td>
-			</tr>
-			<tr height="80">
-				<td colspan="2" align="center"><input type="submit"
-					value="ID찾기"></input></td>
-			</tr>
+	<%@include file="always/top.jsp"%>
+	<table align="center">
+		<tr>
+			<td>
+				<form name="FindIDOKForm" action="<c:url value='/action/home'/>"
+					method="POST" onsubmit="return findIDCheck();">
+					<table width="300" height="300" align="center">
+						<tr>
+							<td colspan="2" align="center">ID 찾기</td>
+						</tr>
+						<tr>
+							<td align="center">이름</td>
+							<td><input type="text" name="name"></td>
+						</tr>
+						<tr>
+							<td align="center">생년월일</td>
+							<td><input type="text" name="birth"></td>
+							<td>ex) 20150101</td>
+						</tr>
+						<tr>
+							<td align="center">닉네임</td>
+							<td><input type="text" name="nickname"></td>
+							<td><input type="hidden" name="todo" value="ID찾기"></td>
+						</tr>
+						<tr height="80">
+							<td colspan="2" align="center"><input type="submit"
+								value="ID찾기"></input></td>
+						</tr>
 
-		</table>
-	</form>
+					</table>
+				</form>
+			</td>
+			<td>
 
-	<form name="FindPasswordOKForm" action="<c:url value='/action/home'/>"
-		method="POST" onsubmit="return findPWCheck();">
-		<table width="300" height="300" align="center">
-			<tr>
-				<td colspan="2" align="center">PW 찾기</td>
-			</tr>
-			<tr>
-				<td align="center">아이디</td>
-				<td><input type="text" name="id"></td>
-			</tr>
-			<tr>
-				<td align="center">이름</td>
-				<td><input type="text" name="name">
-			</tr>
-			<tr>
-				<td align="center">생년월일</td>
-				<td><input type="text" name="birth"></td>
-				<td>ex) 20150101</td>
-				<td><input type="hidden" name="todo" value="Password찾기"></td>
-			</tr>
-			<tr height="80">
-				<td colspan="2" align="center"><input type="submit"
-					value="Password찿기"></input></td>
-			</tr>
+				<form name="FindPasswordOKForm"
+					action="<c:url value='/action/home'/>" method="POST"
+					onsubmit="return findPWCheck();">
+					<table width="300" height="300" align="center">
+						<tr>
+							<td colspan="2" align="center">PW 찾기</td>
+						</tr>
+						<tr>
+							<td align="center">아이디</td>
+							<td><input type="text" name="id"></td>
+						</tr>
+						<tr>
+							<td align="center">이름</td>
+							<td><input type="text" name="name">
+						</tr>
+						<tr>
+							<td align="center">생년월일</td>
+							<td><input type="text" name="birth"></td>
+							<td>ex) 20150101</td>
+							<td><input type="hidden" name="todo" value="Password찾기"></td>
+						</tr>
+						<tr height="80">
+							<td colspan="2" align="center"><input type="submit"
+								value="Password찿기"></input></td>
+						</tr>
 
-		</table>
-	</form>
-	<%@include file="always/bottom.jsp" %>
+					</table>
+				</form>
+			</td>
+		</tr>
+	</table>
+	<%@include file="always/bottom.jsp"%>
 </body>
 </html>
