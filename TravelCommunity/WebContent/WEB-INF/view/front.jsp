@@ -5,14 +5,14 @@
 <html lang = "ko">
 <head>
 <meta charset="UTF-8"/>
-<title>오륙닷컴에 오신걸 혼영합니다!</title>
+<title>오륙닷컴에 오신걸 환영합니다!</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:9999/TravelCommunity/css/styles.css">
 </head>
 <body class="skippage">
 
 <h1 style ="font-family: verdana"> 56.com</h1>
 
-    <a class="skip" href="action/home">s k i p</a>
+    <a class="skip" href="action/home">E N T E R</a>
 
 	<form name ="checkoutForm" action="action/showArticles" method="POST">
 	<a class="afreeca"><input type="submit" name="continent" value="아프리카"></a>
