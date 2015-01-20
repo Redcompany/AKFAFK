@@ -59,59 +59,98 @@
 </script>
 </head>
 <body>
+	<style>
+#dropdown-menu h2 {
+	padding: 14px;
+	margin: 0;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+#dropdown-menu .sample {
+	width: 200px;
+}
+
+#dropdown-menu .form-control-wrapper {
+	margin: 30px 0;
+}
+</style>
+
 	<%@include file="always/top.jsp"%>
 	<form name="writeForm" action="<c:url value='/action/home'/>"
 		method="post" onsubmit="return checking();">
 		<table border="2" align="center">
+			<div class="inputs">
 			<tr>
 				<td colspan="2" align="center">회원가입</td>
 			</tr>
+
 			<tr>
 				<td align="center">아이디</td>
-				<td><input type="text" name="id" size="30"
-					style="ime-mode: desabled"></input> <input type="button"
-					value="중복확인" onclick="javascript:checkid()"></input></td>
+				<td><input type="text" class="form-control" placeholder="아이디"
+					name="id" size="30" style="ime-mode: desabled"></input> <input
+					type="button" value="중복확인" onclick="javascript:checkid()"></input></td>
 			</tr>
 			<tr>
 				<td align="center">비밀번호</td>
-				<td><input type="text" name="pass"></input></td>
+				<td><input type="text" class="form-control" placeholder="비밀번호"
+					name="pass"></input></td>
 			</tr>
 			<tr>
 				<td align="center">재확인</td>
-				<td><input type="text" name="repass"></input></td>
+				<td><input type="text" class="form-control" placeholder="재확인"
+					name="repass"></input></td>
 			</tr>
 			<tr>
 				<td align="center">이름</td>
-				<td><input type="text" name="name"></input></td>
+				<td><input type="text" class="form-control" placeholder="이름"
+					name="name"></input></td>
 			</tr>
 			<tr>
 				<td align="center">생년월일</td>
-				<td><input type="text" name="birth"></input>ex)19910407</td>
+				<td><input type="text" class="form-control" placeholder="생년월일"
+					name="birth"></input>ex)19910407</td>
 			</tr>
+			</div>
+
 			<tr>
 				<td align="center">성별</td>
-				<td><input class="gender_man" name="gender" type="radio"
-					value="man">남자&nbsp;</input> <input class="gender_women"
-					name="gender" type="radio" value="women">여자</input></td>
+				<td><div class="sample1">
+						<div class="radio radio-success">
+							<label> <input type="radio" class="gender_man"
+								name="gender" value="man" checked=""> 남자
+							</label>
+						</div>
+						<div class="radio radio-success">
+							<label> <input type="radio" class="gender_women"
+								name="gender" value="women"> 여자
+							</label>
+						</div>
+					</div></td>
 			</tr>
+			<div class="inputs">
 			<tr>
 				<td align="center">닉네임</td>
-				<td><input type="text" name="nickname" size="30"
-					style="ime-mode: desabled"></input> <input type="button"
-					value="중복확인" onclick="javascript:checknickname()"></input></td>
+				<td><input type="text" class="form-control" placeholder="닉네임"
+					name="nickname" size="30" style="ime-mode: desabled"></input> <input
+					type="button" value="중복확인" onclick="javascript:checknickname()"></input></td>
 			</tr>
 			<tr>
 				<td align="center">이메일</td>
-				<td><input type="text" name="email">
-					&nbsp;&nbsp;@&nbsp;&nbsp; <select name="address">
-						<option value="naver.com">naver.com</option>
-						<option value="nate.com">nate.com</option>
-						<option value="hanmail.net">hanmail.net</option>
-						<option value="yahoo.co.kr">yahoo.co.kr</option>
-						<option value="hotmail.com">hotmail.com</option>
-				</select></td>
+				<td><input type="text" name="email" class="form-control"
+					placeholder="이메일"> &nbsp;&nbsp;@&nbsp;&nbsp;
+					<div class="sample">
+						<select name="address" class="form-control" placeholder="선택하세요">
+							<option value="naver.com">naver.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+							<option value="hotmail.com">hotmail.com</option>
+						</select>
+					</div></<input></td>
 				<input type="hidden" name="todo" value="회원가입"></input>
 			</tr>
+			</div>
 			<tr>
 				<td colspan="2" align="center"><input type="submit"
 					value="회원가입"></input></td>

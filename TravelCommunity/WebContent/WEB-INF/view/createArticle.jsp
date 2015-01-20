@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글쓰기 입니다.</title>
 </head>
-<body>
+<body align="center">
 <%@include file="always/top.jsp" %>
 	<form name="createArticleForm" enctype="multipart/form-data"
 		action="<c:url value='/action/showArticles' />" method="POST">
@@ -23,6 +23,6 @@
 		<br> 파일명1 : <input id="files-upload2" type="file"
 			name="filename1"><br> <input type="submit" value="글등록">
 	</form>
-	<%@include file="always/bottom.jsp" %>
+<%@include file="always/bottom.jsp" %>
 </body>
 </html>
