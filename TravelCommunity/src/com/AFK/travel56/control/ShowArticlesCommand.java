@@ -27,14 +27,18 @@ public class ShowArticlesCommand implements Command {
 		String uploadPath = request.getServletContext().getRealPath("/images");
 
 		if (request.getParameter("todo") != null) {
-			if (request.getParameter("continent") != null) {
-				session.setAttribute("Articles", articleService
-						.showAllArticleByContinent(request
-								.getParameter("continent")));
+			if (request.getParameter("todo").equals("articlePage")) {
+				
 			} else {
-				session.setAttribute("Articles", articleService
-						.showAllArticleByCountry(request
-								.getParameter("country")));
+				if (request.getParameter("continent") != null) {
+					session.setAttribute("Articles", articleService
+							.showAllArticleByContinent(request
+									.getParameter("continent")));
+				} else {
+					session.setAttribute("Articles", articleService
+							.showAllArticleByCountry(request
+									.getParameter("country")));
+				}
 			}
 		} else {
 			/*

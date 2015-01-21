@@ -29,12 +29,7 @@
 		int h = 1;
 	%>
 
-	<form name="checkoutForm"
-		action="<c:url value='/action/showArticles'/>" method="POST">
-		<input type="checkbox" name="continent" value="유럽">유럽
-		<input type="checkbox" name="country" value="영국">영국 <input
-			type="submit" name="todo" value="Checkout">
-	</form>
+	
 	<a class="123" href="createArticle" id="오세아니아">글등록</a>
 	<table boder="1" width="85%"  align="center" border="1">
 		<tr>
