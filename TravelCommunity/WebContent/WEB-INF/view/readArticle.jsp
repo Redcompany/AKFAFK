@@ -24,9 +24,9 @@
 </head>
 <body>
 <%@include file="always/top.jsp" %>
-	<table id="Articleboard" width="75%" height="65" align="center"
+	<table id="Articleboard" width="65%" style="table-layout:fixed" align="center"
 		border="0">
-
+ 
 		<tr class="bestbackground">
 			<th width="50">Number</th>
 			<th width="150">대 륙</th>
@@ -51,7 +51,7 @@
 		</tr>
 
 		<tr align="center">
-			<td colspan="8">
+			<td colspan="8" height="auto" style="word-break:break-all;">
 			<%
 				ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
 				if (readArticle != null) {
@@ -78,7 +78,7 @@
 
 		<tr align="center">
 			<td colspan="5"></td>
-			<td colspan="3"><a class="skip" href="updateArticle">수정</a>
+			<td colspan="3"><a href="updateArticle">수정</a>
 				<form name="deleteArticleForm"
 					action="<c:url value='/action/home'/>" method="POST">
 					<input type="hidden" name="todo" value="삭제"> <input
@@ -87,7 +87,7 @@
 				<form name="articleRcommandForm"
 					action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>" method="POST">
 					<input type="submit" name="todo" value="추천">
-				</form> <input type=button value="목록" OnClick="showArticles"></td>
+				</form> <input type=button value="목록" OnClick="showArticles.jsp"></td>
 		</tr>
 
 		<tr>
