@@ -51,7 +51,7 @@
 		</tr>
 
 		<tr align="center">
-
+			<td colspan="8">
 			<%
 				ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
 				if (readArticle != null) {
@@ -71,7 +71,8 @@
 					}
 				}
 			%>
-			<td colspan="8">${Article.articleContent}</td>
+			
+			${Article.articleContent}</td>
 
 		</tr>
 
@@ -84,7 +85,7 @@
 						type=submit onclick="javascript:clickMessage()" value="삭제">
 				</form>
 				<form name="articleRcommandForm"
-					action="<c:url value='/action/readArticle'/>" method="POST">
+					action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>" method="POST">
 					<input type="submit" name="todo" value="추천">
 				</form> <input type=button value="목록" OnClick="showArticles"></td>
 		</tr>

@@ -72,13 +72,13 @@ public class ArticleService {
 	}
 
 	// 대륙선택시 그 대츅의 글들 부여주기
-	public List<ArticleVO> showAllArticleByContinent(String continent) {
-		return articleDAO.findAllArticleByContinent(continent);
+	public List<ArticleVO> showAllArticleByContinent(String continent, int startRow, int blockSize) {
+		return articleDAO.findAllArticleByContinent(continent, startRow, blockSize);
 	}
 
 	// 나라 선택시 그 나라의 글들 보여주기
-	public List<ArticleVO> showAllArticleByCountry(String country) {
-		return articleDAO.findAllArticleByCountry(country);
+	public List<ArticleVO> showAllArticleByCountry(String country, int startRow, int blockSize) {
+		return articleDAO.findAllArticleByCountry(country, startRow, blockSize);
 	}
 
 	// 전체의 추천수가 많은 글 5개찾기
@@ -104,5 +104,12 @@ public class ArticleService {
 	public ArticleRecommandVO checkRecommand(int articleNumber, String memberNickName){
 		return articleDAO.checkArticleRecommand(articleNumber, memberNickName);
 	}
-
+	
+	public int getAllArticleByContinent(String continent) {
+		return articleDAO.getAllArticleByContinent(continent);
+	}
+	
+	public int getAllArticleByCountry(String country) {
+		return articleDAO.getAllArticleByCountry(country);
+	}
 }
