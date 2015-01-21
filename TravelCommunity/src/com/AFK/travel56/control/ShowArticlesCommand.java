@@ -1,6 +1,7 @@
 package com.AFK.travel56.control;
 
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import travel.MyFileRenamePolicy;
 
 import com.AFK.travel56.dao.ArticlePagingVO;
+import com.AFK.travel56.dao.ArticleVO;
 import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.service.ArticleService;
 import com.AFK.travel56.service.FileService;
@@ -29,10 +31,8 @@ public class ShowArticlesCommand implements Command {
 
 		// 객체를 생성한다 (현재페이지, 전체글수, 페이지당표시할 글의수, 한번에 표시할 페이징블록수, 한 페이지에 나오는 게시글 수)
 		int nowPage = 1;
-		int rowTotalByContinent = articleService
+		List<ArticleVO> findArticleSize = articleService
 				.showAllArticleByContinent(request.getParameter("continent"));
-		ArticlePagingVO pageNavContinent = new ArticlePagingVO(nowPage,
-				rowTotalByContinent, 5, 5, 5);
 
 		if (request.getParameter("todo") != null) {
 			if (request.getParameter("todo").equals("articlePage")) {
@@ -46,33 +46,28 @@ public class ShowArticlesCommand implements Command {
 						nowPage = 1;
 					}
 				}
+				int rowTotalByContinent = findArticleSize.size();
+				ArticlePagingVO pageNavContinent = new ArticlePagingVO(nowPage,
+						rowTotalByContinent, 5, 5, 5);
 
-				// 디버깅이 필요할시 사용한다. 안써도 됨
-				pageNavContinent.Debug();
-
-				// // 뷰에게 넘길 값을 지정한다
-				// request.setAttribute("pageIsPrev",
-				// pageNavContinent.isPrevPage()); // 이전페이지
-				// // 블록의 존재유무
-				// request.setAttribute("pageIsNext",
-				// pageNavContinent.isNextPage()); // 다음페이지
-				// 블록의 존재유무
-				// request.setAttribute("pageStart",
-				// pageNavContinent.getStartPage());// 시작페이지 번호
-				// request.setAttribute("pageEnd",
-				// pageNavContinent.getEndPage()); // 종료페이지 번호
+//				request.setAttribute("pageIsPrev",
+//						pageNavContinent.isPrevPage()); // 이전페이지
+//				request.setAttribute("pageIsNext",
+//						pageNavContinent.isNextPage()); // 다음페이지
+//				request.setAttribute("pageStart",
+//						pageNavContinent.getStartPage());// 시작페이지
+//				request.setAttribute("pageEnd", pageNavContinent.getEndPage()); // 종료페이지
 				request.setAttribute("pageNav", pageNavContinent);
-			} else {
-				if (request.getParameter("continent") != null) {
-					session.setAttribute("Articles", articleService
-							.showAllArticleByContinent(request
-									.getParameter("continent")));
-				} else {
-					session.setAttribute("Articles", articleService
-							.showAllArticleByCountry(request
-									.getParameter("country")));
-				}
+			} else if (request.getParameter("continent") != null) {
+				session.setAttribute("Articles", articleService
+						.showAllArticleByContinent(request
+								.getParameter("continent")));
+			} else if (request.getParameter("country") != null) {
+				session.setAttribute("Articles", articleService
+						.showAllArticleByCountry(request
+								.getParameter("country")));
 			}
+
 		} else {
 			/*
 			 * request.getSession().getServletContext() .getRealPath("/images");
@@ -122,9 +117,7 @@ public class ShowArticlesCommand implements Command {
 				}
 				session.setAttribute("Articles", articleService
 						.showAllArticleByContinent(
-								multi.getParameter("continent"),
-								pageNavContinent.getStartRow(),
-								pageNavContinent.getBlockSize()));
+								multi.getParameter("continent")));
 
 			} catch (Exception e) {
 				e.printStackTrace();

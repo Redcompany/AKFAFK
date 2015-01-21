@@ -62,18 +62,20 @@
 	<br />
 	<div>
 		<center>
-			<c:if test="${pageNav.prevPage}">
-				<a href="<c:url value='/action/showArticle?page=${pageNav.startPage-1}'/>">prev</a>
-			</c:if>
-			<c:forEach var="page" items="${pageNav }" begin="${pageNav.startPage}" end="${pageNav.endPage}">
-				<a href="<c:url value='/action/showArticle?page=${page}'/>">[${page}] </a>
-			</c:forEach>
-			<c:if test="${pageNav.nextPage}">
-				<a href="<c:url value='/action/showArticle?page=${pageNav.endPage+1}'/>">next</a>
-			</c:if>
-		</center>
-		</div> <a class="homeList" href="home">목록</a> <%@include
-			file="always/bottom.jsp"%>
-			
+         <c:if test="${pageNav.prevPage}">
+            <a href="<c:url value='/action/showArticle?page=${pageNav.startPage-1}'/>">prev</a>
+         </c:if>
+         <c:forEach var="page" items="${pageNav }" begin="${pageNav.startPage}" end="${pageNav.endPage}">
+            <a href="<c:url value='/action/showArticle?page=${page}'/>">[${page}] </a>
+         </c:forEach>
+         <c:if test="${pageNav.nextPage}">
+            <a href="<c:url value='/action/showArticle?page=${pageNav.endPage+1}'/>">next</a>
+         </c:if>
+      </center>
+	</div>
+	
+	<a class="homeList" href="home">목록</a>
+	<%@include file="always/bottom.jsp"%>
+
 </body>
 </html>
