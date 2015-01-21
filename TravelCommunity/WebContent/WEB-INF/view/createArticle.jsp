@@ -9,7 +9,7 @@
 <title>글쓰기 입니다.</title>
 </head>
 <body align="center">
-<%@include file="always/top.jsp" %>
+<%@include file="always/top.jsp"%>
 	<form name="createArticleForm" enctype="multipart/form-data"
 		action="<c:url value='/action/showArticles' />" method="POST">
 		<input type="checkbox" name="continent" value="유럽">유럽 <input

@@ -620,22 +620,33 @@ public class MySqlArticleDAO implements ArticleDAO {
 		return checkArticleRecommand;
 	}
 	
-	public int getAllArticleByContinent(String continent) {
+	public List<ArticleVO> findAllArticleByContinent(String continent) {
 		Connection conn = null;
 		Statement stmt = null;
-		ArticleRecommandVO checkArticleRecommand = null;
-		int count = 0;
+		ArrayList<ArticleVO> continentArticleList = new ArrayList<ArticleVO>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
-			String sqlStr = "SELECT COUNT(*) as count FROM article where article_continent='"
+			String sqlStr = "SELECT * FROM article where article_continent='"
 					+ continent+"'";
 			ResultSet rset = stmt.executeQuery(sqlStr);
-
-			while (rset.next()) {
-				count = rset.getInt("count");
-		
+			
+			while (rset.next()) { // list all the authors
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleCountry = rset.getString("article_country");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
+				continentArticleList.add(new ArticleVO(articleNumber,
+						articleTitle, continent, articleCountry, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
@@ -654,25 +665,36 @@ public class MySqlArticleDAO implements ArticleDAO {
 						Level.SEVERE, null, ex);
 			}
 		}
-	return count;
+		return continentArticleList;
 	}
 	
-	public int getAllArticleByCountry(String country) {
+	public List<ArticleVO> findAllArticleByCountry(String country) {
 		Connection conn = null;
 		Statement stmt = null;
-		ArticleRecommandVO checkArticleRecommand = null;
-		int count = 0;
+		ArrayList<ArticleVO> countrytArticleList = new ArrayList<ArticleVO>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
-			String sqlStr = "SELECT COUNT(*) as count FROM article where article_Country='"
+			String sqlStr = "SELECT * FROM article where article_country='"
 					+ country+"'";
 			ResultSet rset = stmt.executeQuery(sqlStr);
 
-			while (rset.next()) {
-				count = rset.getInt("count");
-		
+			while (rset.next()) { // list all the authors
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleContinent = rset.getString("article_continent");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
+				countrytArticleList.add(new ArticleVO(articleNumber,
+						articleTitle, articleContinent, country, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
@@ -691,6 +713,6 @@ public class MySqlArticleDAO implements ArticleDAO {
 						Level.SEVERE, null, ex);
 			}
 		}
-	return count;
+		return countrytArticleList;
 	}
 }

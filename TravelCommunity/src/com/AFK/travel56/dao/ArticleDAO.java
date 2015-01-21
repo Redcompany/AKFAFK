@@ -32,8 +32,8 @@ public interface ArticleDAO {
 	
 	public int limitsRecommandadd(String memberNickName, int articleNumber, int memberNumber);
 	
-	public int getAllArticleByContinent(String continent);
+	public List<ArticleVO> findAllArticleByContinent(String continent);
 	
-	public int getAllArticleByCountry(String country);
+	public List<ArticleVO> findAllArticleByCountry(String country);
 
 }
