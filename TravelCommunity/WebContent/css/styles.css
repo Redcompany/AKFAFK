@@ -101,24 +101,12 @@ b.bestw {
 	left: 100px;
 }
 
-#Table  th.totalbest {
-	background-color: white;
-	font-weight: bold;
-	font-family: fantasy;
-	text-align: left;
-	font-size: 20px;
-}
-
 .euroword {
 	background-color: white;
 	font-weight: bold;
 	font-family: fantasy;
 	text-align: left;
 	font-size: 20px;
-}
-
-tr.bestbackground {
-	background-color: #EBEBE0;
 }
 
 th.totalboard {
@@ -193,7 +181,6 @@ a.overlap {
 }
 
 #Table tr.totalboard {
-	background-color: white;
 	font-weight: bold;
 	font-family: fantasy;
 	text-align: left;
@@ -306,14 +293,27 @@ select.continent {
 	height: 40px;
 }
 
-.table-hover{
+.table-hover {
 	background: silver;
 	width: 75%;
 	margin: 50px auto;
 }
 
-#logo{
-	width:100px;
-	height:60px;
+#logo {
+	width: 100px;
+	height: 60px;
 	margin-bottom: 20px;
+}
+
+table.homeTable {
+	
+}
+
+#Table th{
+	text-align : center;
+}
+
+#Table td {
+	font-family: sans-serif;
+	text-align: center;
 }

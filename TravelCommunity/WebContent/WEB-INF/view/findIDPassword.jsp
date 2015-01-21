@@ -37,6 +37,7 @@
 </head>
 <body>
 	<%@include file="always/top.jsp"%>
+	<div class="inputs">
 	<table align="center">
 		<tr>
 			<td>
@@ -48,16 +49,16 @@
 						</tr>
 						<tr>
 							<td align="center">이름</td>
-							<td><input type="text" name="name"></td>
+							<td><input type="text" name="name" class="form-control" placeholder="이름"></td>
 						</tr>
 						<tr>
 							<td align="center">생년월일</td>
-							<td><input type="text" name="birth"></td>
+							<td><input type="text" name="birth" class="form-control" placeholder="생년월일"></td>
 							<td>ex) 20150101</td>
 						</tr>
 						<tr>
 							<td align="center">닉네임</td>
-							<td><input type="text" name="nickname"></td>
+							<td><input type="text" name="nickname" class="form-control" placeholder="닉네임"></td>
 							<td><input type="hidden" name="todo" value="ID찾기"></td>
 						</tr>
 						<tr height="80">
@@ -79,15 +80,15 @@
 						</tr>
 						<tr>
 							<td align="center">아이디</td>
-							<td><input type="text" name="id"></td>
+							<td><input type="text" name="id" class="form-control" placeholder="아이디"></td>
 						</tr>
 						<tr>
 							<td align="center">이름</td>
-							<td><input type="text" name="name">
+							<td><input type="text" name="name" class="form-control" placeholder="이름">
 						</tr>
 						<tr>
 							<td align="center">생년월일</td>
-							<td><input type="text" name="birth"></td>
+							<td><input type="text" name="birth" class="form-control" placeholder="생년월일"></td>
 							<td>ex) 20150101</td>
 							<td><input type="hidden" name="todo" value="Password찾기"></td>
 						</tr>
@@ -95,12 +96,12 @@
 							<td colspan="2" align="center"><input type="submit"
 								value="Password찿기"></input></td>
 						</tr>
-
 					</table>
 				</form>
 			</td>
 		</tr>
 	</table>
+	</div>
 	<%@include file="always/bottom.jsp"%>
 </body>
 </html>
