@@ -8,9 +8,9 @@ public interface ArticleDAO {
 
 	public List<ArticleVO> findBestArticle();
 
-	public List<ArticleVO> findAllArticleByContinent(String continent);
+	public List<ArticleVO> findAllArticleByContinent(String continent, int startRow, int blockSize);
 
-	public List<ArticleVO> findAllArticleByCountry(String country);
+	public List<ArticleVO> findAllArticleByCountry(String country, int startRow, int blockSize);
 
 	public List<ArticleVO> findBestArticleByContinent(String continent);
 
@@ -23,7 +23,7 @@ public interface ArticleDAO {
 			String articleContent, int memberNumber, String memberNickName);
 
 	public int deleteArticle(int articleNumber, String memberNickName);
-
+	
 	public int deleteArticle(String memberNickName);
 	
 	public int recommendCountIncrement(int articleNumber, int articleRecommendCount);
@@ -31,5 +31,9 @@ public interface ArticleDAO {
 	public ArticleRecommandVO checkArticleRecommand(int articleNumber,String memberNickName);
 	
 	public int limitsRecommandadd(String memberNickName, int articleNumber, int memberNumber);
+	
+	public int getAllArticleByContinent(String continent);
+	
+	public int getAllArticleByCountry(String country);
 
 }

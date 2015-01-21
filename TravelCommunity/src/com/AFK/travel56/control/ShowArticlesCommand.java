@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import travel.MyFileRenamePolicy;
 
+import com.AFK.travel56.dao.ArticlePagingVO;
 import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.service.ArticleService;
 import com.AFK.travel56.service.FileService;
@@ -25,16 +26,48 @@ public class ShowArticlesCommand implements Command {
 		FileService fileService = new FileService();
 		MemberVO findMember = null;
 		String uploadPath = request.getServletContext().getRealPath("/images");
+		int nowPage;
+		int rowTotalByContinent = articleService
+				.getAllArticleByContinent(request.getParameter("continent"));
+		if (request.getParameter("page") == null) {
+			nowPage = 1;
+		} else {
+			nowPage = Integer.parseInt(request.getParameter("page"));
+
+			if (nowPage < 1) {
+				nowPage = 1;
+			}
+		}
+
+		// 객체를 생성한다 (현재페이지, 전체글수, 페이지당표시할 글의수, 한번에 표시할 페이징블록수)
+		ArticlePagingVO pageNavContinent = new ArticlePagingVO(nowPage,
+				rowTotalByContinent, 5, 5, 5);
+
+		// 디버깅이 필요할시 사용한다. 안써도 됨
+		pageNavContinent.Debug();
+
+		// // 뷰에게 넘길 값을 지정한다
+		// request.setAttribute("pageIsPrev", pageNav.isPrevPage()); // 이전페이지
+		// 블록의 존재유무
+		// request.setAttribute("pageIsNext", pageNav.isNextPage()); // 다음페이지
+		// 블록의 존재유무
+		// request.setAttribute("pageStart", pageNav.getStartPage());// 시작페이지 번호
+		// request.setAttribute("pageEnd", pageNav.getEndPage()); // 종료페이지 번호
+		request.setAttribute("pageNav", pageNavContinent);
 
 		if (request.getParameter("todo") != null) {
 			if (request.getParameter("continent") != null) {
-				session.setAttribute("Articles", articleService
-						.showAllArticleByContinent(request
-								.getParameter("continent")));
+				session.setAttribute(
+						"Articles",
+						articleService.showAllArticleByContinent(
+								request.getParameter("continent"),
+								pageNavContinent.getStartRow(), pageNavContinent.getBlockSize()));
 			} else {
-				session.setAttribute("Articles", articleService
-						.showAllArticleByCountry(request
-								.getParameter("country")));
+				session.setAttribute(
+						"Articles",
+						articleService.showAllArticleByCountry(
+								request.getParameter("country"),
+								pageNavContinent.getStartRow(), pageNavContinent.getBlockSize()));
 			}
 		} else {
 			/*
@@ -83,9 +116,11 @@ public class ShowArticlesCommand implements Command {
 					request.setAttribute("nullFiles",
 							fileService.deleteFile("1"));
 				}
-				session.setAttribute("Articles", articleService
-						.showAllArticleByContinent(multi
-								.getParameter("continent")));
+				session.setAttribute(
+						"Articles",
+						articleService.showAllArticleByContinent(
+								multi.getParameter("continent"),
+								pageNavContinent.getStartRow(), pageNavContinent.getBlockSize()));
 
 			} catch (Exception e) {
 				e.printStackTrace();
