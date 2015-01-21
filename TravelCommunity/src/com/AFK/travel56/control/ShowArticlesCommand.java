@@ -28,7 +28,7 @@ public class ShowArticlesCommand implements Command {
 		String uploadPath = request.getServletContext().getRealPath("/images");
 
 		// 객체를 생성한다 (현재페이지, 전체글수, 페이지당표시할 글의수, 한번에 표시할 페이징블록수, 한 페이지에 나오는 게시글 수)
-		int nowPage =1;
+		int nowPage = 1;
 		int rowTotalByContinent = articleService
 				.showAllArticleByContinent(request.getParameter("continent"));
 		ArticlePagingVO pageNavContinent = new ArticlePagingVO(nowPage,
