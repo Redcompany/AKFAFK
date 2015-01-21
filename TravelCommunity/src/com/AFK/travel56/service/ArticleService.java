@@ -105,11 +105,11 @@ public class ArticleService {
 		return articleDAO.checkArticleRecommand(articleNumber, memberNickName);
 	}
 	
-	public int getAllArticleByContinent(String continent) {
+	public int showAllArticleByContinent(String continent) {
 		return articleDAO.getAllArticleByContinent(continent);
 	}
 	
-	public int getAllArticleByCountry(String country) {
+	public int showAllArticleByCountry(String country) {
 		return articleDAO.getAllArticleByCountry(country);
 	}
 }
