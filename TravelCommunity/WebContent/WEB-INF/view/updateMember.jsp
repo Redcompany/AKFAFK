@@ -11,22 +11,23 @@
 <meta charset="UTF-8">
 </head>
 <style>
-td {
+.updateMember {
 	background-color: white;
-	font-size: 30px;
-	font-weight: 900;
+	font-size: 15px;
+	font-weight: 450;
 	font-family: fantasy;
 }
 
 input {
 	border-radius: 4px 4px 4px 4px;
-	width: 250px;
+	width: 100px;
 	height: 30px;
 }
 </style>
 
 <body>
 <%@include file="always/top.jsp" %>
+<div class="updateMember">
 	<form name="UpdateMemberOK" action="<c:url value='/action/mypage'/>"
 		method="POST">
 		<table id='membershipChange' width="700" height="700" align="center">
@@ -97,6 +98,7 @@ input {
 			</tr>
 
 		</table>
+		</div>
 		<%@include file="always/bottom.jsp" %>
 </body>
 </html>
