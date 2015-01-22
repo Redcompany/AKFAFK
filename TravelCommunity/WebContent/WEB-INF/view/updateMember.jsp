@@ -11,6 +11,20 @@
 <meta charset="UTF-8">
 </head>
 <style>
+#dropdown-menu h2 {
+	padding: 14px;
+	margin: 0;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+#dropdown-menu .sample {
+	width: 200px;
+}
+
+#dropdown-menu .form-control-wrapper {
+	margin: 30px 0;
+}
 td {
 	background-color: white;
 	font-size: 30px;
