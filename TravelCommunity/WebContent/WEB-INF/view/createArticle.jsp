@@ -6,23 +6,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글쓰기 입니다.</title>
+<title>행복했던 여행을 추억하세요</title>
 </head>
-<body align="center">
-<%@include file="always/top.jsp"%>
+<body>
+	<%@include file="always/top.jsp"%>
+
 	<form name="createArticleForm" enctype="multipart/form-data"
 		action="<c:url value='/action/showArticles' />" method="POST">
-		<input type="checkbox" name="continent" value="유럽">유럽 <input
-			type="checkbox" name="country" value="영국">영국
-		<p>제목</p>
-		<input name="title" type="text" style="width: 500px; height: 30px;"
-			placeholder="제목을 입력해주세요" /> <br>
-		<p>내용</p>
-		<textarea name="content" rows="10" cols="30" placeholder="내용을 입력해주세요"></textarea>
-		<br> 파일명 : <input id="files-upload1" type="file" name="filename"><br>
-		<br> 파일명1 : <input id="files-upload2" type="file"
-			name="filename1"><br> <input type="submit" value="글등록">
+		<table  align="center">
+			<tr>
+				<th><input type="checkbox" name="continent" value="유럽">유럽
+				</th>
+				<th><input type="checkbox" name="country" value="영국">영국
+				</th>
+				<th><input name="title" type="text"
+					style="width: 500px; height: 30px;" placeholder="제목을 입력해주세요" /></th>
+			</tr>
+
+			<tr>
+				<td colspan="3"  align="center"><p>내용</p></td>
+			</tr>
+			<tr>
+				<td colspan="3"  align="center"><textarea name="content" rows="30" cols="80"
+						placeholder="내용을 입력해주세요"></textarea><br></td>
+			</tr>
+			<tr>
+				<td>파일명1 :</td>
+				<td colspan="2"><input id="files-upload1" type="file"
+					name="filename"></td>
+			</tr>
+			<tr>
+				<td>파일명2 :</td>
+				<td colspan="2"><input id="files-upload2" type="file"
+					name="filename1"></td>
+			</tr>
+			<tr>
+				<td colspan="2"></td>
+				<td  align="right"><input type="submit" value="글등록"></td>
+			</tr>
+		</table>
 	</form>
-<%@include file="always/bottom.jsp" %>
+
+
+	<%@include file="always/bottom.jsp"%>
 </body>
 </html>
