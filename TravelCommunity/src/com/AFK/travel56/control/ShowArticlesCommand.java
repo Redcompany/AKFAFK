@@ -50,15 +50,11 @@ public class ShowArticlesCommand implements Command {
 				|| request.getParameter("todo").equals("articleList")) {
 				session.setAttribute("Articles", articleService
 						.showAllArticleByContinent(
-								request.getParameter("continent"),
-								pageNavContinent.getStartRow(),
-								pageNavContinent.getBlockSize()));
+								request.getParameter("continent")));
 			if(request.getParameter("country")!=null) {
 				session.setAttribute("Articles", articleService
 						.showAllArticleByCountry(
-								request.getParameter("country"),
-								pageNavContinent.getStartRow(),
-								pageNavContinent.getBlockSize()));
+								request.getParameter("country")));
 			}
 		} else {
 			/*
