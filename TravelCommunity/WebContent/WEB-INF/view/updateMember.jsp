@@ -18,11 +18,6 @@
 	font-family: fantasy;
 }
 
-input {
-	border-radius: 4px 4px 4px 4px;
-	width: 100px;
-	height: 30px;
-}
 </style>
 
 <body>
