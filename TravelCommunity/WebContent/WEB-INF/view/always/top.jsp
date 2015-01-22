@@ -185,11 +185,14 @@
 					<tr>
 							<c:if test="${sessionScope.loginsession.memberName == null}">
 								<th>
-								<form><input class="id" name="id" type="text" size="10"
+								<form>nt
+								<input class="id" name="id" type="text" size="10"
 									maxlength="12" placeholder="아이디"><br> <input
 									class="pass" name="pass" type="password" size="10"
 									maxlength="12" placeholder="비밀번호"> <input type="submit"
-									name="todo" value="로그인" onclick="jacascript:check"></form></th>
+									name="todo" value="로그인" onclick="jacascript:check">
+									</form>
+									</th>
 									<tr>
 							<td colspan="2"><a class="asd" href="register" id="회원가입">회원가입</a>
 							<a class="find" href="findIDPassword" id="찾기">ID/PW 찾기</a></td>
