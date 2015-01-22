@@ -20,7 +20,8 @@
 </head>
 <body>
 	<%@include file="always/top.jsp"%>
-	<p>
+	<center>
+	<H2>
 		<%
 			if (request.getParameter("country") == null) {
 		%>
@@ -32,9 +33,10 @@
 		<%
 			}
 		%>
-	</p>
+	</H2>
+	</center>
 
-	<table class="table table-striped table-hover ">
+	<table class="table table-striped table-hover">
 		<tr>
 			<th>No.</th>
 			<th>제목</th>
@@ -44,7 +46,6 @@
 		</tr>
 
 		<c:forEach var="Articles" items="${Articles}">
-
 			<tr>
 				<input type="hidden" name="todo" value="remove">
 				<input type="hidden" name="cartIndex"
@@ -53,12 +54,19 @@
 				<td><a
 					href="readArticle?todo=read&idx=${Articles.articleNumber}">${Articles.articleTitle}</a></td>
 				<td>${Articles.memberNickName}</td>
-				<td align="right">${Articles.articleRecommendCount}</td>
-				<td align="right">${Articles.articleViewCount}</td>
+				<td>${Articles.articleRecommendCount}</td>
+				<td>${Articles.articleViewCount}</td>
 			</tr>
-
 		</c:forEach>
 	</table>
+	
+	<table width="87.5%">
+	<tr><td align="right">
+	<a href="createArticle" style="font-size:20px">글등록 |</a>
+	<a href="home" style="font-size:20px"> 목록</a>
+	</td></tr>
+	</table>
+	
 	<br />
 	<div>
 		<center>
@@ -74,7 +82,7 @@
       </center>
 	</div>
 	
-	<a class="homeList" href="home">목록</a>
+	
 	<%@include file="always/bottom.jsp"%>
 
 </body>

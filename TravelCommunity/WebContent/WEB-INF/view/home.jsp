@@ -21,8 +21,6 @@
 		int g = 1;
 		int h = 1;
 	%>	
-	<a class="123" href="createArticle" id="오세아니아">글등록</a>
-
 	<table width="85%" align="center" border="0">
 		<tr>
 			<td>
