@@ -37,16 +37,16 @@
 			<td>${sessionScope.loginsession.memberID}</td>
 			<tr>
 				<td width="300" align="center">현재 비밀번호</td>
-				<td><input type="text" class="form-control" placeholder="현재 비밀번호"
+				<td><input type="password" class="form-control" placeholder="현재 비밀번호"
 					name="pass"></input></td>
 			</tr>
 			<tr>
 				<td width="300" align="center">변경 비밀번호</td>
-				<td><input type="text" class="form-control" placeholder="변경 비밀번호" name="rePass"></td>
+				<td><input type="password" class="form-control" placeholder="변경 비밀번호" name="rePass"></td>
 			</tr>
 			<tr>
 				<td align="center">재확인</td>
-				<td><input type="text" class="form-control" placeholder="재확인" name="reconPass"></td>
+				<td><input type="password" class="form-control" placeholder="재확인" name="reconPass"></td>
 			</tr>
 			<tr>
 				<td align="center">이름</td>
@@ -86,8 +86,7 @@
 			</tr>
 			<tr height="80">
 				<td colspan="3" align="center"><input type="submit" value="저 장">
-					</form>
-					<form name="checkoutForm" action="<c:url value='/action/mypage'/>"
+				<form name="checkoutForm" action="<c:url value='/action/mypage'/>"
 						method="POST">
 						<input class="cancel" type="submit" value="취 소">
 					</form></td>

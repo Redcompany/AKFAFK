@@ -93,12 +93,12 @@
 			</tr>
 			<tr>
 				<td align="center">비밀번호</td>
-				<td><input type="text" class="form-control" placeholder="비밀번호"
+				<td><input type="password" class="form-control" placeholder="비밀번호"
 					name="pass"></input></td>
 			</tr>
 			<tr>
 				<td align="center">재확인</td>
-				<td><input type="text" class="form-control" placeholder="재확인"
+				<td><input type="password" class="form-control" placeholder="재확인"
 					name="repass"></input></td>
 			</tr>
 			<tr>

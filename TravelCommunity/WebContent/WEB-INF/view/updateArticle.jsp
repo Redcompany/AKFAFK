@@ -9,7 +9,7 @@
 <title>글 수정 목록입니다.</title>
 </head>
 <body>
-<%@include file="always/top.jsp" %>
+	<%@include file="always/top.jsp"%>
 	<form name="createArticleForm"
 		action="<c:url value='/action/readArticle' />" method="POST">
 		<p>제목</p>
@@ -19,6 +19,6 @@
 		<textarea name="content" rows="10" cols="30">${sessionScope.Article.articleContent}</textarea>
 		<br> <input type="submit" name="todo" value="글수정">
 	</form>
-	<%@include file="always/bottom.jsp" %>
+	<%@include file="always/bottom.jsp"%>
 </body>
 </html>

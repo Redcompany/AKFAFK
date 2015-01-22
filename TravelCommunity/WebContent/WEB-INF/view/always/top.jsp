@@ -185,7 +185,7 @@
 					<tr>
 							<c:if test="${sessionScope.loginsession.memberName == null}">
 								<th>
-								<form>nt
+								<form>
 								<input class="id" name="id" type="text" size="10"
 									maxlength="12" placeholder="아이디"><br> <input
 									class="pass" name="pass" type="password" size="10"
