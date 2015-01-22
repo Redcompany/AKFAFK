@@ -12,17 +12,12 @@
 </head>
 <style>
 .updateMember {
-	background-color: white;
+	background-color: #eee;
 	font-size: 15px;
 	font-weight: 450;
 	font-family: fantasy;
 }
 
-input {
-	border-radius: 4px 4px 4px 4px;
-	width: 100px;
-	height: 30px;
-}
 </style>
 
 <body>
