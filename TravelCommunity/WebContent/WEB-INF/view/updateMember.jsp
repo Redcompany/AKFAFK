@@ -12,7 +12,7 @@
 </head>
 <style>
 .updateMember {
-	background-color: white;
+	background-color: #eee;
 	font-size: 15px;
 	font-weight: 450;
 	font-family: fantasy;
@@ -30,7 +30,7 @@ input {
 <div class="updateMember">
 	<form name="UpdateMemberOK" action="<c:url value='/action/mypage'/>"
 		method="POST">
-		<table id='membershipChange' width="700" height="700" align="center">
+		<table id='membershipChange' width="700" height="500" align="center">
 			<tr>
 				<td class="membership" colspan="2" align="center">회원정보변경</td>
 			</tr>
@@ -42,19 +42,20 @@ input {
 			<td>${sessionScope.loginsession.memberID}</td>
 			<tr>
 				<td width="300" align="center">현재 비밀번호</td>
-				<td><input type="text" name="Pass"></td>
+				<td><input type="text" class="form-control" placeholder="현재 비밀번호"
+					name="pass"></input></td>
 			</tr>
 			<tr>
 				<td width="300" align="center">변경 비밀번호</td>
-				<td><input type="text" name="rePass"></td>
+				<td><input type="text" class="form-control" placeholder="변경 비밀번호" name="rePass"></td>
 			</tr>
 			<tr>
 				<td align="center">재확인</td>
-				<td><input type="text" name="reconPass"></td>
+				<td><input type="text" class="form-control" placeholder="재확인" name="reconPass"></td>
 			</tr>
 			<tr>
 				<td align="center">이름</td>
-				<td><input type="text" name="rename"></td>
+				<td><input type="text" class="form-control" placeholder="이름" name="rename"></td>
 			</tr>
 			<tr>
 				<td align="center">성별</td>
@@ -74,11 +75,11 @@ input {
 			</tr>
 			<tr>
 				<td align="center">휴대전화</td>
-				<td><input type="text" name="changePhonenumber"></td>
+				<td><input type="text" class="form-control" placeholder="휴대전화   	ex)010-xxxx-xxxx" name="changePhonenumber"></td>
 			</tr>
 			<tr>
-				<td align="center">eMail</td>
-				<td><input type="text" name="changeMail"></td>
+				<td align="center">Email</td>
+				<td><input type="text" class="form-control" placeholder="Email 		ex)xxxx@naver.com" name="changeMail"></td>
 			</tr>
 			<tr>
 				<td align="center">생년월일</td>

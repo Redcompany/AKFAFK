@@ -11,21 +11,21 @@
 </head>
 <body>
 	<%@include file="always/top.jsp"%>
-		<table align="center">
+		<table  width="700" height="500" align="center">
 			<tr>
-				<td>회원 번호 :</td>
+				<td width="300" align="center" >회원 번호 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberNumber}</td>
 			</tr>
 			<tr>
-				<td>아이디 :</td>
+				<td width="300" align="center">아이디 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberID}</td>
 			</tr>
 			<tr>
-				<td>이 름 :</td>
+				<td width="300" align="center">이 름 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberName}</td>
 			</tr>
 			<tr>
-				<td>성 별 :</td>
+				<td width="300" align="center">성 별 :</td>
 				<%
 					MemberVO findMemeber = (MemberVO) session
 							.getAttribute("loginsession");
@@ -41,19 +41,19 @@
 				%>
 			</tr>
 			<tr>
-				<td>이메일 :</td>
+				<td width="300" align="center">이메일 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberEmail}</td>
 			</tr>
 			<tr>
-				<td>핸드폰 번호 :</td>
+				<td width="300" align="center">핸드폰 번호 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberPhone}</td>
 			</tr>
 			<tr>
-				<td>생년월일 :</td>
+				<td width="300" align="center">생년월일 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberBirth}</td>
 			</tr>
 			<tr>
-				<td>닉네임 :</td>
+				<td width="300" align="center">닉네임 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberNickName}</td>
 			</tr>
 			<tr>
