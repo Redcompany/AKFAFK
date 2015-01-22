@@ -173,7 +173,7 @@
 									<li><a class="countryChoose" href="showArticles"><%=iter.next()%></a></li>
 									<%
 										}
-									%>>
+									%>
 								</ul></li>
 						</ul>
 
@@ -183,7 +183,6 @@
 
 			<td><table align="center">
 					<tr>
-						<form>
 							<c:if test="${sessionScope.loginsession.memberName == null}">
 								<th><input class="id" name="id" type="text" size="10"
 									maxlength="12" placeholder="아이디"><br> <input
@@ -196,7 +195,6 @@
 					</tr>
 							</c:if>
 							<c:if test="${sessionScope.loginsession.memberName != null}">
-								<form>
 									<table align="center">
 										<tr>
 											<td colspan="2"><b>${sessionScope.loginsession.memberName}</b>
@@ -204,21 +202,20 @@
 										</tr>
 										<tr>
 											<td>
-												<form name="MyPage" action="<c:url value='/action/mypage'/>" method="POST">
-												<input type="submit" value="My Page" /> <%-- error --%>
-												</form>
+												<form name="MyPage" action="<c:url value='/action/mypage'/>"
+                                    			method="POST">
+                                    				<input class="logout" name="todo" type="submit" value="My Page">
+                                				</form>
 											</td>
 											<td>
 												<form name="logout" action="<c:url value='/action/home'/>" method="POST">
-												<input type="submit" name="todo" value="로그아웃" />
+												<input type="submit" name="todo" value="로그아웃">
 												</form>
 											</td>
 										</tr>
 									</table>
-								</form>
 							</c:if>
-						</form>
-					
+					</tr>
 				</table></td>
 		</tr>
 	</table>
