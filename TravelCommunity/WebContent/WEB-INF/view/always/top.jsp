@@ -173,7 +173,7 @@
 									<li><a class="countryChoose" href="showArticles"><%=iter.next()%></a></li>
 									<%
 										}
-									%>
+									%>>
 								</ul></li>
 						</ul>
 
