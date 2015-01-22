@@ -28,46 +28,38 @@ public class ShowArticlesCommand implements Command {
 		FileService fileService = new FileService();
 		MemberVO findMember = null;
 		String uploadPath = request.getServletContext().getRealPath("/images");
-
-		// 객체를 생성한다 (현재페이지, 전체글수, 페이지당표시할 글의수, 한번에 표시할 페이징블록수, 한 페이지에 나오는 게시글 수)
-		int nowPage = 1;
+		int nowPage;
 		List<ArticleVO> findArticleSize = articleService
 				.showAllArticleByContinent(request.getParameter("continent"));
+		int rowTotalByContinent = findArticleSize.size();
+		if (request.getParameter("page") == null) {
+			nowPage = 1;
+		} else {
+			nowPage = Integer.parseInt(request.getParameter("page"));
 
-		if (request.getParameter("todo") != null) {
-			if (request.getParameter("todo").equals("articlePage")) {
-
-				if (request.getParameter("page") == null) {
-					nowPage = 1;
-				} else {
-					nowPage = Integer.parseInt(request.getParameter("page"));
-
-					if (nowPage < 1) {
-						nowPage = 1;
-					}
-				}
-				int rowTotalByContinent = findArticleSize.size();
-				ArticlePagingVO pageNavContinent = new ArticlePagingVO(nowPage,
-						rowTotalByContinent, 5, 5, 5);
-
-//				request.setAttribute("pageIsPrev",
-//						pageNavContinent.isPrevPage()); // 이전페이지
-//				request.setAttribute("pageIsNext",
-//						pageNavContinent.isNextPage()); // 다음페이지
-//				request.setAttribute("pageStart",
-//						pageNavContinent.getStartPage());// 시작페이지
-//				request.setAttribute("pageEnd", pageNavContinent.getEndPage()); // 종료페이지
-				request.setAttribute("pageNav", pageNavContinent);
-			} else if (request.getParameter("continent") != null) {
-				session.setAttribute("Articles", articleService
-						.showAllArticleByContinent(request
-								.getParameter("continent")));
-			} else if (request.getParameter("country") != null) {
-				session.setAttribute("Articles", articleService
-						.showAllArticleByCountry(request
-								.getParameter("country")));
+			if (nowPage < 1) {
+				nowPage = 1;
 			}
+		}
 
+		ArticlePagingVO pageNavContinent = new ArticlePagingVO(nowPage,
+				rowTotalByContinent, 5, 5, 5);
+		request.setAttribute("pageNav", pageNavContinent);
+
+		if (request.getParameter("todo") != null
+				|| request.getParameter("todo").equals("articleList")) {
+				session.setAttribute("Articles", articleService
+						.showAllArticleByContinent(
+								request.getParameter("continent"),
+								pageNavContinent.getStartRow(),
+								pageNavContinent.getBlockSize()));
+			if(request.getParameter("country")!=null) {
+				session.setAttribute("Articles", articleService
+						.showAllArticleByCountry(
+								request.getParameter("country"),
+								pageNavContinent.getStartRow(),
+								pageNavContinent.getBlockSize()));
+			}
 		} else {
 			/*
 			 * request.getSession().getServletContext() .getRealPath("/images");
@@ -117,7 +109,9 @@ public class ShowArticlesCommand implements Command {
 				}
 				session.setAttribute("Articles", articleService
 						.showAllArticleByContinent(
-								multi.getParameter("continent")));
+								multi.getParameter("continent"),
+								pageNavContinent.getStartRow(),
+								pageNavContinent.getBlockSize()));
 
 			} catch (Exception e) {
 				e.printStackTrace();
