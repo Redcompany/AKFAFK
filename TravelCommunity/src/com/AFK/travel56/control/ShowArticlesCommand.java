@@ -105,9 +105,7 @@ public class ShowArticlesCommand implements Command {
 				}
 				session.setAttribute("Articles", articleService
 						.showAllArticleByContinent(
-								multi.getParameter("continent"),
-								pageNavContinent.getStartRow(),
-								pageNavContinent.getBlockSize()));
+								multi.getParameter("continent")));
 
 			} catch (Exception e) {
 				e.printStackTrace();
