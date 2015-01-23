@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@include file="always/top.jsp"%>
-	<form name="createArticleForm"
+	<form name="createArticleForm" align="center"
 		action="<c:url value='/action/readArticle' />" method="POST">
 		<p>제목</p>
 		<input name="title" type="text" style="width: 500px; height: 30px;"

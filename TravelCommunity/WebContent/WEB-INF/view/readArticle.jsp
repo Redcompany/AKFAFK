@@ -22,8 +22,6 @@
 <title>${Article.articleTitle}</title>
 
 </head>
-
-
 <body>
 	<%@include file="always/top.jsp"%>
 	<table id="Articleboard" height="200" align="center" border="0" class="articlesTable">
@@ -73,13 +71,12 @@
 			</td>
 		</tr>
 
-
 		<tr align="center">
 			<td colspan="5"></td>
 			<form>
 				<td colspan="3"><input type=button value="목록"
 					OnClick="showArticles.jsp"><a href="updateArticle"><input
-						type=button value="수정"></a>
+						type="button"  value="수정"></a>
 					<form name="deleteArticleForm"
 						action="<c:url value='/action/home'/>" method="POST">
 						<input type="hidden" name="todo" value="삭제"> <input

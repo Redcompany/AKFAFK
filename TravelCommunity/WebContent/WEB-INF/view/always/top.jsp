@@ -26,7 +26,17 @@
 <link href="//fezvrasta.github.io/snackbarjs/snackbar.min.css"
 	rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<script>
+	function loginCheck() {
+		if (document.login.id.value == "") {
+			alert("아이디를 입력하세요");
+			return false;
+		} else if (document.login.pass.value == "") {
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<br>
@@ -185,12 +195,12 @@
 					<tr>
 							<c:if test="${sessionScope.loginsession.memberName == null}">
 								<th>
-								<form>
+								<form name="login" onsubmit="return loginCheck();">
 								<input class="id" name="id" type="text" size="10"
 									maxlength="12" placeholder="아이디"><br> <input
 									class="pass" name="pass" type="password" size="10"
 									maxlength="12" placeholder="비밀번호"> <input type="submit"
-									name="todo" value="로그인" onclick="jacascript:check">
+									name="todo" value="로그인">
 									</form>
 									</th>
 									<tr>

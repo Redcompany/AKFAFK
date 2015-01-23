@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%@include file="always/top.jsp"%>
-		<table  width="700" height="500" align="center">
+		<table  width="600" height="500" align="center">
 			<tr>
 				<td width="300" align="center" >회원 번호 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberNumber}</td>
@@ -56,11 +56,13 @@
 				<td width="300" align="center">닉네임 :</td>
 				<td colspan="2">${sessionScope.loginsession.memberNickName}</td>
 			</tr>
+			</table>
+			<table align="center">
 			<tr>
-				<td align="center">
+				<td align="center" >
 					<form name="ok" action="<c:url value='/action/home'/>"
 						method="POST">
-						<input class="ok" type="submit" name="todo" value="확인">
+						<input class="ok"  type="submit" name="todo" value="확인">
 					</form>
 				</td>
 				<td>

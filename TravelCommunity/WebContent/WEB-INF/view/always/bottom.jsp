@@ -19,7 +19,7 @@
 				width='80%' height='auto'></td>
 
 			<td><span class="noticeBottom">
-				| <a href="#">공지사항</a> 
+				| <a href="<c:url value='/action/showArticle/?todo=doing&continent=공지'/>">공지사항</a> 
 				| <a href="#">회원이용약관 </a>
 				| <a href="#">개인정보보호방침</a>
 				| <a href="#">문의 사항</a> |

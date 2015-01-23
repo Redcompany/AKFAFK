@@ -82,15 +82,16 @@
 							<td align="center">아이디</td>
 							<td><input type="text" name="id" class="form-control" placeholder="아이디"></td>
 						</tr>
-						<tr>
-							<td align="center">이름</td>
-							<td><input type="text" name="name" class="form-control" placeholder="이름">
-						</tr>
+						
 						<tr>
 							<td align="center">생년월일</td>
 							<td><input type="text" name="birth" class="form-control" placeholder="생년월일"></td>
 							<td>ex) 20150101</td>
 							<td><input type="hidden" name="todo" value="Password찾기"></td>
+						</tr>
+						<tr>
+							<td align="center">이름</td>
+							<td><input type="text" name="name" class="form-control" placeholder="이름">
 						</tr>
 						<tr height="80">
 							<td colspan="2" align="center"><input type="submit"
