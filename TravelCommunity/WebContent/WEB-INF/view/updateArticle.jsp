@@ -34,6 +34,18 @@
 	left: 40px;
 	width: 1100px;
 }
+
+#updatebutton {
+	position: relative;
+	margin-top: 20px;
+	left: 1248px;
+}
+
+.titleContent {
+	position: relative;
+	margin-top: 20px;
+	left: 20px;
+}
 </style>
 </head>
 <body>
@@ -43,18 +55,20 @@
 			action="<c:url value='/action/readArticle' />" method="POST">
 			<table class="updateTable">
 				<tr>
-					<th><div>제목</div></th>
-					<td ><input id="updateTitleText" name="title" type="text"
+					<th><div class="titleContent">제목</div></th>
+					<td><input id="updateTitleText" name="title" type="text"
 						value="${sessionScope.Article.articleTitle}" /></td>
 				</tr>
 				<tr>
-					<th>내용</th>
+					<th><div class="titleContent">내용</div></th>
 					<td><textarea id="updateText" name="content">${sessionScope.Article.articleContent}</textarea></td>
 				</tr>
 			</table>
-			<input type="submit" name="todo" value="글수정">
 		</form>
 	</div>
+	<form id="updatebutton">
+		<input type="submit" name="todo" value="글수정">
+	</form>
 	<%@include file="always/bottom.jsp"%>
 </body>
 </html>
