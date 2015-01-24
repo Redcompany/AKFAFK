@@ -317,3 +317,20 @@ table.homeTable {
 	font-family: sans-serif;
 	text-align: center;
 }
+
+.createArticle {
+	background-color: #eee;
+	font-size: 15px;
+	font-weight: 450;
+	font-family: fantasy;
+}
+.col-lg-2#countryDIV{
+	position: relative;
+	margin-left: 230px;
+	width:530px;
+	float: left;
+}
+select{
+	position: relative;
+	margin-left:243px;
+}

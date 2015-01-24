@@ -28,44 +28,42 @@ public class ShowArticlesCommand implements Command {
 		FileService fileService = new FileService();
 		MemberVO findMember = null;
 		String uploadPath = request.getServletContext().getRealPath("/images");
-		int nowPage;
-		List<ArticleVO> findArticleSize = articleService
-				.showAllArticleByContinent(request.getParameter("continent"));
-		int rowTotalByContinent = findArticleSize.size();
-		if (request.getParameter("page") == null) {
-			nowPage = 1;
-		} else {
-			nowPage = Integer.parseInt(request.getParameter("page"));
+//		int nowPage;
+//		List<ArticleVO> findArticleSize = articleService
+//				.showAllArticleByContinent(request.getParameter("continent"));
+//		int rowTotalByContinent = findArticleSize.size();
+//		if (request.getParameter("page") == null) {
+//			nowPage = 1;
+//		} else {
+//			nowPage = Integer.parseInt(request.getParameter("page"));
+//
+//			if (nowPage < 1) {
+//				nowPage = 1;
+//			}
+//		}
+//
+//		ArticlePagingVO pageNavContinent = new ArticlePagingVO(nowPage,
+//				rowTotalByContinent, 5, 5, 5);
+//		request.setAttribute("pageNav", pageNavContinent);
 
-			if (nowPage < 1) {
-				nowPage = 1;
-			}
-		}
-
-		ArticlePagingVO pageNavContinent = new ArticlePagingVO(nowPage,
-				rowTotalByContinent, 5, 5, 5);
-		request.setAttribute("pageNav", pageNavContinent);
-
-		if (request.getParameter("todo") != null
-				|| request.getParameter("todo").equals("articleList")) {
-				session.setAttribute("Articles", articleService
+		if (request.getParameter("todo") != null) {
+			if(request.getParameter("continent")!=null)	
+			session.setAttribute("Articles", articleService
 						.showAllArticleByContinent(
 								request.getParameter("continent")));
-			if(request.getParameter("country")!=null) {
+			else{
 				session.setAttribute("Articles", articleService
 						.showAllArticleByCountry(
 								request.getParameter("country")));
 			}
 		} else {
-			/*
-			 * request.getSession().getServletContext() .getRealPath("/images");
-			 */
+			
 			int size = 6 * 1024 * 1024; // 업로드 파일 최대 크기 지정
 			String filename = "";
 			String filename1 = "";
 			MultipartRequest multi = new MultipartRequest(request, uploadPath,
 					size, "UTF-8", new MyFileRenamePolicy());
-
+			System.out.println(multi.getParameter("continent"));
 			try {
 				findMember = (MemberVO) session.getAttribute("loginsession");
 				request.setAttribute(
@@ -106,7 +104,8 @@ public class ShowArticlesCommand implements Command {
 				session.setAttribute("Articles", articleService
 						.showAllArticleByContinent(
 								multi.getParameter("continent")));
-
+				
+				request.setAttribute("continent", multi.getParameter("continent"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
