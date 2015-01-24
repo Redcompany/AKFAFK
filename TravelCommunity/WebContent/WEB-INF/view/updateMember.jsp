@@ -17,6 +17,9 @@
 	font-weight: 450;
 	font-family: fantasy;
 }
+input.form-control{
+width: 300px;
+}
 
 </style>
 
