@@ -96,6 +96,7 @@ width: 300px;
 			</tr>
 
 		</table>
+		</form>
 		</div>
 		<%@include file="always/bottom.jsp" %>
 </body>
