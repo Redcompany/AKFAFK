@@ -64,8 +64,7 @@
 	<table width="87.5%">
 		<tr>
 			<td align="right"><a href="createArticle"
-				><input type="button" value="글등록"></a> <a href="home"
-				><input type="button" value="목록"></a></td>
+				><input type="button" value="글등록"></a></td>
 		</tr>
 	</table>
 
