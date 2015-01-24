@@ -2,7 +2,8 @@
 <%@page import="com.AFK.travel56.service.MemberService"%>
 <%@page import="com.AFK.travel56.service.ArticleService"%>
 <%@page import="com.AFK.travel56.dao.ArticleVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page session="true" import="java.util.*, com.AFK.travel56.dao.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -14,19 +15,18 @@
 		if (document.deleteArticleForm.todo.value == "삭제") {
 			alert("글이 삭제되었습니다.")
 			document.deleteArticleForm.submit();
-		}
-		else
+		} else
 			document.writeForm.submit();
 	}
 </script>
 <title>${Article.articleTitle}</title>
 
 </head>
+
+
 <body>
-<%@include file="always/top.jsp" %>
-	<table id="Articleboard" width="65%" style="table-layout:fixed" align="center"
-		border="0">
- 
+	<%@include file="always/top.jsp"%>
+	<table id="Articleboard" height="200" align="center" border="0" class="articlesTable">
 		<tr class="bestbackground">
 			<th width="50">Number</th>
 			<th width="150">대 륙</th>
@@ -51,43 +51,46 @@
 		</tr>
 
 		<tr align="center">
-			<td colspan="8" height="auto" style="word-break:break-all;">
-			<%
-				ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
-				if (readArticle != null) {
-					FileService fileService = new FileService();
-					List<FileVO> theFiles = fileService
-							.showFilesByArticle(readArticle.getArticleNumber());
-					if (theFiles != null && theFiles.size() > 0) {
+			<td colspan="8" height="auto" style="word-break: break-all;">
+				<%
+					ArticleVO readArticle = (ArticleVO) session.getAttribute("Article");
+					if (readArticle != null) {
+						FileService fileService = new FileService();
+						List<FileVO> theFiles = fileService
+								.showFilesByArticle(readArticle.getArticleNumber());
+						if (theFiles != null && theFiles.size() > 0) {
 
-						for (int i = 0; i < theFiles.size(); ++i) {
-							FileVO findFile = theFiles.get(i);
-							String filename = request.getContextPath() +"/images/"+ findFile.getFileName();
-			%>
-			<img src=<%=filename%> style="width: 304px; height: 228px">
-			<br>
-			<%
-				}
-					}
-				}
-			%>
-			
-			${Article.articleContent}</td>
-
+							for (int i = 0; i < theFiles.size(); ++i) {
+								FileVO findFile = theFiles.get(i);
+								String filename = request.getContextPath() + "/images/"
+										+ findFile.getFileName();
+				%> <img src=<%=filename%> style="width: 304px; height: 228px">
+				<br> <%
+ 	}
+ 		}
+ 	}
+ %> ${Article.articleContent}
+			</td>
 		</tr>
+
 
 		<tr align="center">
 			<td colspan="5"></td>
-			<td colspan="3"><a href="updateArticle">수정</a>
-				<form name="deleteArticleForm"
-					action="<c:url value='/action/home'/>" method="POST">
-					<input type="hidden" name="todo" value="삭제"> <input
-						type=submit onclick="javascript:clickMessage()" value="삭제">
-				</form>
-				<form name="articleRcommandForm"
-					action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>" method="POST">
-					<input type="submit" name="todo" value="추천">
-				</form> <input type=button value="목록" OnClick="showArticles.jsp"></td>
+			<form>
+				<td colspan="3"><input type=button value="목록"
+					OnClick="showArticles.jsp"><a href="updateArticle"><input
+						type=button value="수정"></a>
+					<form name="deleteArticleForm"
+						action="<c:url value='/action/home'/>" method="POST">
+						<input type="hidden" name="todo" value="삭제"> <input
+							type=submit onclick="javascript:clickMessage()" value="삭제">
+						<form name="articleRcommandForm"
+							action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>"
+							method="POST">
+							<input type="submit" name="todo" value="추천">
+						</form>
+					</form></td>
+			</form>
 		</tr>
 
 		<tr>
@@ -118,10 +121,11 @@
 									<c:otherwise>
 										<c:if test="${viewComments.getParentComment()==0}">
                               ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate })
-                          <c:if test="${deleteComment.memberNickName eq viewComments.memberNickName }">
-                              <a href="/action/readArticle?idx=${Article.articleNumber}">삭제</a>
-                              </c:if>
-                               <br />
+                          <c:if
+												test="${deleteComment.memberNickName eq viewComments.memberNickName }">
+												<a href="/action/readArticle?idx=${Article.articleNumber}">삭제</a>
+											</c:if>
+											<br />
 										</c:if>
 										<c:if test="${viewComments.getParentComment() > 0}">
                               ▶▶ ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate }) <br />
@@ -136,6 +140,7 @@
 			<td></td>
 		</tr>
 	</table>
-	<%@include file="always/bottom.jsp" %>
+
+	<%@include file="always/bottom.jsp"%>
 </body>
 </html>

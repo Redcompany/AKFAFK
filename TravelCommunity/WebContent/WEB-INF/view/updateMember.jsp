@@ -49,7 +49,7 @@ width: 300px;
 			</tr>
 			<tr>
 				<td align="center">재확인</td>
-				<td><input type="text" class="form-control" placeholder="재확인" name="reconPass"></td>
+				<td><input type="password" class="form-control" placeholder="재확인" name="reconPass"></td>
 			</tr>
 			<tr>
 				<td align="center">이름</td>
@@ -89,8 +89,7 @@ width: 300px;
 			</tr>
 			<tr height="80">
 				<td colspan="3" align="center"><input type="submit" value="저 장">
-					</form>
-					<form name="checkoutForm" action="<c:url value='/action/mypage'/>"
+				<form name="checkoutForm" action="<c:url value='/action/mypage'/>"
 						method="POST">
 						<input class="cancel" type="submit" value="취 소">
 					</form></td>
