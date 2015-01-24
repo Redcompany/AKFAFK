@@ -25,6 +25,7 @@
 	margin-top: 40px;
 	margin-left: 100px;
 	margin-right: 100px;
+	
 }
 
 #articleTable {
@@ -55,6 +56,7 @@
 .reply {
 	margin-bottom: 20px;
 }
+
 </style>
 </head>
 <body>
