@@ -24,7 +24,12 @@
 	<center>
 		<H2>
 			<%
-				if (request.getParameter("country") == null) {
+				if (request.getAttribute("continent") != null) {
+			%>
+			<strong><%=request.getAttribute("continent")%> 게시판</strong>
+			<%
+				} else {
+					if (request.getParameter("country") == null) {
 			%>
 			<strong><%=request.getParameter("continent")%> 게시판</strong>
 			<%
@@ -32,6 +37,7 @@
 			%>
 			<strong><%=request.getParameter("country")%> 게시판</strong>
 			<%
+				}
 				}
 			%>
 		</H2>
@@ -64,13 +70,12 @@
 	<table width="87.5%">
 		<tr>
 			<td align="right"><a href="createArticle"
-				><input type="button" value="글등록"></a> <a href="home"
-				><input type="button" value="목록"></a></td>
+				><input type="button" value="글등록"></a></td>
 		</tr>
 	</table>
 
 	<br />
-	<div>
+	<%-- <div>
 		<center>
 			<c:if test="${pageNav.prevPage}">
 				<a
@@ -87,7 +92,7 @@
 					href="<c:url value='/action/showArticles?todo=articleList&page=${pageNav.endPage + 1}' />">next</a>
 			</c:if>
 		</center>
-	</div>
+	</div> --%>
 	<%@include file="always/bottom.jsp"%>
 </body>
 </html>

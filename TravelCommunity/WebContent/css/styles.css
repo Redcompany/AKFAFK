@@ -19,7 +19,7 @@ a.skip {
 	font-weight: bold;
 	position: relative;
 	top: 550px;
-	left: 650px;
+	left: 600px;
 	background-color: skyblue;
 	color: white;
 	padding: 15px 25px;
@@ -31,32 +31,32 @@ a.afreeca {
 	position: fixed;
 	font-family: fantasy;
 	font-weight: bold;
-	top: 480px;
-	left: 650px;
+	top: 450px;
+	left: 600px;
 }
 
 a.s_america {
 	position: fixed;
 	font-family: fantasy;
 	font-weight: bold;
-	top: 580px;
-	left: 530px;
+	top: 530px;
+	left: 460px;
 }
 
 a.n_america {
 	font-family: fantasy;
 	font-weight: bold;
 	position: fixed;
-	top: 390px;
-	left: 430px;
+	top: 340px;
+	left: 370px;
 }
 
 a.europe {
 	font-family: fantasy;
 	font-weight: bold;
 	position: fixed;
-	top: 370px;
-	left: 650px;
+	top: 340px;
+	left: 630px;
 }
 
 a.asia {
@@ -64,15 +64,15 @@ a.asia {
 	font-weight: bold;
 	position: fixed;
 	top: 380px;
-	left: 850px;
+	left: 800px;
 }
 
 a.oceania {
 	font-family: fantasy;
 	font-weight: bold;
 	position: fixed;
-	top: 620px;
-	left: 980px;
+	top: 570px;
+	left: 910px;
 }
 
 input.login {
@@ -317,6 +317,20 @@ table.homeTable {
 	font-family: sans-serif;
 	text-align: center;
 }
-.articlesTable{
-	width: 65%;
+
+.createArticle {
+	background-color: #eee;
+	font-size: 15px;
+	font-weight: 450;
+	font-family: fantasy;
+}
+.col-lg-2#countryDIV{
+	position: relative;
+	margin-left: 230px;
+	width:530px;
+	float: left;
+}
+select{
+	position: relative;
+	margin-left:243px;
 }

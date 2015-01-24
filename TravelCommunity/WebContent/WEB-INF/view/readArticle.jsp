@@ -152,7 +152,7 @@
 									</c:when>
 					<c:otherwise>
 						<c:if test="${viewComments.getParentComment()==0}">
-                              ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate })
+                              ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate }) <br>
                           <c:if
 								test="${deleteComment.memberNickName eq viewComments.memberNickName }">
 								<a href="/action/readArticle?idx=${Article.articleNumber}">삭제</a>
