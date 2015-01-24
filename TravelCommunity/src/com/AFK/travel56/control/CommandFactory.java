@@ -54,6 +54,9 @@ public class CommandFactory {
 		case "/findIDPassword":
 			target = new IDPasswordFindMemberCommand();
 			break;
+//		case "/always/top":
+//			target= new TopCommand();
+//			break;
 		}
 
 		return target;
