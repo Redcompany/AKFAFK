@@ -7,18 +7,54 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 수정 목록입니다.</title>
+<style>
+.mainBody {
+	margin-top: 40px;
+	margin-left: 100px;
+	margin-right: 100px;
+	border: 2px solid black;
+}
+
+.updateTable {
+	
+}
+
+#updateText {
+	position: relative;
+	width: 1100px;
+	height: 500px;
+	margin-top: 20px;
+	left: 40px;
+	resize: none;
+}
+
+#updateTitleText {
+	position: relative;
+	margin-top: 20px;
+	left: 40px;
+	width: 1100px;
+}
+</style>
 </head>
 <body>
 	<%@include file="always/top.jsp"%>
-	<form name="createArticleForm" align="center"
-		action="<c:url value='/action/readArticle' />" method="POST">
-		<p>제목</p>
-		<input name="title" type="text" style="width: 500px; height: 30px;"
-			value="${sessionScope.Article.articleTitle}" /><br>
-		<p>내용</p>
-		<textarea name="content" rows="10" cols="30">${sessionScope.Article.articleContent}</textarea>
-		<br> <input type="submit" name="todo" value="글수정">
-	</form>
+	<div class="mainBody">
+		<form name="createArticleForm"
+			action="<c:url value='/action/readArticle' />" method="POST">
+			<table class="updateTable">
+				<tr>
+					<th><div>제목</div></th>
+					<td ><input id="updateTitleText" name="title" type="text"
+						value="${sessionScope.Article.articleTitle}" /></td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea id="updateText" name="content">${sessionScope.Article.articleContent}</textarea></td>
+				</tr>
+			</table>
+			<input type="submit" name="todo" value="글수정">
+		</form>
+	</div>
 	<%@include file="always/bottom.jsp"%>
 </body>
 </html>
