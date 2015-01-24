@@ -326,11 +326,18 @@ table.homeTable {
 }
 .col-lg-2#countryDIV{
 	position: relative;
-	margin-left: 230px;
+	margin-left: 237px;
 	width:530px;
 	float: left;
 }
 select{
+	background-color: inherit;
 	position: relative;
-	margin-left:243px;
+	margin-left:252px;
+}
+
+textarea#content {
+	width: 100%;
+	height: 300px;
+	border: 2px solid black;
 }
