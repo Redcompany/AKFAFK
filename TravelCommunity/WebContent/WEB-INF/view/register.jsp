@@ -42,11 +42,14 @@
 	}
 	function checkid() {
 		var cid = document.writeForm.id.value;
-		
-		if (cid == ""){
+
+		if (cid == "") {
 			alert("입력된 아이디가 없습니다.")
-		}else{
-			window.open("http://localhost:9999/TravelCommunity/action/checkID?id="+ cid, "", "left=300, top=200, width=200, height=200")
+		} else {
+			window.open(
+					"http://localhost:9999/TravelCommunity/action/checkID?id="
+							+ cid, "",
+					"left=300, top=200, width=200, height=200")
 		}
 	}
 
@@ -57,7 +60,8 @@
 		else
 			window.open(
 					"http://localhost:9999/TravelCommunity/action/checkNickName?nickname="
-							+ cnn, "", "top=200, left=100, width=200, height=200")
+							+ cnn, "",
+					"top=200, left=100, width=200, height=200")
 	}
 </script>
 </head>

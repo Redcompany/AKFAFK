@@ -25,7 +25,6 @@
 	margin-top: 40px;
 	margin-left: 100px;
 	margin-right: 100px;
-	
 }
 
 #articleTable {
@@ -56,6 +55,7 @@
 .reply {
 	margin-bottom: 20px;
 }
+
 form {
 	display: inline;
 }
@@ -116,19 +116,19 @@ form {
 
 		<!-- buttons -->
 		<div class="buttons">
-			<form>
-				<input type=button value="목록" OnClick="showArticles.jsp"><a
-					href="updateArticle"><input type="button" value="수정"></a>
-				<form name="deleteArticleForm"
-					action="<c:url value='/action/home'/>" method="POST">
-					<input type="hidden" name="todo" value="삭제"> <input
-						type=submit onclick="javascript:clickMessage()" value="삭제">
-				</form>
-					<form name="articleRcommandForm"
-						action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>"
-						method="POST">
-						<input type="submit" name="todo" value="추천">
-					</form>
+			<form >
+				<a href="showArticles?todo=doing&country=${Article.articleCountry}"><input type=button value="목록"></a>
+				<a href="updateArticle"><input type="button" value="수정"></a>
+			</form>
+			<form name="deleteArticleForm" action="<c:url value='/action/home'/>"
+				method="POST">
+				<input type="hidden" name="todo" value="삭제"> <input
+					type=submit onclick="javascript:clickMessage()" value="삭제">
+			</form>
+			<form name="articleRcommandForm"
+				action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>"
+				method="POST">
+				<input type="submit" name="todo" value="추천">
 			</form>
 		</div>
 		<!-- buttons end -->
@@ -155,7 +155,7 @@ form {
 					<c:otherwise>
 						<c:if test="${viewComments.getParentComment()==0}">
                               ${viewComments.memberNickName} : ${viewComments.commentContent} ( ${viewComments.commentdate }) <br>
-                          <c:if
+							<c:if
 								test="${deleteComment.memberNickName eq viewComments.memberNickName }">
 								<a href="/action/readArticle?idx=${Article.articleNumber}">삭제</a>
 							</c:if>
