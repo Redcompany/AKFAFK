@@ -56,7 +56,9 @@
 .reply {
 	margin-bottom: 20px;
 }
-
+form {
+	display: inline;
+}
 </style>
 </head>
 <body>
@@ -121,12 +123,12 @@
 					action="<c:url value='/action/home'/>" method="POST">
 					<input type="hidden" name="todo" value="삭제"> <input
 						type=submit onclick="javascript:clickMessage()" value="삭제">
+				</form>
 					<form name="articleRcommandForm"
 						action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>"
 						method="POST">
 						<input type="submit" name="todo" value="추천">
 					</form>
-				</form>
 			</form>
 		</div>
 		<!-- buttons end -->
