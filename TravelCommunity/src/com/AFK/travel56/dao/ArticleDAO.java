@@ -6,6 +6,8 @@ public interface ArticleDAO {
 
    public List<ArticleVO> findAllArticle();
 
+   public ArticleVO findLastArticle();
+   
    public List<ArticleVO> findBestArticle();
 
    public List<ArticleVO> findAllArticleByContinent(String continent, int startRow, int blockSize);

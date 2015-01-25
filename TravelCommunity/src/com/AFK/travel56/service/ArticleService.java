@@ -22,6 +22,11 @@ public class ArticleService {
       List<ArticleVO> articleList = articleDAO.findAllArticle();
       return articleList;
    }
+   
+   public ArticleVO findLastArticle(){
+	   ArticleVO lastArticle=articleDAO.findLastArticle();
+	   return lastArticle;
+   }
 
    // 글 등록
    public boolean registerArticle(String title, String continent,
