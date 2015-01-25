@@ -13,758 +13,764 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MySqlArticleDAO implements ArticleDAO {
-   String databaseURL = "jdbc:mysql://localhost/TravelCommunity";
-   String username = "root";
-   String password = "1234";
+	String databaseURL = "jdbc:mysql://localhost/TravelCommunity";
+	String username = "root";
+	String password = "1234";
 
-   public ArticleVO findLastArticle(){
-	   Connection conn = null;
-	      Statement stmt = null;
-	      ArticleVO findLastArticle = null;
+	public ArticleVO findLastArticle() {
+		Connection conn = null;
+		Statement stmt = null;
+		ArticleVO findLastArticle = null;
 
-	      try {
-	         Class.forName("com.mysql.jdbc.Driver");
-	         conn = DriverManager.getConnection(databaseURL, username, password);
-	         stmt = conn.createStatement();
-	         String sqlStr = "SELECT * FROM article order by article_number desc limit 1";
-	         ResultSet rset = stmt.executeQuery(sqlStr);
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM article order by article_number desc limit 1";
+			ResultSet rset = stmt.executeQuery(sqlStr);
 
-	         while (rset.next()) {
-	        	int articleNumber =rset.getInt("article_number");
-	            String articleTitle = rset.getString("article_title");
-	            String articleContent = rset.getString("article_content");
-	            String articleContinent = rset.getString("article_continent");
-	            String articleCountry = rset.getString("article_country");
-	            Date articleDate = rset.getDate("article_date");
-	            int memberNumber = rset.getInt("member_number");
-	            int articleRecommendCount = rset
-	                  .getInt("article_recommend_count");
-	            int articleViewCount = rset.getInt("article_view_count");
-	            String memberNickName = rset.getString("member_nickname");
+			while (rset.next()) {
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleContinent = rset.getString("article_continent");
+				String articleCountry = rset.getString("article_country");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
 
-	           
-	            findLastArticle = new ArticleVO(articleNumber, articleTitle,
-	                  articleContinent, articleCountry, articleDate,
-	                  articleRecommendCount, articleViewCount,
-	                  articleContent, memberNumber, memberNickName);
-	         }
-	      } catch (SQLException ex) {
-	         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-	               null, ex);
-	      } catch (ClassNotFoundException ex2) {
-	         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-	               null, ex2);
-	      } finally {
-	         try {
-	            if (stmt != null)
-	               stmt.close();
-	            if (conn != null)
-	               conn.close();
-	         } catch (SQLException ex) {
-	            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-	                  Level.SEVERE, null, ex);
-	         }
-	      }
-	      return findLastArticle;
-	   }
+				findLastArticle = new ArticleVO(articleNumber, articleTitle,
+						articleContinent, articleCountry, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return findLastArticle;
+	}
 
-   public List<ArticleVO> findAllArticle() {
-      Connection conn = null;
-      Statement stmt = null;
+	public List<ArticleVO> findAllArticle() {
+		Connection conn = null;
+		Statement stmt = null;
 
-      ArrayList<ArticleVO> continentArticleList = new ArrayList<ArticleVO>();
-      try {
+		ArrayList<ArticleVO> continentArticleList = new ArrayList<ArticleVO>();
+		try {
 
-    	  
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "SELECT * FROM article";
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM article";
 
-         ResultSet rset = stmt.executeQuery(sqlStr);
+			ResultSet rset = stmt.executeQuery(sqlStr);
 
-         while (rset.next()) { // list all the authors
-            int articleNumber = rset.getInt("article_number");
-            String articleTitle = rset.getString("article_title");
-            String articleContent = rset.getString("article_content");
-            String articleCountry = rset.getString("article_country");
-            String articleContinent = rset.getString("article_continent");
-            Date articleDate = rset.getDate("article_date");
-            int memberNumber = rset.getInt("member_number");
-            int articleRecommendCount = rset
-                  .getInt("article_recommend_count");
-            int articleViewCount = rset.getInt("article_view_count");
-            String memberNickName = rset.getString("member_nickname");
-            continentArticleList.add(new ArticleVO(articleNumber,
-                  articleTitle, articleContinent, articleCountry,
-                  articleDate, articleRecommendCount, articleViewCount,
-                  articleContent, memberNumber, memberNickName));
-         }
+			while (rset.next()) { // list all the authors
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleCountry = rset.getString("article_country");
+				String articleContinent = rset.getString("article_continent");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
+				continentArticleList.add(new ArticleVO(articleNumber,
+						articleTitle, articleContinent, articleCountry,
+						articleDate, articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
+			}
 
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return continentArticleList;
-   }
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return continentArticleList;
+	}
 
-   public List<ArticleVO> findAllArticleByContinent(String continent, int startRow, int blockSize) {
-      Connection conn = null;
-      Statement stmt = null;
+	public List<ArticleVO> findAllArticleByContinent(String continent,
+			int startRow, int blockSize) {
+		Connection conn = null;
+		Statement stmt = null;
 
-      ArrayList<ArticleVO> continentArticleList = new ArrayList<ArticleVO>();
-      try {
+		ArrayList<ArticleVO> continentArticleList = new ArrayList<ArticleVO>();
+		try {
 
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "SELECT * FROM article where article_continent='"
-               + continent + "'order by article_number DESC LIMIT " + startRow + ", " + blockSize;
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM article where article_continent='"
+					+ continent + "'order by article_number DESC LIMIT "
+					+ startRow + ", " + blockSize;
 
-         ResultSet rset = stmt.executeQuery(sqlStr);
+			ResultSet rset = stmt.executeQuery(sqlStr);
 
-         while (rset.next()) { // list all the authors
-            int articleNumber = rset.getInt("article_number");
-            String articleTitle = rset.getString("article_title");
-            String articleContent = rset.getString("article_content");
-            String articleCountry = rset.getString("article_country");
-            Date articleDate = rset.getDate("article_date");
-            int memberNumber = rset.getInt("member_number");
-            int articleRecommendCount = rset
-                  .getInt("article_recommend_count");
-            int articleViewCount = rset.getInt("article_view_count");
-            String memberNickName = rset.getString("member_nickname");
-            continentArticleList.add(new ArticleVO(articleNumber,
-                  articleTitle, continent, articleCountry, articleDate,
-                  articleRecommendCount, articleViewCount,
-                  articleContent, memberNumber, memberNickName));
-         }
+			while (rset.next()) { // list all the authors
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleCountry = rset.getString("article_country");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
+				continentArticleList.add(new ArticleVO(articleNumber,
+						articleTitle, continent, articleCountry, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
+			}
 
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return continentArticleList;
-   }
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return continentArticleList;
+	}
 
-   public List<ArticleVO> findAllArticleByCountry(String country, int startRow, int blockSize) {
-      Connection conn = null;
-      Statement stmt = null;
+	public List<ArticleVO> findAllArticleByCountry(String country,
+			int startRow, int blockSize) {
+		Connection conn = null;
+		Statement stmt = null;
 
-      ArrayList<ArticleVO> countrytArticleList = new ArrayList<ArticleVO>();
-      try {
+		ArrayList<ArticleVO> countrytArticleList = new ArrayList<ArticleVO>();
+		try {
 
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "SELECT * FROM article where article_country='"
-               + country + "'order by article_number DESC LIMIT " + startRow + ", " + blockSize;
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM article where article_country='"
+					+ country + "'order by article_number DESC LIMIT "
+					+ startRow + ", " + blockSize;
 
-         ResultSet rset = stmt.executeQuery(sqlStr);
+			ResultSet rset = stmt.executeQuery(sqlStr);
 
-         while (rset.next()) { // list all the authors
-            int articleNumber = rset.getInt("article_number");
-            String articleTitle = rset.getString("article_title");
-            String articleContent = rset.getString("article_content");
-            String articleContinent = rset.getString("article_continent");
-            Date articleDate = rset.getDate("article_date");
-            int memberNumber = rset.getInt("member_number");
-            int articleRecommendCount = rset
-                  .getInt("article_recommend_count");
-            int articleViewCount = rset.getInt("article_view_count");
-            String memberNickName = rset.getString("member_nickname");
-            countrytArticleList.add(new ArticleVO(articleNumber,
-                  articleTitle, articleContinent, country, articleDate,
-                  articleRecommendCount, articleViewCount,
-                  articleContent, memberNumber, memberNickName));
-         }
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return countrytArticleList;
-   }
+			while (rset.next()) { // list all the authors
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleContinent = rset.getString("article_continent");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
+				countrytArticleList.add(new ArticleVO(articleNumber,
+						articleTitle, articleContinent, country, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return countrytArticleList;
+	}
 
-   public ArticleVO showSelectArticle(int articleNumber) {
-      Connection conn = null;
-      Statement stmt = null;
-      ArticleVO findSelectArticle = null;
+	public ArticleVO showSelectArticle(int articleNumber) {
+		Connection conn = null;
+		Statement stmt = null;
+		ArticleVO findSelectArticle = null;
 
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "SELECT * FROM article where article_number="
-               + articleNumber;
-         ResultSet rset = stmt.executeQuery(sqlStr);
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM article where article_number="
+					+ articleNumber;
+			ResultSet rset = stmt.executeQuery(sqlStr);
 
-         while (rset.next()) {
-            String articleTitle = rset.getString("article_title");
-            String articleContent = rset.getString("article_content");
-            String articleContinent = rset.getString("article_continent");
-            String articleCountry = rset.getString("article_country");
-            Date articleDate = rset.getDate("article_date");
-            int memberNumber = rset.getInt("member_number");
-            int articleRecommendCount = rset
-                  .getInt("article_recommend_count");
-            int articleViewCount = rset.getInt("article_view_count");
-            String memberNickName = rset.getString("member_nickname");
+			while (rset.next()) {
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleContinent = rset.getString("article_continent");
+				String articleCountry = rset.getString("article_country");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
 
-            articleViewCount++;
-            this.ViewCountIncrement(articleNumber, articleViewCount);
-            findSelectArticle = new ArticleVO(articleNumber, articleTitle,
-                  articleContinent, articleCountry, articleDate,
-                  articleRecommendCount, articleViewCount,
-                  articleContent, memberNumber, memberNickName);
-         }
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return findSelectArticle;
-   }
+				articleViewCount++;
+				this.ViewCountIncrement(articleNumber, articleViewCount);
+				findSelectArticle = new ArticleVO(articleNumber, articleTitle,
+						articleContinent, articleCountry, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return findSelectArticle;
+	}
 
-   public int addArticle(String title, String continent, String country,
-         String content, int memberNumber, String memberNickName) {
-      Connection conn = null;
-      Statement stmt = null;
-      int stateCheck = 0;
-      Date nowDate = new Date();
-      SimpleDateFormat sdfNowDate = new SimpleDateFormat("yyyyMMdd");
+	public int addArticle(String title, String continent, String country,
+			String content, int memberNumber, String memberNickName) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
+		Date nowDate = new Date();
+		SimpleDateFormat sdfNowDate = new SimpleDateFormat("yyyyMMdd");
 
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
 
-         String sqlStr = "INSERT INTO article "
-               + "(article_title, article_continent, article_country, article_content, article_date, member_number, member_nickname)"
-               + " VALUES ( '" + title + "' , '" + continent + "' , '"
-               + country + "' , '" + content + "' , "
-               + sdfNowDate.format(nowDate) + " , " + memberNumber + ", '"
-               + memberNickName + "');";
+			String sqlStr = "INSERT INTO article "
+					+ "(article_title, article_continent, article_country, article_content, article_date, member_number, member_nickname)"
+					+ " VALUES ( '" + title + "' , '" + continent + "' , '"
+					+ country + "' , '" + content + "' , "
+					+ sdfNowDate.format(nowDate) + " , " + memberNumber + ", '"
+					+ memberNickName + "');";
 
-         stateCheck = stmt.executeUpdate(sqlStr);
+			stateCheck = stmt.executeUpdate(sqlStr);
 
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return stateCheck;
-   }
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
 
-   public int ViewCountIncrement(int articleNumber, int articleViewCount) {
-      Connection conn = null;
-      Statement stmt = null;
-      int stateCheck = 0;
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
+	public int ViewCountIncrement(int articleNumber, int articleViewCount) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
 
-         String sqlStr = "UPDATE article set article_view_count='"
-               + articleViewCount + "' where article_number="
-               + articleNumber;
-         stateCheck = stmt.executeUpdate(sqlStr);
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return stateCheck;
-   }
+			String sqlStr = "UPDATE article set article_view_count='"
+					+ articleViewCount + "' where article_number="
+					+ articleNumber;
+			stateCheck = stmt.executeUpdate(sqlStr);
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
 
-   public int updateArticle(int articleNumber, String articleTitle,
-         String articleContent, int memberNumber, String memberNickName) {
-      Connection conn = null;
-      Statement stmt = null;
-      int stateCheck = 0;
-      ArticleVO checkedArticle = showSelectArticle(articleNumber);
+	public int updateArticle(int articleNumber, String articleTitle,
+			String articleContent, int memberNumber, String memberNickName) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
+		ArticleVO checkedArticle = showSelectArticle(articleNumber);
 
-      if (checkedArticle.getMemberNumber() == memberNumber
-            && checkedArticle.getMemberNickName().equals(memberNickName)) {
+		if (checkedArticle.getMemberNumber() == memberNumber
+				&& checkedArticle.getMemberNickName().equals(memberNickName)) {
 
-         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(databaseURL, username,
-                  password);
-            stmt = conn.createStatement();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(databaseURL, username,
+						password);
+				stmt = conn.createStatement();
 
-            String sqlStr = "UPDATE article set article_content='"
-                  + articleContent + "', article_title='" + articleTitle
-                  + "' where article_number=" + articleNumber;
-            stateCheck = stmt.executeUpdate(sqlStr);
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         } catch (ClassNotFoundException ex2) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex2);
-         } finally {
-            try {
-               if (stmt != null)
-                  stmt.close();
-               if (conn != null)
-                  conn.close();
-            } catch (SQLException ex) {
-               Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                     Level.SEVERE, null, ex);
-            }
-         }
-      }
-      return stateCheck;
-   }
+				String sqlStr = "UPDATE article set article_content='"
+						+ articleContent + "', article_title='" + articleTitle
+						+ "' where article_number=" + articleNumber;
+				stateCheck = stmt.executeUpdate(sqlStr);
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			} catch (ClassNotFoundException ex2) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex2);
+			} finally {
+				try {
+					if (stmt != null)
+						stmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (SQLException ex) {
+					Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+							Level.SEVERE, null, ex);
+				}
+			}
+		}
+		return stateCheck;
+	}
 
-   public int deleteArticle(int articleNumber, String memberNickName) {
-      Connection conn = null;
-      Statement stmt = null;
-      int stateCheck = 0;
-      ArticleVO checkedArticle = showSelectArticle(articleNumber);
+	public int deleteArticle(int articleNumber, String memberNickName) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
 
-      if (checkedArticle.getMemberNickName().equals(memberNickName)) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "delete from article where article_number="
+					+ articleNumber;
+			stateCheck = stmt.executeUpdate(sqlStr);
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
 
-         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(databaseURL, username,
-                  password);
-            stmt = conn.createStatement();
-            String sqlStr = "delete from article where article_number="
-                  + articleNumber;
-            stateCheck = stmt.executeUpdate(sqlStr);
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         } catch (ClassNotFoundException ex2) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex2);
-         } finally {
-            try {
-               if (stmt != null)
-                  stmt.close();
-               if (conn != null)
-                  conn.close();
-            } catch (SQLException ex) {
-               Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                     Level.SEVERE, null, ex);
-            }
-         }
-      }
-      return stateCheck;
-   }
+		}
+		return stateCheck;
+	}
 
-   public int deleteArticle(String memberNickName) { // 멤버삭제전
-      Connection conn = null;
-      Statement stmt = null;
-      int stateCheck = 0;
+	public int deleteArticle(String memberNickName) { // 멤버삭제전
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
 
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "delete from article where member_nickname="
-               + memberNickName;
-         stateCheck = stmt.executeUpdate(sqlStr);
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return stateCheck;
-   }
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "delete from article where member_nickname="
+					+ memberNickName;
+			stateCheck = stmt.executeUpdate(sqlStr);
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
 
-   public List<ArticleVO> findBestArticle() {
-      Connection conn = null;
-      Statement stmt = null;
-      ArrayList<ArticleVO> rankArticles = new ArrayList<ArticleVO>();
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "select * from article order by article_recommend_count desc limit 5";
+	public List<ArticleVO> findBestArticle() {
+		Connection conn = null;
+		Statement stmt = null;
+		ArrayList<ArticleVO> rankArticles = new ArrayList<ArticleVO>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "select * from article order by article_recommend_count desc limit 5";
 
-         ResultSet rset = stmt.executeQuery(sqlStr);
+			ResultSet rset = stmt.executeQuery(sqlStr);
 
-         while (rset.next()) {
-            int articleNumber = rset.getInt("article_number");
-            String articleTitle = rset.getString("article_title");
-            String articleContent = rset.getString("article_content");
-            String articleContinent = rset.getString("article_continent");
-            String articleCountry = rset.getString("article_country");
-            Date articleDate = rset.getDate("article_date");
-            int memberNumber = rset.getInt("member_number");
-            int articleRecommendCount = rset
-                  .getInt("article_recommend_count");
-            int articleViewCount = rset.getInt("article_view_count");
-            String memberNickName = rset.getString("member_nickname");
+			while (rset.next()) {
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleContinent = rset.getString("article_continent");
+				String articleCountry = rset.getString("article_country");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
 
-            rankArticles.add(new ArticleVO(articleNumber, articleTitle,
-                  articleContinent, articleCountry, articleDate,
-                  articleRecommendCount, articleViewCount,
-                  articleContent, memberNumber, memberNickName));
-         }
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return rankArticles;
-   }
+				rankArticles.add(new ArticleVO(articleNumber, articleTitle,
+						articleContinent, articleCountry, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return rankArticles;
+	}
 
-   public List<ArticleVO> findBestArticleByContinent(String continent) {
-      Connection conn = null;
-      Statement stmt = null;
-      ArrayList<ArticleVO> rankArticles = new ArrayList<ArticleVO>();
+	public List<ArticleVO> findBestArticleByContinent(String continent) {
+		Connection conn = null;
+		Statement stmt = null;
+		ArrayList<ArticleVO> rankArticles = new ArrayList<ArticleVO>();
 
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "select * from article where article_continent= '"
-               + continent
-               + "' order by article_recommend_count desc limit 5";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "select * from article where article_continent= '"
+					+ continent
+					+ "' order by article_recommend_count desc limit 5";
 
-         ResultSet rset = stmt.executeQuery(sqlStr);
+			ResultSet rset = stmt.executeQuery(sqlStr);
 
-         while (rset.next()) {
-            int articleNumber = rset.getInt("article_number");
-            String articleTitle = rset.getString("article_title");
-            String articleContent = rset.getString("article_content");
-            String articleContinent = rset.getString("article_continent");
-            String articleCountry = rset.getString("article_country");
-            Date articleDate = rset.getDate("article_date");
-            int memberNumber = rset.getInt("member_number");
-            int articleRecommendCount = rset
-                  .getInt("article_recommend_count");
-            int articleViewCount = rset.getInt("article_view_count");
-            String memberNickName = rset.getString("member_nickname");
+			while (rset.next()) {
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleContinent = rset.getString("article_continent");
+				String articleCountry = rset.getString("article_country");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
 
-            rankArticles.add(new ArticleVO(articleNumber, articleTitle,
-                  articleContinent, articleCountry, articleDate,
-                  articleRecommendCount, articleViewCount,
-                  articleContent, memberNumber, memberNickName));
-         }
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return rankArticles;
-   }
+				rankArticles.add(new ArticleVO(articleNumber, articleTitle,
+						articleContinent, articleCountry, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return rankArticles;
+	}
 
-   public int recommendCountIncrement(int articleNumber, int articleRecommendCount) {
-      Connection conn = null;
-      Statement stmt = null;
-      int stateCheck = 0;
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         articleRecommendCount++;
-         String sqlStr = "UPDATE article set article_recommend_count='"
-               + articleRecommendCount + "' where article_number="
-               + articleNumber;
-         stateCheck = stmt.executeUpdate(sqlStr);
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return stateCheck;
-   }
-   
-   public int limitsRecommandadd(String memberNickName, int articleNumber, int memberNumber){
-      Statement stmt = null;
-      Connection conn = null;
-      int stateCheck = 0;
-      Date nowDate = new Date();
-      SimpleDateFormat sdfNowDate = new SimpleDateFormat("yyyyMMdd");
+	public int recommendCountIncrement(int articleNumber,
+			int articleRecommendCount) {
+		Connection conn = null;
+		Statement stmt = null;
+		int stateCheck = 0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			articleRecommendCount++;
+			String sqlStr = "UPDATE article set article_recommend_count='"
+					+ articleRecommendCount + "' where article_number="
+					+ articleNumber;
+			stateCheck = stmt.executeUpdate(sqlStr);
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
 
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
+	public int limitsRecommandadd(String memberNickName, int articleNumber,
+			int memberNumber) {
+		Statement stmt = null;
+		Connection conn = null;
+		int stateCheck = 0;
+		Date nowDate = new Date();
+		SimpleDateFormat sdfNowDate = new SimpleDateFormat("yyyyMMdd");
 
-         String sqlStr = "INSERT INTO articleRecommand"
-               + "(recommand_date, member_nickname, article_number, member_number)"
-               + " VALUES ( " + sdfNowDate.format(nowDate) + " , '" + memberNickName + "' , "
-               + articleNumber + " , "+ memberNumber + ");";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
 
-         stateCheck = stmt.executeUpdate(sqlStr);
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return stateCheck;
-   }
-   
-   public ArticleRecommandVO checkArticleRecommand(int articleNumber,String memberNickName){
-      Connection conn = null;
-      Statement stmt = null;
-      ArticleRecommandVO checkArticleRecommand = null;
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "SELECT * FROM articleRecommand where article_number="
-               + articleNumber+" And member_nickname='"+memberNickName+"'";
-         ResultSet rset = stmt.executeQuery(sqlStr);
+			String sqlStr = "INSERT INTO articleRecommand"
+					+ "(recommand_date, member_nickname, article_number, member_number)"
+					+ " VALUES ( " + sdfNowDate.format(nowDate) + " , '"
+					+ memberNickName + "' , " + articleNumber + " , "
+					+ memberNumber + ");";
 
-         while (rset.next()) {
-            Date recommandDate = rset.getDate("recommand_date");
-            int memberNumber = rset.getInt("member_number");
-      
-            checkArticleRecommand = new ArticleRecommandVO(recommandDate, memberNickName, articleNumber, memberNumber) ;
-         }
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return checkArticleRecommand;
-   }
-   
-   public List<ArticleVO> findAllArticleByContinent(String continent) {
-      Connection conn = null;
-      Statement stmt = null;
-      ArrayList<ArticleVO> continentArticleList = new ArrayList<ArticleVO>();
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "SELECT * FROM article where article_continent='"
-               + continent+"' order by article_number desc";
-         ResultSet rset = stmt.executeQuery(sqlStr);
-         
-         while (rset.next()) { // list all the authors
-            int articleNumber = rset.getInt("article_number");
-            String articleTitle = rset.getString("article_title");
-            String articleContent = rset.getString("article_content");
-            String articleCountry = rset.getString("article_country");
-            Date articleDate = rset.getDate("article_date");
-            int memberNumber = rset.getInt("member_number");
-            int articleRecommendCount = rset
-                  .getInt("article_recommend_count");
-            int articleViewCount = rset.getInt("article_view_count");
-            String memberNickName = rset.getString("member_nickname");
-            continentArticleList.add(new ArticleVO(articleNumber,
-                  articleTitle, continent, articleCountry, articleDate,
-                  articleRecommendCount, articleViewCount,
-                  articleContent, memberNumber, memberNickName));
-         }
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return continentArticleList;
-   }
-   
-   public List<ArticleVO> findAllArticleByCountry(String country) {
-      Connection conn = null;
-      Statement stmt = null;
-      ArrayList<ArticleVO> countrytArticleList = new ArrayList<ArticleVO>();
-      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         conn = DriverManager.getConnection(databaseURL, username, password);
-         stmt = conn.createStatement();
-         String sqlStr = "SELECT * FROM article where article_country='"
-               + country+"' order by article_number desc";
-         ResultSet rset = stmt.executeQuery(sqlStr);
+			stateCheck = stmt.executeUpdate(sqlStr);
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
 
-         while (rset.next()) { // list all the authors
-            int articleNumber = rset.getInt("article_number");
-            String articleTitle = rset.getString("article_title");
-            String articleContent = rset.getString("article_content");
-            String articleContinent = rset.getString("article_continent");
-            Date articleDate = rset.getDate("article_date");
-            int memberNumber = rset.getInt("member_number");
-            int articleRecommendCount = rset
-                  .getInt("article_recommend_count");
-            int articleViewCount = rset.getInt("article_view_count");
-            String memberNickName = rset.getString("member_nickname");
-            countrytArticleList.add(new ArticleVO(articleNumber,
-                  articleTitle, articleContinent, country, articleDate,
-                  articleRecommendCount, articleViewCount,
-                  articleContent, memberNumber, memberNickName));
-         }
-      } catch (SQLException ex) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex);
-      } catch (ClassNotFoundException ex2) {
-         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
-               null, ex2);
-      } finally {
-         try {
-            if (stmt != null)
-               stmt.close();
-            if (conn != null)
-               conn.close();
-         } catch (SQLException ex) {
-            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
-                  Level.SEVERE, null, ex);
-         }
-      }
-      return countrytArticleList;
-   }
+	public ArticleRecommandVO checkArticleRecommand(int articleNumber,
+			String memberNickName) {
+		Connection conn = null;
+		Statement stmt = null;
+		ArticleRecommandVO checkArticleRecommand = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM articleRecommand where article_number="
+					+ articleNumber
+					+ " And member_nickname='"
+					+ memberNickName
+					+ "'";
+			ResultSet rset = stmt.executeQuery(sqlStr);
+
+			while (rset.next()) {
+				Date recommandDate = rset.getDate("recommand_date");
+				int memberNumber = rset.getInt("member_number");
+
+				checkArticleRecommand = new ArticleRecommandVO(recommandDate,
+						memberNickName, articleNumber, memberNumber);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return checkArticleRecommand;
+	}
+
+	public List<ArticleVO> findAllArticleByContinent(String continent) {
+		Connection conn = null;
+		Statement stmt = null;
+		ArrayList<ArticleVO> continentArticleList = new ArrayList<ArticleVO>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM article where article_continent='"
+					+ continent + "' order by article_number desc";
+			ResultSet rset = stmt.executeQuery(sqlStr);
+
+			while (rset.next()) { // list all the authors
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleCountry = rset.getString("article_country");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
+				continentArticleList.add(new ArticleVO(articleNumber,
+						articleTitle, continent, articleCountry, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return continentArticleList;
+	}
+
+	public List<ArticleVO> findAllArticleByCountry(String country) {
+		Connection conn = null;
+		Statement stmt = null;
+		ArrayList<ArticleVO> countrytArticleList = new ArrayList<ArticleVO>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+			String sqlStr = "SELECT * FROM article where article_country='"
+					+ country + "' order by article_number desc";
+			ResultSet rset = stmt.executeQuery(sqlStr);
+
+			while (rset.next()) { // list all the authors
+				int articleNumber = rset.getInt("article_number");
+				String articleTitle = rset.getString("article_title");
+				String articleContent = rset.getString("article_content");
+				String articleContinent = rset.getString("article_continent");
+				Date articleDate = rset.getDate("article_date");
+				int memberNumber = rset.getInt("member_number");
+				int articleRecommendCount = rset
+						.getInt("article_recommend_count");
+				int articleViewCount = rset.getInt("article_view_count");
+				String memberNickName = rset.getString("member_nickname");
+				countrytArticleList.add(new ArticleVO(articleNumber,
+						articleTitle, articleContinent, country, articleDate,
+						articleRecommendCount, articleViewCount,
+						articleContent, memberNumber, memberNickName));
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return countrytArticleList;
+	}
 }
