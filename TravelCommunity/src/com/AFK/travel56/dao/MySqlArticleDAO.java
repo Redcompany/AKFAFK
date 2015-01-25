@@ -26,7 +26,7 @@ public class MySqlArticleDAO implements ArticleDAO {
 	         Class.forName("com.mysql.jdbc.Driver");
 	         conn = DriverManager.getConnection(databaseURL, username, password);
 	         stmt = conn.createStatement();
-	         String sqlStr = "SELECT TOP 1 * FROM article order by article_number";
+	         String sqlStr = "SELECT * FROM article order by article_number desc limit 1";
 	         ResultSet rset = stmt.executeQuery(sqlStr);
 
 	         while (rset.next()) {
