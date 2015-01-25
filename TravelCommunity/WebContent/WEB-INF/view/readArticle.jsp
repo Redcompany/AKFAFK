@@ -10,15 +10,6 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<script>
-	function clickMessage() {
-		if (document.deleteArticleForm.todo.value == "삭제") {
-			alert("글이 삭제되었습니다.")
-			document.deleteArticleForm.submit();
-		} else
-			document.writeForm.submit();
-	}
-</script>
 <title>${Article.articleTitle}</title>
 <style>
 .mainBody {
@@ -121,9 +112,7 @@ form {
 				<a href="updateArticle"><input type="button" value="수정"></a>
 			</form>
 			<form name="deleteArticleForm" action="<c:url value='/action/home'/>"
-				method="POST">
-				<input type="hidden" name="todo" value="삭제"> <input
-					type=submit onclick="javascript:clickMessage()" value="삭제">
+				method="POST"> <input type=submit name="todo" value="삭제">
 			</form>
 			<form name="articleRcommandForm"
 				action="<c:url value='/action/readArticle?idx=${Article.articleNumber}'/>"
