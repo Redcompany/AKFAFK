@@ -66,13 +66,16 @@ public class ShowArticlesCommand implements Command {
 			System.out.println(multi.getParameter("continent"));
 			try {
 				findMember = (MemberVO) session.getAttribute("loginsession");
+				String content = multi.getParameter("content");
+				content = content.replaceAll("\r\n", "<br>"); // 줄바꿈 처리
+				content = content.replaceAll("\u0020", "&nbsp;"); // 스페이스바 처리
 				request.setAttribute(
 						"createArticle",
 						articleService.registerArticle(
 								multi.getParameter("title"),
 								multi.getParameter("continent"),
 								multi.getParameter("country"),
-								multi.getParameter("content"),
+								content,
 								findMember.getMemberNickName()));
 				// 파일 업로드. 폼에서 가져온 인자값을 얻기 위해request 객체 전달,
 				// 업로드 경로, 파일 최대 크기, 한글처리, 파일 중복처리
