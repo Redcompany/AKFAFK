@@ -330,7 +330,7 @@ table.homeTable {
 	width:530px;
 	float: left;
 }
-select{
+select.continentselect{
 	background-color: inherit;
 	position: relative;
 	margin-left:252px;

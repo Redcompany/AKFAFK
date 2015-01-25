@@ -64,10 +64,8 @@
 					<td><textarea id="updateText" name="content">${sessionScope.Article.articleContent}</textarea></td>
 				</tr>
 			</table>
-		</form>
 	</div>
-	<form id="updatebutton">
-		<input type="submit" name="todo" value="글수정">
+		<input id="updatebutton" type="submit" name="todo" value="글수정">
 	</form>
 	<%@include file="always/bottom.jsp"%>
 </body>

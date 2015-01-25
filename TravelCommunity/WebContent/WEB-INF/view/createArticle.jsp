@@ -15,7 +15,7 @@
 		<form name="createArticleForm" enctype="multipart/form-data"
 			action="<c:url value='/action/showArticles' />" method="POST">
 
-			<select name="continent" >
+			<select class="continentselect" name="continent" >
 				<option value="유럽">유럽</option>
 				<option value="아시아">아시아</option>
 				<option value="오세아니아">오세아니아</option>

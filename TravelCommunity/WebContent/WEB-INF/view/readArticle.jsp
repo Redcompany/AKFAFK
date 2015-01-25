@@ -110,7 +110,7 @@ form {
 					}
 				}
 			%>
-			${Article.articleContent}
+			${sessionScope.Article.articleContent}
 		</div>
 		<!-- content end -->
 
