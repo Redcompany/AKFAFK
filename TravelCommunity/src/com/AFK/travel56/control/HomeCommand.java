@@ -104,7 +104,7 @@ public class HomeCommand implements Command {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				ArticleVO findArticle = (ArticleVO) session
-						.getAttribute("article");
+						.getAttribute("Article");
 				MemberVO findMember = (MemberVO) session
 						.getAttribute("loginsession");
 				if (findArticle.getMemberNickName().equals(
