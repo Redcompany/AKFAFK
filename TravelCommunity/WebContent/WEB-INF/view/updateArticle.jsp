@@ -21,7 +21,7 @@
 
 #updateText {
 	position: relative;
-	width: 1100px;
+	width: 950px;
 	height: 500px;
 	margin-top: 20px;
 	left: 40px;
@@ -32,13 +32,13 @@
 	position: relative;
 	margin-top: 20px;
 	left: 40px;
-	width: 1100px;
+	width: 950px;
 }
 
 #updatebutton {
 	position: relative;
 	margin-top: 20px;
-	left: 1248px;
+	left: 1120px;
 }
 
 .titleContent {

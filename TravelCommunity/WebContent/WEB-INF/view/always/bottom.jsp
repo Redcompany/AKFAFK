@@ -5,7 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BOTTOM</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:9999/TravelCommunity/css/styles.css">
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:9999/TravelCommunity/css/styles.css">
+<style>
+.noticeBottom {
+	margin-left: 40px;
+}
+</style>
 </head>
 <body>
 	<br />
@@ -15,14 +21,13 @@
 				String logoB = request.getContextPath() + "/devImg/map.jpg";
 			%>
 
-			<td align="center" width="100"><img src=<%=logoB%>
-				width='80%' height='auto'></td>
+			<td align="center" width="100"><img src=<%=logoB%> width='80%'
+				height='auto'></td>
 
-			<td><span class="noticeBottom">
-				| <a href="<c:url value='/action/showArticle/?todo=doing&continent=공지'/>">공지사항</a> 
-				| <a href="#">회원이용약관 </a>
-				| <a href="#">개인정보보호방침</a>
-				| <a href="#">문의 사항</a> |
+			<td><span class="noticeBottom"> | <a
+					href="<c:url value='/action/showArticle/?todo=doing&continent=공지'/>">공지사항</a>
+					| <a href="#">회원이용약관 </a> | <a href="#">개인정보보호방침</a> | <a href="#">문의
+						사항</a> |
 			</span>
 				<p>
 					<span class="infoAdress">서울시 중구 초동 106 - 9번지 솔로몬빌딩 501호 제일
