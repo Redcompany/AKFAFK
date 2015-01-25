@@ -83,21 +83,22 @@ public class ShowArticlesCommand implements Command {
 				filename = multi.getFilesystemName(file);
 				String file1 = (String) files.nextElement();
 				filename1 = multi.getFilesystemName(file1);
+				Thread.sleep(1000);
 				if (filename != null) {
 					request.setAttribute("fileName", fileService.registerFile(
-							filename, articleService.findAllArticles().size()));
+							filename, articleService.findLastArticle().getArticleNumber()));
 				} else {
 					request.setAttribute("fileName", fileService.registerFile(
-							"1", articleService.findAllArticles().size()));
+							"1", articleService.findLastArticle().getArticleNumber()));
 					request.setAttribute("nullFiles",
 							fileService.deleteFile("1"));
 				}
 				if (filename1 != null) {
 					request.setAttribute("fileName1", fileService.registerFile(
-							filename1, articleService.findAllArticles().size()));
+							filename1, articleService.findLastArticle().getArticleNumber()));
 				} else {
 					request.setAttribute("fileName1", fileService.registerFile(
-							"1", articleService.findAllArticles().size()));
+							"1", articleService.findLastArticle().getArticleNumber()));
 					request.setAttribute("nullFiles",
 							fileService.deleteFile("1"));
 				}

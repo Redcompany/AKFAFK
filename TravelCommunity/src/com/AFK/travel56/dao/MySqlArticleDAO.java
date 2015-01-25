@@ -17,6 +17,57 @@ public class MySqlArticleDAO implements ArticleDAO {
    String username = "root";
    String password = "1234";
 
+   public ArticleVO findLastArticle(){
+	   Connection conn = null;
+	      Statement stmt = null;
+	      ArticleVO findLastArticle = null;
+
+	      try {
+	         Class.forName("com.mysql.jdbc.Driver");
+	         conn = DriverManager.getConnection(databaseURL, username, password);
+	         stmt = conn.createStatement();
+	         String sqlStr = "SELECT TOP 1 * FROM article order by article_number";
+	         ResultSet rset = stmt.executeQuery(sqlStr);
+
+	         while (rset.next()) {
+	        	int articleNumber =rset.getInt("article_number");
+	            String articleTitle = rset.getString("article_title");
+	            String articleContent = rset.getString("article_content");
+	            String articleContinent = rset.getString("article_continent");
+	            String articleCountry = rset.getString("article_country");
+	            Date articleDate = rset.getDate("article_date");
+	            int memberNumber = rset.getInt("member_number");
+	            int articleRecommendCount = rset
+	                  .getInt("article_recommend_count");
+	            int articleViewCount = rset.getInt("article_view_count");
+	            String memberNickName = rset.getString("member_nickname");
+
+	           
+	            findLastArticle = new ArticleVO(articleNumber, articleTitle,
+	                  articleContinent, articleCountry, articleDate,
+	                  articleRecommendCount, articleViewCount,
+	                  articleContent, memberNumber, memberNickName);
+	         }
+	      } catch (SQLException ex) {
+	         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+	               null, ex);
+	      } catch (ClassNotFoundException ex2) {
+	         Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+	               null, ex2);
+	      } finally {
+	         try {
+	            if (stmt != null)
+	               stmt.close();
+	            if (conn != null)
+	               conn.close();
+	         } catch (SQLException ex) {
+	            Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+	                  Level.SEVERE, null, ex);
+	         }
+	      }
+	      return findLastArticle;
+	   }
+
    public List<ArticleVO> findAllArticle() {
       Connection conn = null;
       Statement stmt = null;
