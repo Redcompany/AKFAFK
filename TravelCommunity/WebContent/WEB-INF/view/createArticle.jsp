@@ -37,7 +37,7 @@
 					<td colspan="3" align="center"><p>내용</p></td>
 				</tr>
 				<tr>
-					<td colspan="3" align="center"><textarea name="content"
+					<td colspan="3" align="center"><textarea id="content" name="content"
 							class="form-control" rows="30" cols="80" placeholder="내용을 입력해주세요"></textarea><br></td>
 				</tr>
 				<tr>
