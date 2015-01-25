@@ -33,7 +33,7 @@
 
 #content {
 	width: 100%;
-	height: 300px;
+	height: auto;
 	margin-top: 15px;
 	margin-right: 60px;
 	margin-bottom: 20px;
@@ -104,7 +104,7 @@ form {
 							String filename = request.getContextPath() + "/images/"
 									+ findFile.getFileName();
 			%>
-			<img src=<%=filename%> style="width: 304px; height: 228px"> <br>
+			<img src=<%=filename%> style="width: 510px; height: 270px"> <br>
 			<%
 				}
 					}
