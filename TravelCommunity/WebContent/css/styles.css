@@ -19,7 +19,7 @@ a.skip {
 	font-weight: bold;
 	position: relative;
 	top: 550px;
-	left: 600px;
+	left: 640px;
 	background-color: skyblue;
 	color: white;
 	padding: 15px 25px;
@@ -31,32 +31,32 @@ a.afreeca {
 	position: fixed;
 	font-family: fantasy;
 	font-weight: bold;
-	top: 450px;
-	left: 600px;
+	top: 500px;
+	left: 670px;
 }
 
 a.s_america {
 	position: fixed;
 	font-family: fantasy;
 	font-weight: bold;
-	top: 530px;
-	left: 460px;
+	top: 580px;
+	left: 530px;
 }
 
 a.n_america {
 	font-family: fantasy;
 	font-weight: bold;
 	position: fixed;
-	top: 340px;
-	left: 370px;
+	top: 390px;
+	left: 430px;
 }
 
 a.europe {
 	font-family: fantasy;
 	font-weight: bold;
 	position: fixed;
-	top: 340px;
-	left: 630px;
+	top: 380px;
+	left: 650px;
 }
 
 a.asia {
@@ -64,15 +64,15 @@ a.asia {
 	font-weight: bold;
 	position: fixed;
 	top: 380px;
-	left: 800px;
+	left: 830px;
 }
 
 a.oceania {
 	font-family: fantasy;
 	font-weight: bold;
 	position: fixed;
-	top: 570px;
-	left: 910px;
+	top: 620px;
+	left: 980px;
 }
 
 input.login {
