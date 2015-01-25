@@ -164,7 +164,7 @@ public class ReadArticleCommand implements Command {
 								findArticle.getArticleNumber(),
 								findMember.getMemberNumber()));
 				System.out.println("2");
-				out.println("<script>alert('추천되었습니다.');</script>");
+				out.println("<script>alert('추천되었습니다.');history.go(-1);</script>");
 				out.flush();
 			}
 		} else {

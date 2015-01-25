@@ -83,6 +83,7 @@ public class ShowArticlesCommand implements Command {
 				filename = multi.getFilesystemName(file);
 				String file1 = (String) files.nextElement();
 				filename1 = multi.getFilesystemName(file1);
+				Thread.sleep(1000);
 				if (filename != null) {
 					request.setAttribute("fileName", fileService.registerFile(
 							filename, articleService.findAllArticles().size()));
