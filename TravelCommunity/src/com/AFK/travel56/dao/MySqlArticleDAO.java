@@ -634,6 +634,39 @@ public class MySqlArticleDAO implements ArticleDAO {
 		}
 		return stateCheck;
 	}
+	
+	public int deleteRecommand(int articleNumber){
+		Statement stmt = null;
+		Connection conn = null;
+		int stateCheck = 0;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(databaseURL, username, password);
+			stmt = conn.createStatement();
+
+			String sqlStr = "delete from articlerecommand where article_number="+articleNumber;
+
+			stateCheck = stmt.executeUpdate(sqlStr);
+		} catch (SQLException ex) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex);
+		} catch (ClassNotFoundException ex2) {
+			Logger.getLogger(MySqlArticleDAO.class.getName()).log(Level.SEVERE,
+					null, ex2);
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException ex) {
+				Logger.getLogger(MySqlArticleDAO.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
+		return stateCheck;
+	}
 
 	public ArticleRecommandVO checkArticleRecommand(int articleNumber,
 			String memberNickName) {

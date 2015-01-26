@@ -185,6 +185,7 @@ public class MySqlCommentDAO implements CommentDAO {
 		return stateCheck;
 	} // end addComment()
 
+	
 	public int updateComment(int commentNumber, String commentContent, int memberNumber, String memberNickName) {
 		Connection conn = null;
 		Statement stmt = null;
@@ -234,7 +235,7 @@ public class MySqlCommentDAO implements CommentDAO {
 						password);
 				stmt = conn.createStatement();
 				String sqlStr = "DELETE FROM comment WHERE comment_number = "
-						+ commentNumber + ";";
+						+ commentNumber;
 
 				stateCheck = stmt.executeUpdate(sqlStr);
 
@@ -302,7 +303,7 @@ public class MySqlCommentDAO implements CommentDAO {
 			conn = DriverManager.getConnection(databaseURL, username, password);
 			stmt = conn.createStatement();
 			String sqlStr = "DELETE FROM comment WHERE article_number = "
-					+ articleNumber + ";";
+					+ articleNumber;
 
 			stateCheck = stmt.executeUpdate(sqlStr);
 

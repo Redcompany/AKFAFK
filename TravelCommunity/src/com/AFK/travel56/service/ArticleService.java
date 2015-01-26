@@ -49,6 +49,7 @@ public class ArticleService {
       FileDAO fileDAO= new MySqlFileDAO();
       fileDAO.deleteFileByArticleNumber(articleNumber);
       commentDAO.deleteCommentByArticle(articleNumber);
+      articleDAO.deleteRecommand(articleNumber);
       int checkState = articleDAO
             .deleteArticle(articleNumber, memberNickName);
       if (checkState == 0) {
