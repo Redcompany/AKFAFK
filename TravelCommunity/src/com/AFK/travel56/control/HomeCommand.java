@@ -85,12 +85,14 @@ public class HomeCommand implements Command {
 				outpw.flush();
 				break;
 			case "로그인":
-				String id=request.getParameter("id");
-				String pass=request.getParameter("pass");
-				if(!(id.isEmpty())&&!(pass.isEmpty())){
-				session.setAttribute("loginsession", memberService.loginMember(
-						request.getParameter("id"),
-						request.getParameter("pass")));
+				String id = request.getParameter("id");
+				String pass = request.getParameter("pass");
+				if (!(id.isEmpty()) && !(pass.isEmpty())) {
+					session.setAttribute(
+							"loginsession",
+							memberService.loginMember(
+									request.getParameter("id"),
+									request.getParameter("pass")));
 				}
 				break;
 			case "로그아웃":
@@ -107,24 +109,29 @@ public class HomeCommand implements Command {
 			case "삭제":
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				ArticleVO findArticle = (ArticleVO) session
-						.getAttribute("Article");
-				MemberVO findMember = (MemberVO) session
-						.getAttribute("loginsession");
-				if (findArticle.getMemberNickName().equals(
-						findMember.getMemberNickName())) {
-					memberVO = (MemberVO) session.getAttribute("loginsession");
-					request.setAttribute(
-							"deleteArticle",
-							articleService.deleteArticle(
-									findArticle.getArticleNumber(),
-									memberVO.getMemberNickName()));
-					out.println("<script>alert('삭제되었습니다.');history.go(-2);</script>");
-					out.flush();
+				if (session.getAttribute("loginsession") != null) {
+					ArticleVO findArticle = (ArticleVO) session
+							.getAttribute("Article");
+					MemberVO findMember = (MemberVO) session
+							.getAttribute("loginsession");
+					if (findArticle.getMemberNickName().equals(
+							findMember.getMemberNickName())) {
+						memberVO = (MemberVO) session
+								.getAttribute("loginsession");
+						request.setAttribute("deleteArticle", articleService
+								.deleteArticle(findArticle.getArticleNumber(),
+										memberVO.getMemberNickName()));
+						out.println("<script>alert('삭제되었습니다.');history.go(-2);</script>");
+						out.flush();
+					} else {
+						out.println("<script>alert('삭제할수 없습니다.'); history.go(-1);</script>");
+						out.flush();
+					}
 				} else {
 					out.println("<script>alert('삭제할수 없습니다.'); history.go(-1);</script>");
 					out.flush();
 				}
+
 				break;
 
 			}
