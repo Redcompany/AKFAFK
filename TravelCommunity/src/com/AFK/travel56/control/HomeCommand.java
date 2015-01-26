@@ -121,7 +121,7 @@ public class HomeCommand implements Command {
 						request.setAttribute("deleteArticle", articleService
 								.deleteArticle(findArticle.getArticleNumber(),
 										memberVO.getMemberNickName()));
-						out.println("<script>alert('삭제되었습니다.');history.go(-2);</script>");
+						out.println("<script>alert('삭제되었습니다.');history.go(-3);</script>");
 						out.flush();
 					} else {
 						out.println("<script>alert('삭제할수 없습니다.'); history.go(-1);</script>");
