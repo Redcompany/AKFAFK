@@ -10,8 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import travel.MyFileRenamePolicy;
 
-import com.AFK.travel56.dao.ArticlePagingVO;
-import com.AFK.travel56.dao.ArticleVO;
 import com.AFK.travel56.dao.MemberVO;
 import com.AFK.travel56.service.ArticleService;
 import com.AFK.travel56.service.FileService;
@@ -57,7 +55,6 @@ public class ShowArticlesCommand implements Command {
 								request.getParameter("country")));
 			}
 		} else {
-			
 			int size = 6 * 1024 * 1024; // 업로드 파일 최대 크기 지정
 			String filename = "";
 			String filename1 = "";

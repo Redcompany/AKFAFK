@@ -85,9 +85,13 @@ public class HomeCommand implements Command {
 				outpw.flush();
 				break;
 			case "로그인":
+				String id=request.getParameter("id");
+				String pass=request.getParameter("pass");
+				if(!(id.isEmpty())&&!(pass.isEmpty())){
 				session.setAttribute("loginsession", memberService.loginMember(
 						request.getParameter("id"),
 						request.getParameter("pass")));
+				}
 				break;
 			case "로그아웃":
 				session.removeAttribute("loginsession");
@@ -126,7 +130,7 @@ public class HomeCommand implements Command {
 			}
 		}
 
-		commandResult = new CommandResult("/WEB-INF/view/home.jsp");	
+		commandResult = new CommandResult("/WEB-INF/view/home.jsp");
 		return commandResult;
 	}
 }

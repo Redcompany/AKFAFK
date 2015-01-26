@@ -30,9 +30,14 @@
 	function loginCheck() {
 		if (document.login.id.value == "") {
 			alert("아이디를 입력하세요");
+			history.back();
 			return false;
 		} else if (document.login.pass.value == "") {
 			alert("비밀번호를 입력하세요");
+			history.back();
+			return false;
+		}else {
+			document.writeForm.submit()
 			return false;
 		}
 	}
@@ -196,12 +201,13 @@
 					<tr>
 							<c:if test="${sessionScope.loginsession.memberName == null}">
 								<th>
-								<form name="login" onsubmit="return loginCheck();">
+								<form name="login" action="<c:url value='/action/home'/>"
+                                    			method="POST">
 								<input class="id" name="id" type="text" size="10"
 									maxlength="12" placeholder="아이디"><br> <input
 									class="pass" name="pass" type="password" size="10"
 									maxlength="12" placeholder="비밀번호"> <input type="submit"
-									name="todo" value="로그인">
+									name="todo" onclick="javascript:loginCheck()" value="로그인">
 									</form>
 									</th>
 									<tr>
